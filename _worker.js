@@ -51,7 +51,7 @@ const SYSTEM_DEFAULTS = {
     cfWorkerName: "",
     isPaused: false,
     silentAlerts: false,
-    githubRepo: "itsyebekhe/nahan",
+    githubRepo: "modoto-mo2/nahan",
     nameStrategy: "default",
     namePrefix: "Core",
     tgBotLang: "fa",
