@@ -84,6 +84,37 @@
             100% { transform: translate(25px, 35px) scale(1.08); }
         }
 
+        /* Radial Vignette Masked Backdrop Blur */
+        #focus-backdrop {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(7, 9, 19, 0.1) 0%, rgba(7, 9, 19, 0.85) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            mask-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), transparent 70px, black 320px);
+            -webkit-mask-image: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), transparent 70px, black 320px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            z-index: 40;
+        }
+        #focus-backdrop.active {
+            opacity: 1;
+        }
+
+        /* Scaled Circle on Hover */
+        .gauge-spotlight {
+            position: relative;
+            z-index: 50 !important;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gauge-spotlight:hover {
+            transform: scale(1.22);
+            filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.8));
+        }
+
         .stagger-1 { animation: enterUp 0.5s ease-out forwards 0.05s; opacity: 0; }
         .stagger-2 { animation: enterUp 0.5s ease-out forwards 0.15s; opacity: 0; }
         .stagger-3 { animation: enterUp 0.5s ease-out forwards 0.25s; opacity: 0; }
@@ -98,9 +129,6 @@
             transform: rotate(-90deg);
             transform-origin: 50% 50%;
         }
-        .progress-circle:hover {
-            transform: scale(1.08);
-        }
 
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -108,6 +136,9 @@
     </style>
 </head>
 <body class="min-h-screen relative flex flex-col justify-between py-6 px-4 sm:px-6 lg:px-8 selection:bg-indigo-500 selection:text-white">
+
+    <!-- Progressive Vignette Backdrop for Gauge Hover -->
+    <div id="focus-backdrop"></div>
 
     <!-- Ambient Glowing Lights -->
     <div class="orb top-[-10%] left-[-10%] w-[500px] h-[500px]" style="background: var(--glow-indigo);"></div>
@@ -153,7 +184,7 @@
                 <div class="absolute top-0 right-0 w-36 h-36 bg-gradient-to-br from-indigo-500/20 to-transparent rounded-full blur-2xl"></div>
 
                 <div class="flex items-center gap-4 mb-6 z-10">
-                    <!-- Clean Shield Avatar -->
+                    <!-- Shield Avatar -->
                     <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-400 p-[2px] shadow-xl shadow-indigo-500/20">
                         <div class="w-full h-full bg-[#0b0f19] dark:bg-[#070913] rounded-[14px] flex items-center justify-center">
                             <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,8 +226,8 @@
                 </div>
             </div>
 
-            <!-- Usage Radial Rings Card -->
-            <div class="glass-card p-6 flex flex-col gap-6">
+            <!-- Usage Radial Rings Card (Spotlight Target) -->
+            <div class="glass-card p-6 flex flex-col gap-6 relative transition-all duration-300">
                 <!-- Total Usage -->
                 <div class="flex items-center justify-between">
                     <div>
@@ -206,8 +237,8 @@
                             <span class="text-xs font-semibold text-slate-400">/ __LIMIT_TOTAL_GB__ GB</span>
                         </div>
                     </div>
-                    <!-- Total Radial Progress Ring -->
-                    <div class="relative w-16 h-16 flex items-center justify-center">
+                    <!-- Total Progress Ring -->
+                    <div class="gauge-spotlight relative w-16 h-16 flex items-center justify-center rounded-full" onmouseenter="handleGaugeHover(true, this)" onmouseleave="handleGaugeHover(false, this)">
                         <svg class="w-16 h-16 transform -rotate-90">
                             <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="4.5" class="text-slate-800/60" fill="transparent" />
                             <circle id="total-ring" cx="32" cy="32" r="26" stroke="currentColor" stroke-width="4.5" stroke-dasharray="163.36" stroke-dashoffset="163.36" stroke-linecap="round" class="text-indigo-500 progress-circle" fill="transparent" />
@@ -225,8 +256,8 @@
                             <span class="text-xs font-semibold text-slate-400">/ __LIMIT_DAILY_GB__ GB</span>
                         </div>
                     </div>
-                    <!-- Daily Radial Progress Ring -->
-                    <div class="relative w-16 h-16 flex items-center justify-center">
+                    <!-- Daily Progress Ring -->
+                    <div class="gauge-spotlight relative w-16 h-16 flex items-center justify-center rounded-full" onmouseenter="handleGaugeHover(true, this)" onmouseleave="handleGaugeHover(false, this)">
                         <svg class="w-16 h-16 transform -rotate-90">
                             <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="4.5" class="text-slate-800/60" fill="transparent" />
                             <circle id="daily-ring" cx="32" cy="32" r="26" stroke="currentColor" stroke-width="4.5" stroke-dasharray="163.36" stroke-dashoffset="163.36" stroke-linecap="round" class="text-cyan-400 progress-circle" fill="transparent" />
@@ -311,9 +342,9 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic Apps Grid (Rendered by JS) -->
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="dynamic-clients-grid">
-                        <!-- Filled by JS -->
+                    <!-- Dynamic Apps Grid (Rendered by JS with Auto-Download Feature) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5" id="dynamic-clients-grid">
+                        <!-- Filled dynamically by JS -->
                     </div>
 
                 </div>
@@ -470,7 +501,9 @@
                 fetchError: 'Failed to retrieve configs',
                 close: 'Close',
                 active: 'Active',
-                expired: 'Expired'
+                expired: 'Expired',
+                directDownload: 'Download Latest',
+                importApp: '1-Click Connect'
             },
             fa: {
                 accountStatus: 'وضعیت حساب',
@@ -494,35 +527,142 @@
                 fetchError: 'خطا در بارگذاری کانفیگ‌ها',
                 close: 'بستن',
                 active: 'فعال',
-                expired: 'منقضی شده'
+                expired: 'منقضی شده',
+                directDownload: 'دانلود آخرین نسخه',
+                importApp: 'اتصال ۱-کلیک'
             }
         };
 
-        // Strict Client Database customized per your request
+        // App Database with Direct GitHub Release Repos (Filters out pre-releases)
         const CLIENTS_DATABASE = {
             windows: [
-                { name: 'v2rayN', desc: 'Core Client', icon: 'monitor', link: (sub, name) => `v2rayn://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true }
+                { 
+                    name: 'v2rayN', 
+                    desc: 'Windows Official', 
+                    icon: 'monitor', 
+                    link: (sub, name) => `v2rayn://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, 
+                    githubRepo: '2dust/v2rayN',
+                    assetMatch: 'v2rayN-With-Core.zip'
+                }
             ],
             linux: [
-                { name: 'v2rayN / NekoRay', desc: 'Core Client', icon: 'terminal', link: (sub) => sub, primary: true }
+                { 
+                    name: 'v2rayN / NekoRay', 
+                    desc: 'Linux GUI', 
+                    icon: 'terminal', 
+                    link: (sub) => sub, 
+                    githubRepo: 'MatsuriDayo/nekoray',
+                    assetMatch: 'linux64.zip'
+                }
             ],
             android: [
-                { name: 'v2rayNG', desc: 'Top Recommended', icon: 'send', link: (sub, name) => `v2rayng://install-sub?url=${encodeURIComponent(sub + (sub.includes('?') ? '&' : '?') + 'flag=base64')}&name=${encodeURIComponent(name)}`, primary: true },
-                { name: 'V2Box', desc: 'Fast & Modern', icon: 'shield', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true }
+                { 
+                    name: 'v2rayNG', 
+                    desc: 'Top Android Client', 
+                    icon: 'send', 
+                    link: (sub, name) => `v2rayng://install-sub?url=${encodeURIComponent(sub + (sub.includes('?') ? '&' : '?') + 'flag=base64')}&name=${encodeURIComponent(name)}`, 
+                    githubRepo: '2dust/v2rayNG',
+                    assetMatch: '.apk'
+                },
+                { 
+                    name: 'V2Box', 
+                    desc: 'Fast & Modern', 
+                    icon: 'shield', 
+                    link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`,
+                    directUrl: 'https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box'
+                }
             ],
             ios: [
-                { name: 'Streisand', desc: 'Free / 1-Click', icon: 'shield', link: (sub) => `streisand://import/${sub}`, primary: true },
-                { name: 'V2Box', desc: 'App Store (Free)', icon: 'send', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
-                { name: 'Shadowrocket', desc: 'Pro Client', icon: 'zap', link: (sub, name) => `shadowrocket://add/sub://${btoa(unescape(encodeURIComponent(sub)))}?title=${encodeURIComponent(name)}`, primary: true }
+                { 
+                    name: 'INCY', 
+                    desc: 'Auto-Import / Fast', 
+                    icon: 'zap', 
+                    link: (sub) => `incy://import/${sub}`,
+                    directUrl: 'https://apps.apple.com/app/id6477755866'
+                },
+                { 
+                    name: 'Happ', 
+                    desc: 'Proxy Client', 
+                    icon: 'layers', 
+                    link: (sub) => `happ://import/${sub}`,
+                    directUrl: 'https://apps.apple.com/app/id6504287215'
+                },
+                { 
+                    name: 'V2Box', 
+                    desc: 'App Store (Free)', 
+                    icon: 'shield', 
+                    link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`,
+                    directUrl: 'https://apps.apple.com/app/v2box-v2ray-client/id6446814690'
+                }
             ],
             macos: [
-                { name: 'V2Box', desc: 'Mac App Store', icon: 'monitor', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
-                { name: 'Streisand', desc: 'Apple Silicon', icon: 'shield', link: (sub) => `streisand://import/${sub}`, primary: true }
+                { 
+                    name: 'V2Box', 
+                    desc: 'Mac App Store', 
+                    icon: 'monitor', 
+                    link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`,
+                    directUrl: 'https://apps.apple.com/app/v2box-v2ray-client/id6446814690'
+                },
+                { 
+                    name: 'INCY', 
+                    desc: 'Apple Silicon', 
+                    icon: 'zap', 
+                    link: (sub) => `incy://import/${sub}`,
+                    directUrl: 'https://apps.apple.com/app/id6477755866'
+                }
             ]
         };
 
         let currentLang = 'en';
         let isDark = true;
+
+        // Fetch Latest Stable Release from GitHub (Ignoring Pre-releases)
+        async function downloadLatestApp(repo, assetMatch, fallbackUrl) {
+            showToast('Fetching latest stable release...');
+            if (!repo) {
+                if (fallbackUrl) window.open(fallbackUrl, '_blank');
+                return;
+            }
+
+            try {
+                // /releases/latest ALWAYS returns only full stable releases, never pre-releases!
+                const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+                if (!res.ok) throw new Error('API Rate Limit');
+                const data = await res.json();
+
+                let asset = null;
+                if (assetMatch) {
+                    asset = data.assets.find(a => a.name.toLowerCase().includes(assetMatch.toLowerCase()));
+                }
+                if (!asset && data.assets.length > 0) {
+                    asset = data.assets[0];
+                }
+
+                if (asset && asset.browser_download_url) {
+                    window.location.href = asset.browser_download_url;
+                } else {
+                    window.open(`https://github.com/${repo}/releases/latest`, '_blank');
+                }
+            } catch (err) {
+                // Fallback to latest release page directly
+                window.open(`https://github.com/${repo}/releases/latest`, '_blank');
+            }
+        }
+
+        // Progressive Radial Vignette Hover Handler
+        function handleGaugeHover(isHovering, el) {
+            const backdrop = document.getElementById('focus-backdrop');
+            if (isHovering && el) {
+                const rect = el.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                backdrop.style.setProperty('--mouse-x', `${x}px`);
+                backdrop.style.setProperty('--mouse-y', `${y}px`);
+                backdrop.classList.add('active');
+            } else {
+                backdrop.classList.remove('active');
+            }
+        }
 
         function renderLucide() {
             if (window.lucide) lucide.createIcons();
@@ -663,15 +803,28 @@
                 const targetLink = typeof app.link === 'function' ? app.link(normalSub, userName) : app.link;
 
                 return `
-                    <a href="${targetLink}" class="p-4 rounded-2xl border border-indigo-500/40 bg-gradient-to-b from-indigo-500/10 to-transparent flex flex-col items-center justify-center text-center gap-2 group hover:border-indigo-500/60 hover:scale-105 active:scale-95 transition-all relative shadow-sm">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all">
-                            <i data-lucide="${app.icon}" class="w-5 h-5"></i>
+                    <div class="p-4 rounded-2xl border border-indigo-500/40 bg-gradient-to-b from-indigo-500/10 to-transparent flex flex-col justify-between gap-3 shadow-sm hover:border-indigo-500/70 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500/15 flex items-center justify-center text-indigo-400">
+                                <i data-lucide="${app.icon}" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold block">${app.name}</span>
+                                <span class="text-[10px] text-slate-400 font-mono">${app.desc}</span>
+                            </div>
                         </div>
-                        <div>
-                            <span class="text-xs font-bold block">${app.name}</span>
-                            <span class="text-[10px] text-slate-400 font-mono">${app.desc}</span>
+
+                        <!-- 1-Click Connect & Direct Download Action Buttons -->
+                        <div class="flex items-center gap-2 pt-1">
+                            <a href="${targetLink}" class="flex-1 py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-bold text-center transition-all flex items-center justify-center gap-1">
+                                <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                                <span>${I18N[currentLang].importApp}</span>
+                            </a>
+                            <button onclick="downloadLatestApp('${app.githubRepo || ''}', '${app.assetMatch || ''}', '${app.directUrl || ''}')" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors" title="${I18N[currentLang].directDownload}">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                            </button>
                         </div>
-                    </a>
+                    </div>
                 `;
             }).join('');
 
@@ -795,7 +948,7 @@
             }, 2200);
         }
 
-        // Initialize All Functions
+        // Initialize Everything
         (function init() {
             try {
                 const savedTheme = localStorage.getItem('nahan_theme');
