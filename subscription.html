@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>__USER_NAME__ | Subscription info</title>
+    <title>__USER_NAME__ | PasarGuard Subscription</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
                         'pg': '0.65rem',
                     },
                     colors: {
-                        pasarguard: {
+                        primary: {
                             light: '#2563eb',
                             dark: '#3b82f6',
                         }
@@ -36,7 +36,7 @@
         :root {
             --pg-bg: #090d16;
             --pg-card: #111827;
-            --pg-card-border: rgba(255, 255, 255, 0.08);
+            --pg-border: rgba(255, 255, 255, 0.08);
             --pg-inner: #1a2234;
             --pg-inner-border: rgba(255, 255, 255, 0.05);
             --pg-text-main: #f9fafb;
@@ -48,7 +48,7 @@
         html:not(.dark) {
             --pg-bg: #f8fafc;
             --pg-card: #ffffff;
-            --pg-card-border: rgba(0, 0, 0, 0.08);
+            --pg-border: rgba(0, 0, 0, 0.08);
             --pg-inner: #f1f5f9;
             --pg-inner-border: rgba(0, 0, 0, 0.05);
             --pg-text-main: #0f172a;
@@ -64,12 +64,12 @@
             transition: background-color 0.2s ease, color 0.2s ease;
         }
 
-        /* PasarGuard ShadCN UI Components */
+        /* PasarGuard Official Card Rules */
         .pg-card {
             background-color: var(--pg-card);
-            border: 1px solid var(--pg-card-border);
+            border: 1px solid var(--pg-border);
             border-radius: var(--pg-radius);
-            box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
         }
 
         .pg-inner {
@@ -86,7 +86,6 @@
         }
         .pg-btn-primary:hover {
             opacity: 0.9;
-            transform: translateY(-1px);
         }
 
         .pg-input {
@@ -115,9 +114,9 @@
 </head>
 <body class="py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-start min-h-screen">
 
-    <!-- PasarGuard Header Navigation -->
+    <!-- PasarGuard Official Header -->
     <header class="w-full max-w-3xl flex justify-between items-center mb-6">
-        <!-- Brand -->
+        <!-- PasarGuard Shield Logo -->
         <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-pg bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-600/30">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
@@ -128,7 +127,7 @@
             </div>
         </div>
 
-        <!-- Controls: Language Switcher & Dark Mode Toggle -->
+        <!-- Language Switcher & Dark Mode Toggle -->
         <div class="flex items-center gap-2">
             <button onclick="toggleLang()" id="lang-toggle" class="pg-inner px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 hover:border-blue-500 transition-all">
                 <span id="lang-icon">🇮🇷</span>
@@ -140,7 +139,7 @@
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main Dashboard Container -->
     <main class="w-full max-w-3xl flex flex-col gap-5">
 
         <!-- User Information Banner Card -->
@@ -161,7 +160,7 @@
                     </div>
                 </div>
 
-                <!-- PasarGuard Status Badge -->
+                <!-- Status Badge -->
                 <div class="w-full sm:w-auto">
                     <div id="status-badge" class="px-4 py-1.5 rounded-pg text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
                         <span class="w-2 h-2 rounded-full animate-ping bg-current"></span>
@@ -226,7 +225,7 @@
             </div>
         </div>
 
-        <!-- Specific Subscription Formats (PasarGuard Link Rows) -->
+        <!-- Specific Subscription Formats (PasarGuard Official Rows) -->
         <div class="pg-card p-5 sm:p-6">
             <h4 class="text-sm font-extrabold mb-1" style="color: var(--pg-text-main);" data-i18n="availableFormats">فرمت‌های مستقیم اشتراک</h4>
             <p class="text-xs mb-4" style="color: var(--pg-text-muted);" data-i18n="formatsDesc">در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.</p>
@@ -323,15 +322,19 @@
 
     </main>
 
-    <!-- QR Modal -->
+    <!-- PasarGuard Official QR & Base64 Modal -->
     <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="pg-card max-w-sm w-full p-6 text-center border-blue-500/30">
             <h3 class="text-base font-extrabold mb-4" id="qr-title" style="color: var(--pg-text-main);">اسکن کد QR</h3>
             <div class="bg-white p-3 rounded-pg inline-block mb-4 shadow-xl">
                 <img id="qr-img" src="" alt="QR" class="w-48 h-48">
             </div>
-            <p id="qr-text" class="text-[10px] font-mono break-all pg-inner p-2.5 mb-5 max-h-20 overflow-y-auto" style="color: var(--pg-text-muted);"></p>
-            <button onclick="closeQRModal()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-pg shadow-lg" data-i18n="close">بستن</button>
+            <p id="qr-text" class="text-[10px] font-mono break-all pg-inner p-2.5 mb-4 max-h-20 overflow-y-auto" style="color: var(--pg-text-muted);"></p>
+            
+            <div class="flex gap-2">
+                <button onclick="copyModalBase64()" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-pg shadow-md transition-all">کپی Base64</button>
+                <button onclick="closeQRModal()" class="flex-1 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-pg shadow-md transition-all" data-i18n="close">بستن</button>
+            </div>
         </div>
     </div>
 
@@ -340,7 +343,7 @@
         <span id="toast-msg">اعلان</span>
     </div>
 
-    <!-- PasarGuard Official Multi-Language & Logic Engine -->
+    <!-- PasarGuard Official Logic Engine -->
     <script>
         const I18N = {
             fa: {
@@ -437,6 +440,7 @@
         const langIcons = { fa: '🇮🇷', en: '🇺🇸', zh: '🇨🇳', ru: '🇷🇺' };
         let currentLang = 'fa';
         let isDark = true;
+        let activeModalUrl = '';
 
         function applyTheme() {
             const html = document.documentElement;
@@ -515,6 +519,14 @@
             showToast(I18N[currentLang].copied);
         }
 
+        function copyModalBase64() {
+            if (!activeModalUrl) return;
+            const sep = activeModalUrl.includes('?') ? '&' : '?';
+            const b64Url = activeModalUrl + sep + 'flag=base64';
+            navigator.clipboard.writeText(b64Url);
+            showToast(I18N[currentLang].copied);
+        }
+
         async function fetchDecodedRawContent() {
             try {
                 const res = await fetch('__SYNC_RAW__');
@@ -529,6 +541,7 @@
         }
 
         function showQRModal(url) {
+            activeModalUrl = url;
             document.getElementById('qr-title').innerText = I18N[currentLang].qrTitle;
             document.getElementById('qr-text').innerText = url;
             document.getElementById('qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(url);
@@ -560,7 +573,7 @@
             }, 2500);
         }
 
-        // Fetch Client IP
+        // Fetch IP
         fetch('https://api.ipify.org?format=json')
             .then(r => r.json())
             .then(data => {
@@ -571,7 +584,7 @@
                 if(el) el.textContent = 'Active';
             });
 
-        // Initialize App
+        // Initialize
         (function init() {
             try {
                 const savedTheme = localStorage.getItem('sub-theme');
@@ -595,7 +608,7 @@
             document.getElementById('link-singbox-fmt').value = normalLink + sep + 'flag=singbox';
             document.getElementById('link-clash-fmt').value = normalLink + sep + 'flag=clash';
 
-            // PasarGuard Apps Import
+            // PasarGuard One-Click Direct Apps
             document.getElementById('hiddify-link').href = 'hiddify://import/' + normalLink + '#' + userName;
             document.getElementById('v2rayng-link').href = 'v2rayng://install-sub?url=' + encodeURIComponent(normalLink + sep + 'flag=base64') + '&name=' + userName;
             document.getElementById('singbox-link').href = 'sing-box://import-remote?url=' + encodeURIComponent(normalLink + sep + 'flag=singbox') + '#' + userName;
