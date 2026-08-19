@@ -533,36 +533,28 @@
         };
 
         // App Definitions Database
+        // App Definitions Database (Customized for Iran Market)
         const CLIENTS_DATABASE = {
             windows: [
                 { name: 'v2rayN', desc: 'Recommended', icon: 'monitor', link: (sub, name) => `v2rayn://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
-                { name: 'Clash Verge', desc: 'Mihomo Core', icon: 'zap', link: (sub) => `clash://install-config?url=${encodeURIComponent(sub + '&flag=clash')}`, primary: true },
-                { name: 'Hiddify Next', desc: 'Sing-box Core', icon: 'shield', link: (sub) => `hiddify://install-sub?url=${encodeURIComponent(sub)}`, primary: false },
-                { name: 'Nekoray', desc: 'Xray / Sing-box', icon: 'terminal', link: (sub) => sub, primary: false }
+                { name: 'NekoRay', desc: 'Sing-box / Xray', icon: 'terminal', link: (sub) => sub, primary: false }
             ],
-            ios: [
-                { name: 'Shadowrocket', desc: 'Top Recommended', icon: 'zap', link: (sub, name) => `shadowrocket://add/sub://${btoa(sub)}?title=${encodeURIComponent(name)}`, primary: true },
-                { name: 'Streisand', desc: 'Direct Import', icon: 'shield', link: (sub) => `streisand://import/${sub}`, primary: true },
-                { name: 'Sing-Box', desc: 'JSON Engine', icon: 'layers', link: (sub) => `sing-box://import-remote-profile?url=${encodeURIComponent(sub + '&flag=singbox')}`, primary: true },
-                { name: 'FoXray', desc: 'Fast & Secure', icon: 'send', link: (sub) => `foxray://import/${sub}`, primary: false }
+            linux: [
+                { name: 'v2rayN / NekoRay', desc: 'Core GUI', icon: 'terminal', link: (sub) => sub, primary: true },
+                { name: 'Sing-Box CLI', desc: 'Core Daemon', icon: 'layers', link: (sub) => sub + '&flag=singbox', primary: false }
             ],
             android: [
                 { name: 'v2rayNG', desc: 'Top Recommended', icon: 'send', link: (sub, name) => `v2rayng://install-sub?url=${encodeURIComponent(sub + '&flag=base64')}&name=${encodeURIComponent(name)}`, primary: true },
-                { name: 'Hiddify', desc: 'Modern & Clean', icon: 'shield', link: (sub) => `hiddify://install-sub?url=${encodeURIComponent(sub)}`, primary: true },
-                { name: 'NekoBox', desc: 'Sing-box Core', icon: 'layers', link: (sub) => `sing-box://import-remote-profile?url=${encodeURIComponent(sub + '&flag=singbox')}`, primary: false },
-                { name: 'Clash Meta', desc: 'Rules & Routing', icon: 'zap', link: (sub) => `clash://install-config?url=${encodeURIComponent(sub + '&flag=clash')}`, primary: false }
+                { name: 'V2Box', desc: 'Fast & Clean', icon: 'shield', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true }
+            ],
+            ios: [
+                { name: 'Streisand', desc: 'Free & Auto-Import', icon: 'shield', link: (sub) => `streisand://import/${sub}`, primary: true },
+                { name: 'V2Box', desc: 'Free on App Store', icon: 'send', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
+                { name: 'Shadowrocket', desc: 'Paid / Pro Client', icon: 'zap', link: (sub, name) => `shadowrocket://add/sub://${btoa(sub)}?title=${encodeURIComponent(name)}`, primary: true }
             ],
             macos: [
-                { name: 'Clash Verge', desc: 'Top Recommended', icon: 'zap', link: (sub) => `clash://install-config?url=${encodeURIComponent(sub + '&flag=clash')}`, primary: true },
-                { name: 'Sing-Box', desc: 'Universal', icon: 'layers', link: (sub) => `sing-box://import-remote-profile?url=${encodeURIComponent(sub + '&flag=singbox')}`, primary: true },
-                { name: 'Streisand', desc: 'M-Series', icon: 'shield', link: (sub) => `streisand://import/${sub}`, primary: false },
-                { name: 'V2Box', desc: 'Direct Import', icon: 'monitor', link: (sub) => sub, primary: false }
-            ],
-            linux: [
-                { name: 'Clash Verge', desc: 'AppImage / Deb', icon: 'zap', link: (sub) => `clash://install-config?url=${encodeURIComponent(sub + '&flag=clash')}`, primary: true },
-                { name: 'Nekoray', desc: 'GUI Client', icon: 'terminal', link: (sub) => sub, primary: true },
-                { name: 'Sing-Box', desc: 'CLI Daemon', icon: 'layers', link: (sub) => sub + '&flag=singbox', primary: false },
-                { name: 'Hiddify Next', desc: 'All-in-One', icon: 'shield', link: (sub) => `hiddify://install-sub?url=${encodeURIComponent(sub)}`, primary: false }
+                { name: 'V2Box', desc: 'Mac App Store', icon: 'monitor', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
+                { name: 'Streisand', desc: 'Apple Silicon', icon: 'shield', link: (sub) => `streisand://import/${sub}`, primary: true }
             ]
         };
 
