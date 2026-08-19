@@ -19,14 +19,13 @@
                         fa: ['Vazirmatn', 'sans-serif'],
                         en: ['Plus Jakarta Sans', 'sans-serif'],
                     },
+                    borderRadius: {
+                        'pg': '0.65rem',
+                    },
                     colors: {
-                        pg: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a',
+                        pasarguard: {
+                            light: '#2563eb',
+                            dark: '#3b82f6',
                         }
                     }
                 }
@@ -37,22 +36,23 @@
         :root {
             --pg-bg: #090d16;
             --pg-card: #111827;
-            --pg-card-border: #1f293d;
+            --pg-card-border: rgba(255, 255, 255, 0.08);
             --pg-inner: #1a2234;
-            --pg-inner-border: #2a364f;
+            --pg-inner-border: rgba(255, 255, 255, 0.05);
             --pg-text-main: #f9fafb;
-            --pg-text-sub: #9ca3af;
-            --pg-primary: #2563eb;
+            --pg-text-muted: #9ca3af;
+            --pg-primary: #3b82f6;
+            --pg-radius: 0.65rem;
         }
 
         html:not(.dark) {
             --pg-bg: #f8fafc;
             --pg-card: #ffffff;
-            --pg-card-border: #e2e8f0;
+            --pg-card-border: rgba(0, 0, 0, 0.08);
             --pg-inner: #f1f5f9;
-            --pg-inner-border: #cbd5e1;
+            --pg-inner-border: rgba(0, 0, 0, 0.05);
             --pg-text-main: #0f172a;
-            --pg-text-sub: #64748b;
+            --pg-text-muted: #64748b;
             --pg-primary: #2563eb;
         }
 
@@ -61,27 +61,39 @@
             color: var(--pg-text-main);
             font-family: 'Vazirmatn', 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
-            transition: background-color 0.25s ease, color 0.25s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
-        /* PasarGuard Signature ShadCN Cards */
+        /* PasarGuard ShadCN UI Components */
         .pg-card {
             background-color: var(--pg-card);
             border: 1px solid var(--pg-card-border);
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+            border-radius: var(--pg-radius);
+            box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
         }
 
         .pg-inner {
             background-color: var(--pg-inner);
             border: 1px solid var(--pg-inner-border);
-            border-radius: 0.75rem;
+            border-radius: calc(var(--pg-radius) - 0.15rem);
+        }
+
+        .pg-btn-primary {
+            background-color: var(--pg-primary);
+            color: #ffffff;
+            border-radius: calc(var(--pg-radius) - 0.15rem);
+            transition: all 0.15s ease;
+        }
+        .pg-btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         .pg-input {
             background-color: var(--pg-inner);
             border: 1px solid var(--pg-inner-border);
             color: var(--pg-text-main);
+            border-radius: calc(var(--pg-radius) - 0.15rem);
             font-family: 'Plus Jakarta Sans', monospace;
         }
         .pg-input:focus {
@@ -89,34 +101,34 @@
             outline: none;
         }
 
-        /* Progress Bar Override */
         .progress-bar-bg {
             background-color: var(--pg-inner);
             border-radius: 9999px;
             overflow: hidden;
+            padding: 2px;
             border: 1px solid var(--pg-inner-border);
         }
 
-        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-thumb { background: var(--pg-primary); border-radius: 10px; }
     </style>
 </head>
 <body class="py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-start min-h-screen">
 
-    <!-- PasarGuard Header -->
+    <!-- PasarGuard Header Navigation -->
     <header class="w-full max-w-3xl flex justify-between items-center mb-6">
-        <!-- PasarGuard Logo -->
+        <!-- Brand -->
         <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-600/30">
+            <div class="w-9 h-9 rounded-pg bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-600/30">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
             </div>
             <div>
                 <h1 class="text-sm font-black tracking-tight" style="color: var(--pg-text-main);">PasarGuard</h1>
-                <p class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">Subscription Panel</p>
+                <p class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">Subscription Template</p>
             </div>
         </div>
 
-        <!-- Language & Theme Controller -->
+        <!-- Controls: Language Switcher & Dark Mode Toggle -->
         <div class="flex items-center gap-2">
             <button onclick="toggleLang()" id="lang-toggle" class="pg-inner px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 hover:border-blue-500 transition-all">
                 <span id="lang-icon">🇮🇷</span>
@@ -128,30 +140,30 @@
         </div>
     </header>
 
-    <!-- Main Content Container -->
+    <!-- Main Container -->
     <main class="w-full max-w-3xl flex flex-col gap-5">
 
-        <!-- PasarGuard User Info Banner -->
+        <!-- User Information Banner Card -->
         <div class="pg-card p-5 sm:p-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div class="flex items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-lg font-black text-blue-500 shrink-0">
+                    <div class="w-12 h-12 rounded-pg bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-lg font-black text-blue-500 shrink-0">
                         __USER_NAME__[0]
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
                             <h2 class="text-base font-extrabold" style="color: var(--pg-text-main);">__USER_NAME__</h2>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded pg-inner" style="color: var(--pg-text-sub);">ID: __USER_ID__</span>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded pg-inner" style="color: var(--pg-text-muted);">ID: __USER_ID__</span>
                         </div>
-                        <p class="text-xs mt-1" style="color: var(--pg-text-sub);">
+                        <p class="text-xs mt-1" style="color: var(--pg-text-muted);">
                             <span data-i18n="expDate">تاریخ انقضا</span>: <strong class="text-blue-500 font-mono">__EXPIRY_DATE__</strong>
                         </p>
                     </div>
                 </div>
 
-                <!-- Status Badge -->
+                <!-- PasarGuard Status Badge -->
                 <div class="w-full sm:w-auto">
-                    <div id="status-badge" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
+                    <div id="status-badge" class="px-4 py-1.5 rounded-pg text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
                         <span class="w-2 h-2 rounded-full animate-ping bg-current"></span>
                         <span>CHECKING...</span>
                     </div>
@@ -159,17 +171,17 @@
             </div>
         </div>
 
-        <!-- Usage Metrics (Total Traffic & Daily Traffic) -->
+        <!-- Metrics Grid (Total Usage & Daily Usage) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <!-- Total Usage -->
             <div class="pg-card p-5">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--pg-text-sub);" data-i18n="totalUsage">مصرف کل</span>
+                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--pg-text-muted);" data-i18n="totalUsage">مصرف کل</span>
                     <span class="text-xs font-bold text-blue-500 font-mono">TOTAL</span>
                 </div>
                 <div class="flex items-baseline gap-1.5 mb-3">
                     <span class="text-2xl font-black font-mono" style="color: var(--pg-text-main);">__TOTAL_GB__</span>
-                    <span class="text-xs font-mono" style="color: var(--pg-text-sub);">/ __LIMIT_TOTAL_GB__ GB</span>
+                    <span class="text-xs font-mono" style="color: var(--pg-text-muted);">/ __LIMIT_TOTAL_GB__ GB</span>
                 </div>
                 <div class="progress-bar-bg">
                     __TOTAL_PROGRESS__
@@ -179,12 +191,12 @@
             <!-- Daily Usage -->
             <div class="pg-card p-5">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--pg-text-sub);" data-i18n="dailyUsage">مصرف روزانه</span>
+                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--pg-text-muted);" data-i18n="dailyUsage">مصرف روزانه</span>
                     <span class="text-xs font-bold text-emerald-500 font-mono">DAILY</span>
                 </div>
                 <div class="flex items-baseline gap-1.5 mb-3">
                     <span class="text-2xl font-black font-mono" style="color: var(--pg-text-main);">__DAILY_GB__</span>
-                    <span class="text-xs font-mono" style="color: var(--pg-text-sub);">/ __LIMIT_DAILY_GB__ GB</span>
+                    <span class="text-xs font-mono" style="color: var(--pg-text-muted);">/ __LIMIT_DAILY_GB__ GB</span>
                 </div>
                 <div class="progress-bar-bg">
                     __DAILY_PROGRESS__
@@ -192,22 +204,22 @@
             </div>
         </div>
 
-        <!-- Universal Subscription Link Section -->
+        <!-- Universal Subscription Auto-Detect Link -->
         <div class="pg-card p-5 sm:p-6">
             <div class="flex items-center justify-between mb-2">
                 <h3 class="text-sm font-extrabold" style="color: var(--pg-text-main);" data-i18n="universalLink">لینک هوشمند اتصال (Universal Sub)</h3>
                 <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-blue-600/15 text-blue-500">پیشنهادی</span>
             </div>
-            <p class="text-xs mb-4 leading-relaxed" style="color: var(--pg-text-sub);" data-i18n="universalDesc">این لینک به صورت خودکار کلاینت شما را شناسایی کرده و کانفیگ مناسب را ارسال می‌کند.</p>
+            <p class="text-xs mb-4 leading-relaxed" style="color: var(--pg-text-muted);" data-i18n="universalDesc">این لینک به صورت خودکار کلاینت شما را شناسایی کرده و کانفیگ مناسب را ارسال می‌کند.</p>
 
             <div class="flex flex-col sm:flex-row gap-2" dir="ltr">
-                <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="pg-input flex-1 px-3.5 py-2.5 rounded-lg text-xs w-full">
+                <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="pg-input flex-1 px-3.5 py-2.5 text-xs w-full">
                 <div class="flex gap-2 shrink-0">
-                    <button onclick="copyLink('link-normal')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
+                    <button onclick="copyLink('link-normal')" class="pg-btn-primary font-bold px-4 py-2.5 text-xs flex items-center justify-center gap-1.5">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
                         <span data-i18n="copy">کپی</span>
                     </button>
-                    <button onclick="showQRModal('__SYNC_NORMAL__')" class="pg-inner p-2.5 text-blue-500 hover:border-blue-500 rounded-lg flex items-center justify-center">
+                    <button onclick="showQRModal('__SYNC_NORMAL__')" class="pg-inner p-2.5 text-blue-500 hover:border-blue-500 rounded-pg flex items-center justify-center">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                     </button>
                 </div>
@@ -217,7 +229,7 @@
         <!-- Specific Subscription Formats (PasarGuard Link Rows) -->
         <div class="pg-card p-5 sm:p-6">
             <h4 class="text-sm font-extrabold mb-1" style="color: var(--pg-text-main);" data-i18n="availableFormats">فرمت‌های مستقیم اشتراک</h4>
-            <p class="text-xs mb-4" style="color: var(--pg-text-sub);" data-i18n="formatsDesc">در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.</p>
+            <p class="text-xs mb-4" style="color: var(--pg-text-muted);" data-i18n="formatsDesc">در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.</p>
 
             <div class="space-y-3">
                 <!-- Base64 -->
@@ -227,9 +239,9 @@
                         <span class="text-xs font-bold" style="color: var(--pg-text-main);">Base64 (v2rayNG / Shadowrocket)</span>
                     </div>
                     <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-base64-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-base64-fmt')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="pg-inner p-1.5 hover:border-emerald-500 rounded-lg text-emerald-400">
+                        <input type="text" id="link-base64-fmt" readonly class="pg-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
+                        <button onclick="copyLink('link-base64-fmt')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-pg transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="pg-inner p-1.5 hover:border-emerald-500 text-emerald-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
@@ -242,9 +254,9 @@
                         <span class="text-xs font-bold" style="color: var(--pg-text-main);">Sing-Box Subscription (JSON)</span>
                     </div>
                     <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-singbox-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-singbox-fmt')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="pg-inner p-1.5 hover:border-amber-500 rounded-lg text-amber-400">
+                        <input type="text" id="link-singbox-fmt" readonly class="pg-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
+                        <button onclick="copyLink('link-singbox-fmt')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-pg transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="pg-inner p-1.5 hover:border-amber-500 text-amber-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
@@ -257,9 +269,9 @@
                         <span class="text-xs font-bold" style="color: var(--pg-text-main);">Clash Subscription (YAML)</span>
                     </div>
                     <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-clash-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-clash-fmt')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="pg-inner p-1.5 hover:border-purple-500 rounded-lg text-purple-400">
+                        <input type="text" id="link-clash-fmt" readonly class="pg-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
+                        <button onclick="copyLink('link-clash-fmt')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-pg transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="pg-inner p-1.5 hover:border-purple-500 text-purple-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
@@ -272,9 +284,9 @@
                         <span class="text-xs font-bold" style="color: var(--pg-text-main);">Raw Configs (Text / URI)</span>
                     </div>
                     <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-raw-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-raw-fmt')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="pg-inner p-1.5 hover:border-blue-500 rounded-lg text-blue-400">
+                        <input type="text" id="link-raw-fmt" readonly class="pg-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
+                        <button onclick="copyLink('link-raw-fmt')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-pg transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="pg-inner p-1.5 hover:border-blue-500 text-blue-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
@@ -282,7 +294,7 @@
             </div>
         </div>
 
-        <!-- PasarGuard Direct Client Import Launchers -->
+        <!-- PasarGuard Direct Client Launchers -->
         <div class="pg-card p-5 sm:p-6">
             <h4 class="text-xs font-bold uppercase tracking-wider text-blue-500 mb-3 flex items-center gap-2" data-i18n="oneClickImport">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -298,9 +310,9 @@
 
             <!-- Footer Utilities -->
             <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
-                <span class="text-xs" style="color: var(--pg-text-sub);">آی‌پی اتصال شما: <strong id="client-ip" class="font-mono text-blue-500">در حال دریافت...</strong></span>
+                <span class="text-xs" style="color: var(--pg-text-muted);">آی‌پی اتصال شما: <strong id="client-ip" class="font-mono text-blue-500">در حال دریافت...</strong></span>
                 <div class="flex items-center gap-3">
-                    <button onclick="fetchDecodedRawContent()" class="pg-inner px-3.5 py-1.5 text-xs font-bold hover:border-blue-500 flex items-center gap-1.5">
+                    <button onclick="fetchDecodedRawContent()" class="pg-inner px-3 py-1.5 text-xs font-bold hover:border-blue-500 flex items-center gap-1.5">
                         <span data-i18n="parsedContent">دریافت متن خام کانفیگ‌ها</span>
                     </button>
                     <a href="https://t.me/+mx5EmkbHzm41Y2Q5" target="_blank" class="text-xs text-blue-500 font-bold hover:underline">پشتیبانی تلگرام</a>
@@ -315,11 +327,11 @@
     <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="pg-card max-w-sm w-full p-6 text-center border-blue-500/30">
             <h3 class="text-base font-extrabold mb-4" id="qr-title" style="color: var(--pg-text-main);">اسکن کد QR</h3>
-            <div class="bg-white p-3 rounded-2xl inline-block mb-4 shadow-xl">
+            <div class="bg-white p-3 rounded-pg inline-block mb-4 shadow-xl">
                 <img id="qr-img" src="" alt="QR" class="w-48 h-48">
             </div>
-            <p id="qr-text" class="text-[10px] font-mono break-all pg-inner p-2.5 mb-5 max-h-20 overflow-y-auto" style="color: var(--pg-text-sub);"></p>
-            <button onclick="closeQRModal()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-lg" data-i18n="close">بستن</button>
+            <p id="qr-text" class="text-[10px] font-mono break-all pg-inner p-2.5 mb-5 max-h-20 overflow-y-auto" style="color: var(--pg-text-muted);"></p>
+            <button onclick="closeQRModal()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-pg shadow-lg" data-i18n="close">بستن</button>
         </div>
     </div>
 
@@ -328,7 +340,7 @@
         <span id="toast-msg">اعلان</span>
     </div>
 
-    <!-- PasarGuard JS Engine -->
+    <!-- PasarGuard Official Multi-Language & Logic Engine -->
     <script>
         const I18N = {
             fa: {
@@ -374,9 +386,55 @@
                 expired: 'Expired',
                 limitExceeded: 'Total Limit Exceeded',
                 dailyLimitExceeded: 'Daily Limit Exceeded'
+            },
+            zh: {
+                totalUsage: '总用量',
+                dailyUsage: '每日用量',
+                expDate: '到期时间',
+                universalLink: '通用智能订阅链接',
+                universalDesc: '自动识别您的客户端并发送最佳配置。',
+                availableFormats: '独立订阅格式',
+                formatsDesc: '根据您的客户端复制特定格式的链接。',
+                oneClickImport: '一键导入客户端',
+                copy: '复制',
+                parsedContent: '获取原始配置文本',
+                close: '关闭',
+                qrTitle: '扫描二维码',
+                copied: '已复制到剪贴板！',
+                decodedCopied: '已复制解密配置！',
+                decodedError: '获取内容失败',
+                active: '活动中',
+                paused: '已暂停',
+                expired: '已到期',
+                limitExceeded: '已超流量限制',
+                dailyLimitExceeded: '已超每日限制'
+            },
+            ru: {
+                totalUsage: 'Общий трафик',
+                dailyUsage: 'Дневной трафик',
+                expDate: 'Дата окончания',
+                universalLink: 'Универсальная ссылка подписки',
+                universalDesc: 'Автоматически определяет ваш клиент и отправляет нужные конфиги.',
+                availableFormats: 'Прямые форматы подписки',
+                formatsDesc: 'Используйте эти ссылки для загрузки конфигурации под конкретный клиент.',
+                oneClickImport: 'Импорт в один клик',
+                copy: 'Копировать',
+                parsedContent: 'Получить исходный текст',
+                close: 'Закрыть',
+                qrTitle: 'Сканировать QR-код',
+                copied: 'Скопировано в буфер!',
+                decodedCopied: 'Конфиги скопированы!',
+                decodedError: 'Ошибка получения данных',
+                active: 'Активна',
+                paused: 'Приостановлена',
+                expired: 'Истекла',
+                limitExceeded: 'Лимит превышен',
+                dailyLimitExceeded: 'Дневной лимит превышен'
             }
         };
 
+        const langsSequence = ['fa', 'en', 'zh', 'ru'];
+        const langIcons = { fa: '🇮🇷', en: '🇺🇸', zh: '🇨🇳', ru: '🇷🇺' };
         let currentLang = 'fa';
         let isDark = true;
 
@@ -394,7 +452,7 @@
         }
 
         function applyLang() {
-            const t = I18N[currentLang];
+            const t = I18N[currentLang] || I18N.en;
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) el.textContent = t[key];
@@ -403,14 +461,14 @@
             if (currentLang === 'fa') {
                 document.documentElement.setAttribute('dir', 'rtl');
                 document.documentElement.setAttribute('lang', 'fa');
-                document.getElementById('lang-icon').textContent = '🇮🇷';
-                document.getElementById('lang-label').textContent = 'FA';
             } else {
                 document.documentElement.setAttribute('dir', 'ltr');
-                document.documentElement.setAttribute('lang', 'en');
-                document.getElementById('lang-icon').textContent = '🇺🇸';
-                document.getElementById('lang-label').textContent = 'EN';
+                document.documentElement.setAttribute('lang', currentLang);
             }
+
+            document.getElementById('lang-icon').textContent = langIcons[currentLang];
+            document.getElementById('lang-label').textContent = currentLang.toUpperCase();
+
             initStatusBadge();
             try { localStorage.setItem('sub-lang', currentLang); } catch(e) {}
         }
@@ -421,14 +479,15 @@
         }
 
         function toggleLang() {
-            currentLang = currentLang === 'fa' ? 'en' : 'fa';
+            const idx = langsSequence.indexOf(currentLang);
+            currentLang = langsSequence[(idx + 1) % langsSequence.length];
             applyLang();
             applyTheme();
         }
 
         function initStatusBadge() {
             const badge = document.getElementById('status-badge');
-            const t = I18N[currentLang];
+            const t = I18N[currentLang] || I18N.en;
 
             const statusMap = {
                 active: { label: t.active, bg: 'rgba(16, 185, 129, 0.15)', border: 'rgba(16, 185, 129, 0.3)', color: '#34d399' },
@@ -501,7 +560,7 @@
             }, 2500);
         }
 
-        // Fetch IP
+        // Fetch Client IP
         fetch('https://api.ipify.org?format=json')
             .then(r => r.json())
             .then(data => {
@@ -509,7 +568,7 @@
                 if(el) el.textContent = data.ip;
             }).catch(() => {
                 const el = document.getElementById('client-ip');
-                if(el) el.textContent = 'فعال';
+                if(el) el.textContent = 'Active';
             });
 
         // Initialize App
