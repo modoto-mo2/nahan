@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>__USER_NAME__ - sub Portal</title>
+    <title>__USER_NAME__ - Subscription Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,13 +18,6 @@
                         fa: ['Vazirmatn', 'sans-serif'],
                         en: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            glow: '#818cf8'
-                        }
                     }
                 }
             }
@@ -33,41 +26,36 @@
     <style>
         :root {
             --bg: #070913;
-            --bg-card: rgba(15, 23, 42, 0.7);
-            --bg-inner: rgba(30, 41, 59, 0.5);
+            --bg-card: rgba(15, 23, 42, 0.72);
             --border: rgba(255, 255, 255, 0.08);
             --border-hover: rgba(99, 102, 241, 0.5);
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
             --glow-indigo: rgba(99, 102, 241, 0.18);
-            --glow-cyan: rgba(6, 182, 212, 0.15);
-            --glow-emerald: rgba(16, 185, 129, 0.15);
+            --glow-cyan: rgba(6, 182, 212, 0.14);
         }
 
         html:not(.dark) {
-            --bg: #f1f5f9;
-            --bg-card: rgba(255, 255, 255, 0.85);
-            --bg-inner: rgba(241, 245, 249, 0.8);
-            --border: rgba(203, 213, 225, 0.8);
+            --bg: #f8fafc;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --border: rgba(226, 232, 240, 0.9);
             --border-hover: rgba(99, 102, 241, 0.6);
             --text-main: #0f172a;
             --text-sub: #64748b;
             --glow-indigo: rgba(99, 102, 241, 0.08);
             --glow-cyan: rgba(6, 182, 212, 0.08);
-            --glow-emerald: rgba(16, 185, 129, 0.08);
         }
 
         body {
             background-color: var(--bg);
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif;
-            transition: background 0.4s ease, color 0.4s ease;
+            transition: background 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
         }
 
         [lang="fa"] body { font-family: 'Vazirmatn', sans-serif; }
 
-        /* Glassmorphism & Cyber Card */
         .glass-card {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
@@ -83,54 +71,34 @@
             box-shadow: 0 12px 30px -10px var(--glow-indigo);
         }
 
-        /* Ambient Floating Orbs */
         .orb {
             position: fixed;
             border-radius: 50%;
             filter: blur(130px);
             pointer-events: none;
             z-index: 0;
-            animation: floatOrb 12s ease-in-out infinite alternate;
+            animation: floatOrb 10s ease-in-out infinite alternate;
         }
         @keyframes floatOrb {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, 40px) scale(1.1); }
+            100% { transform: translate(25px, 35px) scale(1.08); }
         }
 
-        /* Staggered Entry Animations */
-        .stagger-1 { animation: enterUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.05s; opacity: 0; }
-        .stagger-2 { animation: enterUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.15s; opacity: 0; }
-        .stagger-3 { animation: enterUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.25s; opacity: 0; }
-        .stagger-4 { animation: enterUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.35s; opacity: 0; }
+        .stagger-1 { animation: enterUp 0.5s ease-out forwards 0.05s; opacity: 0; }
+        .stagger-2 { animation: enterUp 0.5s ease-out forwards 0.15s; opacity: 0; }
+        .stagger-3 { animation: enterUp 0.5s ease-out forwards 0.25s; opacity: 0; }
 
         @keyframes enterUp {
-            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+            0% { opacity: 0; transform: translateY(18px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Gauge Progress Animation */
         .progress-circle {
-            transition: stroke-dashoffset 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: stroke-dashoffset 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
             transform: rotate(-90deg);
             transform-origin: 50% 50%;
         }
 
-        /* Pulsing Radar Ring */
-        @keyframes radarWave {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.15); opacity: 0; }
-            100% { transform: scale(0.95); opacity: 0; }
-        }
-        .radar-pulse::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: inherit;
-            border: 2px solid currentColor;
-            animation: radarWave 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-        }
-
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.4); border-radius: 99px; }
@@ -141,14 +109,13 @@
     <!-- Ambient Glowing Lights -->
     <div class="orb top-[-10%] left-[-10%] w-[500px] h-[500px]" style="background: var(--glow-indigo);"></div>
     <div class="orb bottom-[-10%] right-[-10%] w-[600px] h-[600px]" style="background: var(--glow-cyan);"></div>
-    <div class="orb top-[40%] right-[30%] w-[400px] h-[400px]" style="background: var(--glow-emerald);"></div>
 
     <!-- Header Navigation -->
     <header class="w-full max-w-6xl mx-auto flex items-center justify-between z-10 mb-8 stagger-1">
         <div class="flex items-center gap-3">
-            <div class="relative w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 p-[1.5px] shadow-lg shadow-indigo-500/25 group hover:rotate-6 transition-transform">
+            <div class="relative w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 p-[1.5px] shadow-lg shadow-indigo-500/25">
                 <div class="w-full h-full bg-slate-950 dark:bg-[#090d16] rounded-[14px] flex items-center justify-center">
-                    <i data-lucide="shield-check" class="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                    <i data-lucide="shield-check" class="w-6 h-6 text-indigo-400"></i>
                 </div>
             </div>
             <div>
@@ -197,7 +164,7 @@
                     </div>
                 </div>
 
-                <!-- Status Badge with Radar Pulse -->
+                <!-- Status Badge -->
                 <div id="status-card" class="w-full py-3 px-4 rounded-xl flex items-center justify-between text-xs font-bold mb-4 border transition-colors relative">
                     <span class="flex items-center gap-2">
                         <span class="relative flex h-2.5 w-2.5">
@@ -271,7 +238,7 @@
                 <div class="flex items-center justify-between text-xs">
                     <span class="text-slate-400 flex items-center gap-2">
                         <i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-400"></i>
-                        <span data-i18n="myIp">Your Public IP</span>
+                        <span data-i18n="myIp">Your IP</span>
                     </span>
                     <span id="client-ip" class="font-mono font-bold bg-black/20 dark:bg-white/5 px-2.5 py-1 rounded-md text-[11px]">Detecting...</span>
                 </div>
@@ -298,7 +265,7 @@
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                     <div>
                         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 text-xs font-bold mb-2.5">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5 animate-spin" style="animation-duration: 8s;"></i>
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
                             <span data-i18n="autoSmart">Universal Auto-Detect</span>
                         </div>
                         <h3 class="text-xl font-black tracking-tight" data-i18n="fastSubTitle">Smart Subscription URL</h3>
@@ -327,36 +294,36 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
                         <div class="flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-wider">
                             <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
-                            <span data-i18n="clientSection">1-Click Clients for</span>
+                            <span data-i18n="clientSection">Clients for</span>
                             <span id="active-os-badge" class="px-2 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 font-mono text-[11px]">Detecting...</span>
                         </div>
 
-                        <!-- Platform Switcher Pills -->
+                        <!-- Platform Switcher Tabs -->
                         <div class="flex items-center gap-1 bg-black/20 dark:bg-white/5 p-1 rounded-xl border border-white/5 overflow-x-auto custom-scrollbar">
                             <button onclick="renderClients('windows')" id="tab-windows" class="os-tab-btn px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1">Windows</button>
-                            <button onclick="renderClients('ios')" id="tab-ios" class="os-tab-btn px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1">iOS</button>
                             <button onclick="renderClients('android')" id="tab-android" class="os-tab-btn px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1">Android</button>
+                            <button onclick="renderClients('ios')" id="tab-ios" class="os-tab-btn px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1">iOS</button>
                             <button onclick="renderClients('macos')" id="tab-macos" class="os-tab-btn px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1">macOS</button>
                             <button onclick="renderClients('linux')" id="tab-linux" class="os-tab-btn px-3 py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all flex items-center gap-1">Linux</button>
                         </div>
                     </div>
 
                     <!-- Dynamic Apps Grid (Rendered by JS) -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5" id="dynamic-clients-grid">
-                        <!-- Filled by JS dynamically with top priority apps first -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5" id="dynamic-clients-grid">
+                        <!-- Filled by JS -->
                     </div>
 
                 </div>
             </div>
 
             <!-- Formats Hub & Raw Configs -->
-            <div class="glass-card p-6 stagger-4">
+            <div class="glass-card p-6">
                 <div class="mb-5">
                     <h4 class="text-sm font-black flex items-center gap-2" data-i18n="formatHub">
                         <i data-lucide="layers" class="w-4 h-4 text-indigo-400"></i>
                         Manual Configuration Library
                     </h4>
-                    <p class="text-xs text-slate-400 mt-1" data-i18n="formatHubDesc">Select and copy standalone links for Clash, Sing-box, Base64 or plain configs.</p>
+                    <p class="text-xs text-slate-400 mt-1" data-i18n="formatHubDesc">Direct configurations for Sing-box, Clash, Base64 & RAW.</p>
                 </div>
 
                 <!-- Formats List -->
@@ -367,7 +334,7 @@
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 font-mono text-[11px] font-bold">YML</div>
                             <div>
-                                <h5 class="text-xs font-bold">Clash Meta / Verge</h5>
+                                <h5 class="text-xs font-bold">Clash Meta</h5>
                                 <span class="text-[10px] text-slate-400 font-mono">YAML Rules</span>
                             </div>
                         </div>
@@ -387,8 +354,8 @@
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-mono text-[11px] font-bold">JSON</div>
                             <div>
-                                <h5 class="text-xs font-bold">Sing-Box / Hiddify</h5>
-                                <span class="text-[10px] text-slate-400 font-mono">Outbound Rules</span>
+                                <h5 class="text-xs font-bold">Sing-Box</h5>
+                                <span class="text-[10px] text-slate-400 font-mono">JSON Rules</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-1.5">
@@ -407,8 +374,8 @@
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono text-[11px] font-bold">B64</div>
                             <div>
-                                <h5 class="text-xs font-bold">Standard Base64</h5>
-                                <span class="text-[10px] text-slate-400 font-mono">v2ray / Shadowrocket</span>
+                                <h5 class="text-xs font-bold">Base64 Link</h5>
+                                <span class="text-[10px] text-slate-400 font-mono">Standard Format</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-1.5">
@@ -427,7 +394,7 @@
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-mono text-[11px] font-bold">URI</div>
                             <div>
-                                <h5 class="text-xs font-bold">Raw Configs URIs</h5>
+                                <h5 class="text-xs font-bold">Raw URIs</h5>
                                 <span class="text-[10px] text-slate-400 font-mono">vless:// vmess://</span>
                             </div>
                         </div>
@@ -447,11 +414,11 @@
     </main>
 
     <!-- Support Footer -->
-    <footer class="w-full max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-white/5 z-10 text-xs text-slate-400 stagger-4">
+    <footer class="w-full max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-white/5 z-10 text-xs text-slate-400">
         <p>© 2026 Nahan Project - Anti-Censorship Edge Network</p>
         <a href="https://t.me/+mx5EmkbHzm41Y2Q5" target="_blank" class="flex items-center gap-2 text-indigo-400 font-bold hover:underline">
             <i data-lucide="send" class="w-4 h-4"></i>
-            <span data-i18n="telegramSupport">Telegram Support Group</span>
+            <span data-i18n="telegramSupport">Telegram Support</span>
         </a>
     </footer>
 
@@ -484,25 +451,23 @@
                 countdownLabel: 'Remaining Time:',
                 totalUsage: 'Total Bandwidth',
                 dailyUsage: 'Daily Limit',
-                myIp: 'Your Public IP',
+                myIp: 'Your IP',
                 subLatency: 'Sub Latency',
                 autoSmart: 'Universal Auto-Detect',
                 fastSubTitle: 'Smart Subscription URL',
                 qrCode: 'QR Code',
                 copy: 'Copy Link',
-                clientSection: '1-Click Clients for',
+                clientSection: 'Clients for',
                 formatHub: 'Manual Configuration Library',
-                formatHubDesc: 'Select and copy standalone links for Clash, Sing-box, Base64 or plain configs.',
+                formatHubDesc: 'Direct configurations for Sing-box, Clash, Base64 & RAW.',
                 extractRaw: 'Extract',
-                telegramSupport: 'Telegram Support Group',
+                telegramSupport: 'Telegram Support',
                 copiedToast: 'Copied to clipboard!',
                 extractedToast: 'RAW URI Configurations Copied!',
                 fetchError: 'Failed to retrieve configs',
                 close: 'Close',
                 active: 'Active',
-                expired: 'Expired',
-                paused: 'Paused',
-                limited: 'Limit Exceeded'
+                expired: 'Expired'
             },
             fa: {
                 accountStatus: 'وضعیت حساب',
@@ -510,47 +475,42 @@
                 countdownLabel: 'زمان باقی‌مانده:',
                 totalUsage: 'حجم کل مصرفی',
                 dailyUsage: 'محدودیت روزانه',
-                myIp: 'آی‌پی عمومی شما',
+                myIp: 'آی‌پی شما',
                 subLatency: 'پینگ اتصال',
-                autoSmart: 'شناسایی هوشمند کلاینت',
+                autoSmart: 'شناسایی خودکار کلاینت',
                 fastSubTitle: 'لینک اشتراک هوشمند',
                 qrCode: 'کد QR',
                 copy: 'کپی لینک',
-                clientSection: 'کلاینت‌های ۱-کلیک برای',
+                clientSection: 'برنامه‌های مخصوص',
                 formatHub: 'کتابخانه فرمت‌های دستی',
-                formatHubDesc: 'دریافت مستقیم فرمت‌های مجزا برای Sing-box، Clash، Base64 و کانفیگ‌های متنی.',
+                formatHubDesc: 'دریافت مستقیم فرمت‌های مجزا برای Sing-box، Clash، Base64 و متنی.',
                 extractRaw: 'استخراج',
-                telegramSupport: 'گروه پشتیبانی تلگرام',
+                telegramSupport: 'پشتیبانی تلگرام',
                 copiedToast: 'لینک با موفقیت کپی شد!',
                 extractedToast: 'تمام کانفیگ‌های متنی استخراج و کپی شدند!',
                 fetchError: 'خطا در بارگذاری کانفیگ‌ها',
                 close: 'بستن',
                 active: 'فعال',
-                expired: 'منقضی شده',
-                paused: 'متوقف شده',
-                limited: 'اتمام حجم'
+                expired: 'منقضی شده'
             }
         };
 
-        // App Definitions Database
-        // App Definitions Database (Customized for Iran Market)
+        // Strict Client Database customized per your request
         const CLIENTS_DATABASE = {
             windows: [
-                { name: 'v2rayN', desc: 'Recommended', icon: 'monitor', link: (sub, name) => `v2rayn://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
-                { name: 'NekoRay', desc: 'Sing-box / Xray', icon: 'terminal', link: (sub) => sub, primary: false }
+                { name: 'v2rayN', desc: 'Core Client', icon: 'monitor', link: (sub, name) => `v2rayn://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true }
             ],
             linux: [
-                { name: 'v2rayN / NekoRay', desc: 'Core GUI', icon: 'terminal', link: (sub) => sub, primary: true },
-                { name: 'Sing-Box CLI', desc: 'Core Daemon', icon: 'layers', link: (sub) => sub + '&flag=singbox', primary: false }
+                { name: 'v2rayN / NekoRay', desc: 'Core Client', icon: 'terminal', link: (sub) => sub, primary: true }
             ],
             android: [
-                { name: 'v2rayNG', desc: 'Top Recommended', icon: 'send', link: (sub, name) => `v2rayng://install-sub?url=${encodeURIComponent(sub + '&flag=base64')}&name=${encodeURIComponent(name)}`, primary: true },
-                { name: 'V2Box', desc: 'Fast & Clean', icon: 'shield', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true }
+                { name: 'v2rayNG', desc: 'Top Recommended', icon: 'send', link: (sub, name) => `v2rayng://install-sub?url=${encodeURIComponent(sub + (sub.includes('?') ? '&' : '?') + 'flag=base64')}&name=${encodeURIComponent(name)}`, primary: true },
+                { name: 'V2Box', desc: 'Fast & Modern', icon: 'shield', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true }
             ],
             ios: [
-                { name: 'Streisand', desc: 'Free & Auto-Import', icon: 'shield', link: (sub) => `streisand://import/${sub}`, primary: true },
-                { name: 'V2Box', desc: 'Free on App Store', icon: 'send', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
-                { name: 'Shadowrocket', desc: 'Paid / Pro Client', icon: 'zap', link: (sub, name) => `shadowrocket://add/sub://${btoa(sub)}?title=${encodeURIComponent(name)}`, primary: true }
+                { name: 'Streisand', desc: 'Free / 1-Click', icon: 'shield', link: (sub) => `streisand://import/${sub}`, primary: true },
+                { name: 'V2Box', desc: 'App Store (Free)', icon: 'send', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
+                { name: 'Shadowrocket', desc: 'Pro Client', icon: 'zap', link: (sub, name) => `shadowrocket://add/sub://${btoa(unescape(encodeURIComponent(sub)))}?title=${encodeURIComponent(name)}`, primary: true }
             ],
             macos: [
                 { name: 'V2Box', desc: 'Mac App Store', icon: 'monitor', link: (sub, name) => `v2box://install-sub?url=${encodeURIComponent(sub)}&name=${encodeURIComponent(name)}`, primary: true },
@@ -560,10 +520,9 @@
 
         let currentLang = 'en';
         let isDark = true;
-        let detectedOS = 'windows';
 
         function renderLucide() {
-            if(window.lucide) lucide.createIcons();
+            if (window.lucide) lucide.createIcons();
         }
 
         function applyTheme() {
@@ -571,10 +530,10 @@
             const icon = document.getElementById('theme-icon');
             if (isDark) {
                 root.classList.add('dark');
-                if(icon) icon.setAttribute('data-lucide', 'sun');
+                if (icon) icon.setAttribute('data-lucide', 'sun');
             } else {
                 root.classList.remove('dark');
-                if(icon) icon.setAttribute('data-lucide', 'moon');
+                if (icon) icon.setAttribute('data-lucide', 'moon');
             }
             renderLucide();
             try { localStorage.setItem('nahan_theme', isDark ? 'dark' : 'light'); } catch(e){}
@@ -589,22 +548,22 @@
             const t = I18N[currentLang];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if(t[key]) el.textContent = t[key];
+                if (t[key]) el.textContent = t[key];
             });
 
             const flag = document.getElementById('lang-flag');
             const label = document.getElementById('lang-name');
 
-            if(currentLang === 'fa') {
+            if (currentLang === 'fa') {
                 document.documentElement.setAttribute('dir', 'rtl');
                 document.documentElement.setAttribute('lang', 'fa');
-                if(flag) flag.textContent = '🇺🇸';
-                if(label) label.textContent = 'EN';
+                if (flag) flag.textContent = '🇺🇸';
+                if (label) label.textContent = 'EN';
             } else {
                 document.documentElement.setAttribute('dir', 'ltr');
                 document.documentElement.setAttribute('lang', 'en');
-                if(flag) flag.textContent = '🇮🇷';
-                if(label) label.textContent = 'FA';
+                if (flag) flag.textContent = '🇮🇷';
+                if (label) label.textContent = 'FA';
             }
             try { localStorage.setItem('nahan_lang', currentLang); } catch(e){}
         }
@@ -615,23 +574,21 @@
             initStatus();
         }
 
-        // Animate Numbers Counter smoothly
         function animateCounter(id, endValue) {
             const el = document.getElementById(id);
-            if(!el) return;
+            if (!el) return;
             const startValue = 0;
-            const duration = 1200;
+            const duration = 1000;
             const startTime = performance.now();
 
             function update(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                // EaseOutQuad
                 const easeProgress = 1 - (1 - progress) * (1 - progress);
                 const currentVal = (startValue + (endValue - startValue) * easeProgress).toFixed(1);
                 el.textContent = currentVal;
 
-                if(progress < 1) {
+                if (progress < 1) {
                     requestAnimationFrame(update);
                 } else {
                     el.textContent = endValue;
@@ -642,7 +599,7 @@
 
         function setRadialGauge(id, percent) {
             const circle = document.getElementById(id);
-            if(!circle) return;
+            if (!circle) return;
             const radius = circle.r.baseVal.value;
             const circumference = 2 * Math.PI * radius;
             const offset = circumference - (percent / 100) * circumference;
@@ -668,7 +625,6 @@
             document.getElementById('daily-pct-text').textContent = dailyPct + '%';
         }
 
-        // Detect Operating System
         function detectUserOS() {
             const ua = navigator.userAgent.toLowerCase();
             if (ua.includes('android')) return 'android';
@@ -679,19 +635,17 @@
             return 'windows';
         }
 
-        // Render Clients for Selected OS Tab
         function renderClients(osKey) {
             const container = document.getElementById('dynamic-clients-grid');
             const badge = document.getElementById('active-os-badge');
-            if(!container) return;
+            if (!container) return;
 
-            // Highlight Tab Button
             document.querySelectorAll('.os-tab-btn').forEach(btn => {
                 btn.classList.remove('bg-indigo-600', 'text-white');
                 btn.classList.add('text-slate-400');
             });
             const activeTab = document.getElementById('tab-' + osKey);
-            if(activeTab) {
+            if (activeTab) {
                 activeTab.classList.remove('text-slate-400');
                 activeTab.classList.add('bg-indigo-600', 'text-white');
             }
@@ -704,13 +658,9 @@
 
             container.innerHTML = apps.map(app => {
                 const targetLink = typeof app.link === 'function' ? app.link(normalSub, userName) : app.link;
-                const isPrimaryGlow = app.primary 
-                    ? 'border-indigo-500/40 bg-gradient-to-b from-indigo-500/10 to-transparent' 
-                    : 'border-white/5 bg-black/20 dark:bg-white/5';
 
                 return `
-                    <a href="${targetLink}" class="p-4 rounded-2xl border ${isPrimaryGlow} flex flex-col items-center justify-center text-center gap-2 group hover:border-indigo-500/60 hover:scale-105 active:scale-95 transition-all relative overflow-hidden shadow-sm">
-                        ${app.primary ? '<span class="absolute top-2 right-2 flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span></span>' : ''}
+                    <a href="${targetLink}" class="p-4 rounded-2xl border border-indigo-500/40 bg-gradient-to-b from-indigo-500/10 to-transparent flex flex-col items-center justify-center text-center gap-2 group hover:border-indigo-500/60 hover:scale-105 active:scale-95 transition-all relative shadow-sm">
                         <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white transition-all">
                             <i data-lucide="${app.icon}" class="w-5 h-5"></i>
                         </div>
@@ -725,13 +675,12 @@
             renderLucide();
         }
 
-        // Live Countdown to Expiry
         function startCountdown() {
             const expStr = '__EXPIRY_DATE__';
             const target = new Date(expStr).getTime();
             const el = document.getElementById('expiry-countdown');
 
-            if(isNaN(target)) {
+            if (isNaN(target)) {
                 el.textContent = 'Unlimited';
                 return;
             }
@@ -739,7 +688,7 @@
             function update() {
                 const now = new Date().getTime();
                 const diff = target - now;
-                if(diff <= 0) {
+                if (diff <= 0) {
                     el.textContent = 'Expired';
                     return;
                 }
@@ -761,7 +710,7 @@
 
             const status = ('__STATUS_CODE__' || 'active').toLowerCase();
 
-            if(status.includes('exp') || status.includes('limit')) {
+            if (status.includes('exp') || status.includes('limit')) {
                 badge.textContent = t.expired;
                 card.className = "w-full py-3 px-4 rounded-xl flex items-center justify-between text-xs font-bold mb-4 border border-rose-500/30 bg-rose-500/10 text-rose-400";
                 dot.className = "relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500";
@@ -776,30 +725,27 @@
 
         function copyLinkWithAnim(id, btn) {
             const input = document.getElementById(id);
-            if(!input) return;
+            if (!input) return;
             navigator.clipboard.writeText(input.value);
             showToast(I18N[currentLang].copiedToast);
 
-            // Button micro-interaction animation
-            if(btn) {
+            if (btn) {
                 btn.classList.add('scale-95', 'bg-emerald-600');
-                setTimeout(() => {
-                    btn.classList.remove('scale-95', 'bg-emerald-600');
-                }, 400);
+                setTimeout(() => btn.classList.remove('scale-95', 'bg-emerald-600'), 300);
             }
         }
 
         async function fetchDecodedRawContent(btn) {
             try {
                 const res = await fetch('__SYNC_RAW__');
-                if(!res.ok) throw new Error('Network error');
+                if (!res.ok) throw new Error('Network error');
                 const base64Str = await res.text();
                 const decoded = atob(base64Str.trim());
                 await navigator.clipboard.writeText(decoded);
                 showToast(I18N[currentLang].extractedToast);
-                if(btn) {
+                if (btn) {
                     btn.classList.add('scale-95', 'bg-emerald-500');
-                    setTimeout(() => btn.classList.remove('scale-95', 'bg-emerald-500'), 400);
+                    setTimeout(() => btn.classList.remove('scale-95', 'bg-emerald-500'), 300);
                 }
             } catch(e) {
                 showToast(I18N[currentLang].fetchError);
@@ -843,16 +789,16 @@
             setTimeout(() => {
                 t.classList.remove('translate-y-0', 'opacity-100');
                 t.classList.add('translate-y-10', 'opacity-0');
-            }, 2500);
+            }, 2200);
         }
 
-        // Bootstrap on load
+        // Initialize All Functions
         (function init() {
             try {
                 const savedTheme = localStorage.getItem('nahan_theme');
-                if(savedTheme) isDark = savedTheme === 'dark';
+                if (savedTheme) isDark = savedTheme === 'dark';
                 const savedLang = localStorage.getItem('nahan_lang');
-                if(savedLang && I18N[savedLang]) currentLang = savedLang;
+                if (savedLang && I18N[savedLang]) currentLang = savedLang;
             } catch(e){}
 
             applyTheme();
@@ -861,18 +807,15 @@
             initMetrics();
             startCountdown();
 
-            // Detect OS & Setup Tabs
-            detectedOS = detectUserOS();
-            renderClients(detectedOS);
+            const userOS = detectUserOS();
+            renderClients(userOS);
 
-            // Populate manual formats
             const normal = '__SYNC_NORMAL__';
             const sep = normal.includes('?') ? '&' : '?';
             document.getElementById('link-clash').value = normal + sep + 'flag=clash';
             document.getElementById('link-singbox').value = normal + sep + 'flag=singbox';
             document.getElementById('link-base64').value = normal + sep + 'flag=base64';
 
-            // Latency & IP Check
             const start = performance.now();
             fetch('https://api.ipify.org?format=json')
                 .then(r => r.json())
