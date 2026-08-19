@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>__USER_NAME__ - Subscription Portal </title>
+    <title>__USER_NAME__ | PasarGuard Subscription</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/gh/itsyebekhe/nahan@main/tailwindcss.js"></script>
     <script>
@@ -20,9 +20,9 @@
                         en: ['Plus Jakarta Sans', 'sans-serif'],
                     },
                     colors: {
-                        pasargad: {
-                            50: '#f0f3ff',
-                            100: '#e1e7fe',
+                        pg: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
                             500: '#3b82f6',
                             600: '#2563eb',
                             700: '#1d4ed8',
@@ -35,25 +35,25 @@
     </script>
     <style>
         :root {
-            --pg-bg: #0b0f17;
-            --pg-card-bg: rgba(17, 24, 39, 0.8);
-            --pg-card-border: rgba(255, 255, 255, 0.08);
-            --pg-inner-bg: rgba(31, 41, 55, 0.5);
+            --pg-bg: #090d16;
+            --pg-card: #111827;
+            --pg-card-border: #1f293d;
+            --pg-inner: #1a2234;
+            --pg-inner-border: #2a364f;
             --pg-text-main: #f9fafb;
             --pg-text-sub: #9ca3af;
-            --pg-primary: #3b82f6;
-            --pg-primary-glow: rgba(59, 130, 246, 0.25);
+            --pg-primary: #2563eb;
         }
 
         html:not(.dark) {
-            --pg-bg: #f3f4f6;
-            --pg-card-bg: rgba(255, 255, 255, 0.9);
-            --pg-card-border: rgba(0, 0, 0, 0.08);
-            --pg-inner-bg: rgba(243, 244, 246, 0.8);
-            --pg-text-main: #111827;
-            --pg-text-sub: #4b5563;
+            --pg-bg: #f8fafc;
+            --pg-card: #ffffff;
+            --pg-card-border: #e2e8f0;
+            --pg-inner: #f1f5f9;
+            --pg-inner-border: #cbd5e1;
+            --pg-text-main: #0f172a;
+            --pg-text-sub: #64748b;
             --pg-primary: #2563eb;
-            --pg-primary-glow: rgba(37, 99, 235, 0.15);
         }
 
         body {
@@ -61,29 +61,26 @@
             color: var(--pg-text-main);
             font-family: 'Vazirmatn', 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        /* PasarGuard Card Style */
+        /* PasarGuard Signature ShadCN Cards */
         .pg-card {
-            background: var(--pg-card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: var(--pg-card);
             border: 1px solid var(--pg-card-border);
-            border-radius: 1.25rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
         }
 
         .pg-inner {
-            background: var(--pg-inner-bg);
-            border: 1px solid var(--pg-card-border);
-            border-radius: 0.875rem;
+            background-color: var(--pg-inner);
+            border: 1px solid var(--pg-inner-border);
+            border-radius: 0.75rem;
         }
 
-        /* PasarGuard Input Style */
         .pg-input {
-            background: var(--pg-inner-bg);
-            border: 1px solid var(--pg-card-border);
+            background-color: var(--pg-inner);
+            border: 1px solid var(--pg-inner-border);
             color: var(--pg-text-main);
             font-family: 'Plus Jakarta Sans', monospace;
         }
@@ -92,35 +89,34 @@
             outline: none;
         }
 
-        /* Custom Progress Bar */
+        /* Progress Bar Override */
         .progress-bar-bg {
-            background: var(--pg-inner-bg);
+            background-color: var(--pg-inner);
             border-radius: 9999px;
             overflow: hidden;
-            padding: 2px;
-            border: 1px solid var(--pg-card-border);
+            border: 1px solid var(--pg-inner-border);
         }
 
-        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: var(--pg-primary); border-radius: 10px; }
     </style>
 </head>
-<body class="py-6 px-4 sm:px-8 flex flex-col items-center justify-start min-h-screen">
+<body class="py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-start min-h-screen">
 
-    <!-- PasarGuard Header Navigation -->
-    <header class="w-full max-w-4xl flex justify-between items-center mb-6 z-20">
-        <!-- PasarGuard Brand Badge -->
+    <!-- PasarGuard Header -->
+    <header class="w-full max-w-3xl flex justify-between items-center mb-6">
+        <!-- PasarGuard Logo -->
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black shadow-lg shadow-blue-500/30">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-600/30">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
             </div>
             <div>
-                <h1 class="text-sm font-extrabold tracking-tight" style="color: var(--pg-text-main);">PasarGuard</h1>
-                <p class="text-[10px] font-semibold tracking-wider text-blue-500 uppercase">Subscription Hub</p>
+                <h1 class="text-sm font-black tracking-tight" style="color: var(--pg-text-main);">PasarGuard</h1>
+                <p class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">Subscription Panel</p>
             </div>
         </div>
 
-        <!-- Controls -->
+        <!-- Language & Theme Controller -->
         <div class="flex items-center gap-2">
             <button onclick="toggleLang()" id="lang-toggle" class="pg-inner px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 hover:border-blue-500 transition-all">
                 <span id="lang-icon">🇮🇷</span>
@@ -132,20 +128,20 @@
         </div>
     </header>
 
-    <!-- PasarGuard Main Layout -->
-    <main class="w-full max-w-4xl flex flex-col gap-6 z-10">
+    <!-- Main Content Container -->
+    <main class="w-full max-w-3xl flex flex-col gap-5">
 
-        <!-- User Profile & Status Banner Card -->
-        <div class="pg-card p-6 relative overflow-hidden">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <div class="flex items-center gap-4 text-center sm:text-right">
-                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-xl font-black text-blue-500">
+        <!-- PasarGuard User Info Banner -->
+        <div class="pg-card p-5 sm:p-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-lg font-black text-blue-500 shrink-0">
                         __USER_NAME__[0]
                     </div>
                     <div>
-                        <div class="flex items-center justify-center sm:justify-start gap-2">
-                            <h2 class="text-lg font-black tracking-tight" style="color: var(--pg-text-main);">__USER_NAME__</h2>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded-md pg-inner" style="color: var(--pg-text-sub);">ID: __USER_ID__</span>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-base font-extrabold" style="color: var(--pg-text-main);">__USER_NAME__</h2>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded pg-inner" style="color: var(--pg-text-sub);">ID: __USER_ID__</span>
                         </div>
                         <p class="text-xs mt-1" style="color: var(--pg-text-sub);">
                             <span data-i18n="expDate">تاریخ انقضا</span>: <strong class="text-blue-500 font-mono">__EXPIRY_DATE__</strong>
@@ -153,9 +149,9 @@
                     </div>
                 </div>
 
-                <!-- PasarGuard Status Badge -->
+                <!-- Status Badge -->
                 <div class="w-full sm:w-auto">
-                    <div id="status-badge" class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
+                    <div id="status-badge" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
                         <span class="w-2 h-2 rounded-full animate-ping bg-current"></span>
                         <span>CHECKING...</span>
                     </div>
@@ -163,13 +159,13 @@
             </div>
         </div>
 
-        <!-- Metrics Grid (Total & Daily Usage) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- Usage Metrics (Total Traffic & Daily Traffic) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <!-- Total Usage -->
             <div class="pg-card p-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--pg-text-sub);" data-i18n="totalUsage">مصرف کل</span>
-                    <span class="text-xs font-bold text-blue-500">TOTAL</span>
+                    <span class="text-xs font-bold text-blue-500 font-mono">TOTAL</span>
                 </div>
                 <div class="flex items-baseline gap-1.5 mb-3">
                     <span class="text-2xl font-black font-mono" style="color: var(--pg-text-main);">__TOTAL_GB__</span>
@@ -184,7 +180,7 @@
             <div class="pg-card p-5">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--pg-text-sub);" data-i18n="dailyUsage">مصرف روزانه</span>
-                    <span class="text-xs font-bold text-emerald-500">DAILY</span>
+                    <span class="text-xs font-bold text-emerald-500 font-mono">DAILY</span>
                 </div>
                 <div class="flex items-baseline gap-1.5 mb-3">
                     <span class="text-2xl font-black font-mono" style="color: var(--pg-text-main);">__DAILY_GB__</span>
@@ -196,105 +192,119 @@
             </div>
         </div>
 
-        <!-- Primary Universal Subscription Link Card -->
-        <div class="pg-card p-6">
-            <div class="flex items-center justify-between mb-3">
-                <h3 class="text-sm font-extrabold flex items-center gap-2" style="color: var(--pg-text-main);" data-i18n="universalLink">
-                    <span>لینک هوشمند اتصال (Universal Sub)</span>
-                </h3>
-                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-blue-500/15 text-blue-500">پیشنهادی</span>
+        <!-- Universal Subscription Link Section -->
+        <div class="pg-card p-5 sm:p-6">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="text-sm font-extrabold" style="color: var(--pg-text-main);" data-i18n="universalLink">لینک هوشمند اتصال (Universal Sub)</h3>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-blue-600/15 text-blue-500">پیشنهادی</span>
             </div>
-            <p class="text-xs mb-4" style="color: var(--pg-text-sub);" data-i18n="universalDesc">این لینک به صورت خودکار نرم‌افزار شما را شناسایی کرده و کانفیگ مناسب را ارسال می‌کند.</p>
+            <p class="text-xs mb-4 leading-relaxed" style="color: var(--pg-text-sub);" data-i18n="universalDesc">این لینک به صورت خودکار کلاینت شما را شناسایی کرده و کانفیگ مناسب را ارسال می‌کند.</p>
 
-            <div class="flex flex-col sm:flex-row gap-2.5" dir="ltr">
-                <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="pg-input flex-1 px-4 py-2.5 rounded-xl text-xs w-full">
-                <div class="flex gap-2">
-                    <button onclick="copyLink('link-normal')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shrink-0 shadow-md shadow-blue-500/20 transition-all">
+            <div class="flex flex-col sm:flex-row gap-2" dir="ltr">
+                <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="pg-input flex-1 px-3.5 py-2.5 rounded-lg text-xs w-full">
+                <div class="flex gap-2 shrink-0">
+                    <button onclick="copyLink('link-normal')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-4 py-2.5 rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                        <span data-i18n="copy">کپی لینک</span>
+                        <span data-i18n="copy">کپی</span>
                     </button>
-                    <button onclick="showQRModal('__SYNC_NORMAL__')" class="pg-inner p-2.5 text-blue-500 hover:border-blue-500 flex items-center justify-center shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                    <button onclick="showQRModal('__SYNC_NORMAL__')" class="pg-inner p-2.5 text-blue-500 hover:border-blue-500 rounded-lg flex items-center justify-center">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- pasarGuard Specific Formats Section -->
-        <div class="pg-card p-6">
+        <!-- Specific Subscription Formats (PasarGuard Link Rows) -->
+        <div class="pg-card p-5 sm:p-6">
             <h4 class="text-sm font-extrabold mb-1" style="color: var(--pg-text-main);" data-i18n="availableFormats">فرمت‌های مستقیم اشتراک</h4>
             <p class="text-xs mb-4" style="color: var(--pg-text-sub);" data-i18n="formatsDesc">در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.</p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-3">
                 <!-- Base64 -->
-                <div class="pg-inner p-3 flex flex-col gap-2">
-                    <div class="flex justify-between items-center" dir="ltr">
-                        <span class="text-xs font-bold">Base64 (V2Ray / Shadowrocket)</span>
-                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400">BASE64</span>
+                <div class="pg-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono">BASE64</span>
+                        <span class="text-xs font-bold" style="color: var(--pg-text-main);">Base64 (v2rayNG / Shadowrocket)</span>
                     </div>
-                    <div class="flex gap-2" dir="ltr">
-                        <input type="text" id="link-base64-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full">
+                    <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
+                        <input type="text" id="link-base64-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full sm:w-64">
                         <button onclick="copyLink('link-base64-fmt')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="pg-inner p-1.5 hover:border-emerald-500 rounded-lg text-emerald-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Sing-Box -->
-                <div class="pg-inner p-3 flex flex-col gap-2">
-                    <div class="flex justify-between items-center" dir="ltr">
-                        <span class="text-xs font-bold">Sing-Box (JSON Format)</span>
-                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400">SINGBOX</span>
+                <div class="pg-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono">SINGBOX</span>
+                        <span class="text-xs font-bold" style="color: var(--pg-text-main);">Sing-Box Subscription (JSON)</span>
                     </div>
-                    <div class="flex gap-2" dir="ltr">
-                        <input type="text" id="link-singbox-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full">
+                    <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
+                        <input type="text" id="link-singbox-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full sm:w-64">
                         <button onclick="copyLink('link-singbox-fmt')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="pg-inner p-1.5 hover:border-amber-500 rounded-lg text-amber-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Clash -->
-                <div class="pg-inner p-3 flex flex-col gap-2">
-                    <div class="flex justify-between items-center" dir="ltr">
-                        <span class="text-xs font-bold">Clash Config (YAML)</span>
-                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400">CLASH</span>
+                <div class="pg-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-mono">CLASH</span>
+                        <span class="text-xs font-bold" style="color: var(--pg-text-main);">Clash Subscription (YAML)</span>
                     </div>
-                    <div class="flex gap-2" dir="ltr">
-                        <input type="text" id="link-clash-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full">
+                    <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
+                        <input type="text" id="link-clash-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full sm:w-64">
                         <button onclick="copyLink('link-clash-fmt')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="pg-inner p-1.5 hover:border-purple-500 rounded-lg text-purple-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                        </button>
                     </div>
                 </div>
 
                 <!-- RAW -->
-                <div class="pg-inner p-3 flex flex-col gap-2">
-                    <div class="flex justify-between items-center" dir="ltr">
-                        <span class="text-xs font-bold">Raw Configs (Text / URI)</span>
-                        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400">RAW</span>
+                <div class="pg-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-mono">RAW</span>
+                        <span class="text-xs font-bold" style="color: var(--pg-text-main);">Raw Configs (Text / URI)</span>
                     </div>
-                    <div class="flex gap-2" dir="ltr">
-                        <input type="text" id="link-raw-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full">
+                    <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
+                        <input type="text" id="link-raw-fmt" readonly class="pg-input flex-1 px-3 py-1.5 rounded-lg text-xs w-full sm:w-64">
                         <button onclick="copyLink('link-raw-fmt')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="pg-inner p-1.5 hover:border-blue-500 rounded-lg text-blue-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PasarGuard Direct Client Import Launcher -->
-        <div class="pg-card p-6">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-blue-500 mb-4 flex items-center gap-2" data-i18n="oneClickImport">
+        <!-- PasarGuard Direct Client Import Launchers -->
+        <div class="pg-card p-5 sm:p-6">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-blue-500 mb-3 flex items-center gap-2" data-i18n="oneClickImport">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 <span>اتصال مستقیم با یک کلیک به کلاینت‌ها</span>
             </h4>
 
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 <a id="hiddify-link" href="#" class="pg-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Hiddify</a>
                 <a id="v2rayng-link" href="#" class="pg-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">v2rayNG</a>
                 <a id="singbox-link" href="#" class="pg-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Sing-Box</a>
                 <a id="shadowrocket-link" href="#" class="pg-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Shadowrocket</a>
             </div>
 
+            <!-- Footer Utilities -->
             <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
                 <span class="text-xs" style="color: var(--pg-text-sub);">آی‌پی اتصال شما: <strong id="client-ip" class="font-mono text-blue-500">در حال دریافت...</strong></span>
-                <button onclick="fetchDecodedRawContent()" class="pg-inner px-4 py-2 text-xs font-bold hover:border-blue-500 flex items-center gap-2">
-                    <span data-i18n="parsedContent">دریافت متن خام کانفیگ‌ها</span>
-                </button>
+                <div class="flex items-center gap-3">
+                    <button onclick="fetchDecodedRawContent()" class="pg-inner px-3.5 py-1.5 text-xs font-bold hover:border-blue-500 flex items-center gap-1.5">
+                        <span data-i18n="parsedContent">دریافت متن خام کانفیگ‌ها</span>
+                    </button>
+                    <a href="https://t.me/+mx5EmkbHzm41Y2Q5" target="_blank" class="text-xs text-blue-500 font-bold hover:underline">پشتیبانی تلگرام</a>
+                </div>
                 <input type="text" id="link-raw" value="__SYNC_RAW__" class="hidden">
             </div>
         </div>
@@ -302,7 +312,7 @@
     </main>
 
     <!-- QR Modal -->
-    <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+    <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="pg-card max-w-sm w-full p-6 text-center border-blue-500/30">
             <h3 class="text-base font-extrabold mb-4" id="qr-title" style="color: var(--pg-text-main);">اسکن کد QR</h3>
             <div class="bg-white p-3 rounded-2xl inline-block mb-4 shadow-xl">
@@ -318,7 +328,7 @@
         <span id="toast-msg">اعلان</span>
     </div>
 
-    <!-- PasarGuard JS Logic -->
+    <!-- PasarGuard JS Engine -->
     <script>
         const I18N = {
             fa: {
@@ -330,7 +340,7 @@
                 availableFormats: 'فرمت‌های مستقیم اشتراک',
                 formatsDesc: 'در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.',
                 oneClickImport: 'اتصال مستقیم با یک کلیک به کلاینت‌ها',
-                copy: 'کپی لینک',
+                copy: 'کپی',
                 parsedContent: 'دریافت متن خام کانفیگ‌ها',
                 close: 'بستن',
                 qrTitle: 'اسکن کد QR',
@@ -352,7 +362,7 @@
                 availableFormats: 'Direct Subscription Formats',
                 formatsDesc: 'Use these links to explicitly request specific config formats.',
                 oneClickImport: 'One-Click Client Import',
-                copy: 'Copy Link',
+                copy: 'Copy',
                 parsedContent: 'Get Raw Configs Text',
                 close: 'Close',
                 qrTitle: 'Scan QR Code',
@@ -526,7 +536,7 @@
             document.getElementById('link-singbox-fmt').value = normalLink + sep + 'flag=singbox';
             document.getElementById('link-clash-fmt').value = normalLink + sep + 'flag=clash';
 
-            // PasarGuard One-Click Apps
+            // PasarGuard Apps Import
             document.getElementById('hiddify-link').href = 'hiddify://import/' + normalLink + '#' + userName;
             document.getElementById('v2rayng-link').href = 'v2rayng://install-sub?url=' + encodeURIComponent(normalLink + sep + 'flag=base64') + '&name=' + userName;
             document.getElementById('singbox-link').href = 'sing-box://import-remote?url=' + encodeURIComponent(normalLink + sep + 'flag=singbox') + '#' + userName;
