@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>__USER_NAME__ | PasarGuard Subscription</title>
+    <title>__USER_NAME__ | Nahan Subscription</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,10 +20,10 @@
                         en: ['Plus Jakarta Sans', 'sans-serif'],
                     },
                     borderRadius: {
-                        'pg': '0.65rem',
+                        'nahan': '0.65rem',
                     },
                     colors: {
-                        primary: {
+                        brand: {
                             light: '#2563eb',
                             dark: '#3b82f6',
                         }
@@ -34,106 +34,106 @@
     </script>
     <style>
         :root {
-            --pg-bg: #090d16;
-            --pg-card: #111827;
-            --pg-border: rgba(255, 255, 255, 0.08);
-            --pg-inner: #1a2234;
-            --pg-inner-border: rgba(255, 255, 255, 0.05);
-            --pg-text-main: #f9fafb;
-            --pg-text-muted: #9ca3af;
-            --pg-primary: #3b82f6;
-            --pg-radius: 0.65rem;
+            --nh-bg: #090d16;
+            --nh-card: #111827;
+            --nh-border: rgba(255, 255, 255, 0.08);
+            --nh-inner: #1a2234;
+            --nh-inner-border: rgba(255, 255, 255, 0.05);
+            --nh-text-main: #f9fafb;
+            --nh-text-muted: #9ca3af;
+            --nh-primary: #3b82f6;
+            --nh-radius: 0.65rem;
         }
 
         html:not(.dark) {
-            --pg-bg: #f8fafc;
-            --pg-card: #ffffff;
-            --pg-border: rgba(0, 0, 0, 0.08);
-            --pg-inner: #f1f5f9;
-            --pg-inner-border: rgba(0, 0, 0, 0.05);
-            --pg-text-main: #0f172a;
-            --pg-text-muted: #64748b;
-            --pg-primary: #2563eb;
+            --nh-bg: #f8fafc;
+            --nh-card: #ffffff;
+            --nh-border: rgba(0, 0, 0, 0.08);
+            --nh-inner: #f1f5f9;
+            --nh-inner-border: rgba(0, 0, 0, 0.05);
+            --nh-text-main: #0f172a;
+            --nh-text-muted: #64748b;
+            --nh-primary: #2563eb;
         }
 
         body {
-            background-color: var(--pg-bg);
-            color: var(--pg-text-main);
+            background-color: var(--nh-bg);
+            color: var(--nh-text-main);
             font-family: 'Vazirmatn', 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
 
-        /* PasarGuard Official Card Rules */
-        .pg-card {
-            background-color: var(--pg-card);
-            border: 1px solid var(--pg-border);
-            border-radius: var(--pg-radius);
+        /* Nahan ShadCN UI Components */
+        .nh-card {
+            background-color: var(--nh-card);
+            border: 1px solid var(--nh-border);
+            border-radius: var(--nh-radius);
             box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
         }
 
-        .pg-inner {
-            background-color: var(--pg-inner);
-            border: 1px solid var(--pg-inner-border);
-            border-radius: calc(var(--pg-radius) - 0.15rem);
+        .nh-inner {
+            background-color: var(--nh-inner);
+            border: 1px solid var(--nh-inner-border);
+            border-radius: calc(var(--nh-radius) - 0.15rem);
         }
 
-        .pg-btn-primary {
-            background-color: var(--pg-primary);
+        .nh-btn-primary {
+            background-color: var(--nh-primary);
             color: #ffffff;
-            border-radius: calc(var(--pg-radius) - 0.15rem);
+            border-radius: calc(var(--nh-radius) - 0.15rem);
             transition: all 0.15s ease;
         }
-        .pg-btn-primary:hover {
+        .nh-btn-primary:hover {
             opacity: 0.9;
         }
 
-        .pg-input {
-            background-color: var(--pg-inner);
-            border: 1px solid var(--pg-inner-border);
-            color: var(--pg-text-main);
-            border-radius: calc(var(--pg-radius) - 0.15rem);
+        .nh-input {
+            background-color: var(--nh-inner);
+            border: 1px solid var(--nh-inner-border);
+            color: var(--nh-text-main);
+            border-radius: calc(var(--nh-radius) - 0.15rem);
             font-family: 'Plus Jakarta Sans', monospace;
         }
-        .pg-input:focus {
-            border-color: var(--pg-primary);
+        .nh-input:focus {
+            border-color: var(--nh-primary);
             outline: none;
         }
 
         .progress-bar-bg {
-            background-color: var(--pg-inner);
+            background-color: var(--nh-inner);
             border-radius: 9999px;
             overflow: hidden;
             padding: 2px;
-            border: 1px solid var(--pg-inner-border);
+            border: 1px solid var(--nh-inner-border);
         }
 
         ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--pg-primary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--nh-primary); border-radius: 10px; }
     </style>
 </head>
 <body class="py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-start min-h-screen">
 
-    <!-- PasarGuard Official Header -->
+    <!-- Nahan Header Navigation -->
     <header class="w-full max-w-3xl flex justify-between items-center mb-6">
-        <!-- PasarGuard Shield Logo -->
+        <!-- Nahan Gateway Logo -->
         <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-pg bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-600/30">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            <div class="w-9 h-9 rounded-nahan bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-600/30">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
             </div>
             <div>
-                <h1 class="text-sm font-black tracking-tight" style="color: var(--pg-text-main);">PasarGuard</h1>
-                <p class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">Subscription Template</p>
+                <h1 class="text-sm font-black tracking-tight" style="color: var(--nh-text-main);">نهان (Nahan)</h1>
+                <p class="text-[10px] font-bold text-blue-500 uppercase tracking-widest">Subscription Gateway</p>
             </div>
         </div>
 
-        <!-- Language Switcher & Dark Mode Toggle -->
+        <!-- Controls: Language Switcher & Dark Mode Toggle -->
         <div class="flex items-center gap-2">
-            <button onclick="toggleLang()" id="lang-toggle" class="pg-inner px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 hover:border-blue-500 transition-all">
+            <button onclick="toggleLang()" id="lang-toggle" class="nh-inner px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 hover:border-blue-500 transition-all">
                 <span id="lang-icon">🇮🇷</span>
                 <span id="lang-label">FA</span>
             </button>
-            <button onclick="toggleTheme()" id="theme-toggle" class="pg-inner p-2 text-xs font-bold flex items-center justify-center hover:border-blue-500 transition-all">
+            <button onclick="toggleTheme()" id="theme-toggle" class="nh-inner p-2 text-xs font-bold flex items-center justify-center hover:border-blue-500 transition-all">
                 <span id="theme-icon">☀️</span>
             </button>
         </div>
@@ -143,26 +143,26 @@
     <main class="w-full max-w-3xl flex flex-col gap-5">
 
         <!-- User Information Banner Card -->
-        <div class="pg-card p-5 sm:p-6">
+        <div class="nh-card p-5 sm:p-6">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div class="flex items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-pg bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-lg font-black text-blue-500 shrink-0">
+                    <div class="w-12 h-12 rounded-nahan bg-blue-600/10 border border-blue-600/20 flex items-center justify-center text-lg font-black text-blue-500 shrink-0">
                         __USER_NAME__[0]
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
-                            <h2 class="text-base font-extrabold" style="color: var(--pg-text-main);">__USER_NAME__</h2>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded pg-inner" style="color: var(--pg-text-muted);">ID: __USER_ID__</span>
+                            <h2 class="text-base font-extrabold" style="color: var(--nh-text-main);">__USER_NAME__</h2>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded nh-inner" style="color: var(--nh-text-muted);">ID: __USER_ID__</span>
                         </div>
-                        <p class="text-xs mt-1" style="color: var(--pg-text-muted);">
+                        <p class="text-xs mt-1" style="color: var(--nh-text-muted);">
                             <span data-i18n="expDate">تاریخ انقضا</span>: <strong class="text-blue-500 font-mono">__EXPIRY_DATE__</strong>
                         </p>
                     </div>
                 </div>
 
-                <!-- Status Badge -->
+                <!-- Nahan Status Badge -->
                 <div class="w-full sm:w-auto">
-                    <div id="status-badge" class="px-4 py-1.5 rounded-pg text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
+                    <div id="status-badge" class="px-4 py-1.5 rounded-nahan text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
                         <span class="w-2 h-2 rounded-full animate-ping bg-current"></span>
                         <span>CHECKING...</span>
                     </div>
@@ -173,14 +173,14 @@
         <!-- Metrics Grid (Total Usage & Daily Usage) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <!-- Total Usage -->
-            <div class="pg-card p-5">
+            <div class="nh-card p-5">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--pg-text-muted);" data-i18n="totalUsage">مصرف کل</span>
+                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--nh-text-muted);" data-i18n="totalUsage">مصرف کل</span>
                     <span class="text-xs font-bold text-blue-500 font-mono">TOTAL</span>
                 </div>
                 <div class="flex items-baseline gap-1.5 mb-3">
-                    <span class="text-2xl font-black font-mono" style="color: var(--pg-text-main);">__TOTAL_GB__</span>
-                    <span class="text-xs font-mono" style="color: var(--pg-text-muted);">/ __LIMIT_TOTAL_GB__ GB</span>
+                    <span class="text-2xl font-black font-mono" style="color: var(--nh-text-main);">__TOTAL_GB__</span>
+                    <span class="text-xs font-mono" style="color: var(--nh-text-muted);">/ __LIMIT_TOTAL_GB__ GB</span>
                 </div>
                 <div class="progress-bar-bg">
                     __TOTAL_PROGRESS__
@@ -188,14 +188,14 @@
             </div>
 
             <!-- Daily Usage -->
-            <div class="pg-card p-5">
+            <div class="nh-card p-5">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--pg-text-muted);" data-i18n="dailyUsage">مصرف روزانه</span>
+                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--nh-text-muted);" data-i18n="dailyUsage">مصرف روزانه</span>
                     <span class="text-xs font-bold text-emerald-500 font-mono">DAILY</span>
                 </div>
                 <div class="flex items-baseline gap-1.5 mb-3">
-                    <span class="text-2xl font-black font-mono" style="color: var(--pg-text-main);">__DAILY_GB__</span>
-                    <span class="text-xs font-mono" style="color: var(--pg-text-muted);">/ __LIMIT_DAILY_GB__ GB</span>
+                    <span class="text-2xl font-black font-mono" style="color: var(--nh-text-main);">__DAILY_GB__</span>
+                    <span class="text-xs font-mono" style="color: var(--nh-text-muted);">/ __LIMIT_DAILY_GB__ GB</span>
                 </div>
                 <div class="progress-bar-bg">
                     __DAILY_PROGRESS__
@@ -204,88 +204,88 @@
         </div>
 
         <!-- Universal Subscription Auto-Detect Link -->
-        <div class="pg-card p-5 sm:p-6">
+        <div class="nh-card p-5 sm:p-6">
             <div class="flex items-center justify-between mb-2">
-                <h3 class="text-sm font-extrabold" style="color: var(--pg-text-main);" data-i18n="universalLink">لینک هوشمند اتصال (Universal Sub)</h3>
+                <h3 class="text-sm font-extrabold" style="color: var(--nh-text-main);" data-i18n="universalLink">لینک هوشمند اتصال (Universal Sub)</h3>
                 <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-blue-600/15 text-blue-500">پیشنهادی</span>
             </div>
-            <p class="text-xs mb-4 leading-relaxed" style="color: var(--pg-text-muted);" data-i18n="universalDesc">این لینک به صورت خودکار کلاینت شما را شناسایی کرده و کانفیگ مناسب را ارسال می‌کند.</p>
+            <p class="text-xs mb-4 leading-relaxed" style="color: var(--nh-text-muted);" data-i18n="universalDesc">این لینک به صورت خودکار کلاینت شما را شناسایی کرده و کانفیگ مناسب را ارسال می‌کند.</p>
 
             <div class="flex flex-col sm:flex-row gap-2" dir="ltr">
-                <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="pg-input flex-1 px-3.5 py-2.5 text-xs w-full">
+                <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="nh-input flex-1 px-3.5 py-2.5 text-xs w-full">
                 <div class="flex gap-2 shrink-0">
-                    <button onclick="copyLink('link-normal')" class="pg-btn-primary font-bold px-4 py-2.5 text-xs flex items-center justify-center gap-1.5">
+                    <button onclick="copyLink('link-normal')" class="nh-btn-primary font-bold px-4 py-2.5 text-xs flex items-center justify-center gap-1.5">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
                         <span data-i18n="copy">کپی</span>
                     </button>
-                    <button onclick="showQRModal('__SYNC_NORMAL__')" class="pg-inner p-2.5 text-blue-500 hover:border-blue-500 rounded-pg flex items-center justify-center">
+                    <button onclick="showQRModal('__SYNC_NORMAL__')" class="nh-inner p-2.5 text-blue-500 hover:border-blue-500 rounded-nahan flex items-center justify-center">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Specific Subscription Formats (PasarGuard Official Rows) -->
-        <div class="pg-card p-5 sm:p-6">
-            <h4 class="text-sm font-extrabold mb-1" style="color: var(--pg-text-main);" data-i18n="availableFormats">فرمت‌های مستقیم اشتراک</h4>
-            <p class="text-xs mb-4" style="color: var(--pg-text-muted);" data-i18n="formatsDesc">در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.</p>
+        <!-- Specific Subscription Formats -->
+        <div class="nh-card p-5 sm:p-6">
+            <h4 class="text-sm font-extrabold mb-1" style="color: var(--nh-text-main);" data-i18n="availableFormats">فرمت‌های مستقیم اشتراک</h4>
+            <p class="text-xs mb-4" style="color: var(--nh-text-muted);" data-i18n="formatsDesc">در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.</p>
 
             <div class="space-y-3">
                 <!-- Base64 -->
-                <div class="pg-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="nh-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono">BASE64</span>
-                        <span class="text-xs font-bold" style="color: var(--pg-text-main);">Base64 (v2rayNG / Shadowrocket)</span>
+                        <span class="text-xs font-bold" style="color: var(--nh-text-main);">Base64 (v2rayNG / Shadowrocket)</span>
                     </div>
                     <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-base64-fmt" readonly class="pg-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-base64-fmt')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-pg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="pg-inner p-1.5 hover:border-emerald-500 text-emerald-400">
+                        <input type="text" id="link-base64-fmt" readonly class="nh-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
+                        <button onclick="copyLink('link-base64-fmt')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-nahan transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="nh-inner p-1.5 hover:border-emerald-500 text-emerald-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
                 </div>
 
                 <!-- Sing-Box -->
-                <div class="pg-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="nh-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono">SINGBOX</span>
-                        <span class="text-xs font-bold" style="color: var(--pg-text-main);">Sing-Box Subscription (JSON)</span>
+                        <span class="text-xs font-bold" style="color: var(--nh-text-main);">Sing-Box Subscription (JSON)</span>
                     </div>
                     <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-singbox-fmt" readonly class="pg-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-singbox-fmt')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-pg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="pg-inner p-1.5 hover:border-amber-500 text-amber-400">
+                        <input type="text" id="link-singbox-fmt" readonly class="nh-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
+                        <button onclick="copyLink('link-singbox-fmt')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-nahan transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="nh-inner p-1.5 hover:border-amber-500 text-amber-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
                 </div>
 
                 <!-- Clash -->
-                <div class="pg-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="nh-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-mono">CLASH</span>
-                        <span class="text-xs font-bold" style="color: var(--pg-text-main);">Clash Subscription (YAML)</span>
+                        <span class="text-xs font-bold" style="color: var(--nh-text-main);">Clash Subscription (YAML)</span>
                     </div>
                     <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-clash-fmt" readonly class="pg-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-clash-fmt')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-pg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="pg-inner p-1.5 hover:border-purple-500 text-purple-400">
+                        <input type="text" id="link-clash-fmt" readonly class="nh-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
+                        <button onclick="copyLink('link-clash-fmt')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-nahan transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="nh-inner p-1.5 hover:border-purple-500 text-purple-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
                 </div>
 
                 <!-- RAW -->
-                <div class="pg-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="nh-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-mono">RAW</span>
-                        <span class="text-xs font-bold" style="color: var(--pg-text-main);">Raw Configs (Text / URI)</span>
+                        <span class="text-xs font-bold" style="color: var(--nh-text-main);">Raw Configs (Text / URI)</span>
                     </div>
                     <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-raw-fmt" readonly class="pg-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-raw-fmt')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-pg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="pg-inner p-1.5 hover:border-blue-500 text-blue-400">
+                        <input type="text" id="link-raw-fmt" readonly class="nh-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
+                        <button onclick="copyLink('link-raw-fmt')" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-nahan transition-colors">کپی</button>
+                        <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="nh-inner p-1.5 hover:border-blue-500 text-blue-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
@@ -293,25 +293,25 @@
             </div>
         </div>
 
-        <!-- PasarGuard Direct Client Launchers -->
-        <div class="pg-card p-5 sm:p-6">
+        <!-- Direct Client Launchers -->
+        <div class="nh-card p-5 sm:p-6">
             <h4 class="text-xs font-bold uppercase tracking-wider text-blue-500 mb-3 flex items-center gap-2" data-i18n="oneClickImport">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 <span>اتصال مستقیم با یک کلیک به کلاینت‌ها</span>
             </h4>
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                <a id="hiddify-link" href="#" class="pg-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Hiddify</a>
-                <a id="v2rayng-link" href="#" class="pg-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">v2rayNG</a>
-                <a id="singbox-link" href="#" class="pg-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Sing-Box</a>
-                <a id="shadowrocket-link" href="#" class="pg-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Shadowrocket</a>
+                <a id="hiddify-link" href="#" class="nh-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Hiddify</a>
+                <a id="v2rayng-link" href="#" class="nh-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">v2rayNG</a>
+                <a id="singbox-link" href="#" class="nh-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Sing-Box</a>
+                <a id="shadowrocket-link" href="#" class="nh-inner p-3 text-center text-xs font-bold hover:border-blue-500 transition-all">Shadowrocket</a>
             </div>
 
             <!-- Footer Utilities -->
             <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
-                <span class="text-xs" style="color: var(--pg-text-muted);">آی‌پی اتصال شما: <strong id="client-ip" class="font-mono text-blue-500">در حال دریافت...</strong></span>
+                <span class="text-xs" style="color: var(--nh-text-muted);">آی‌پی اتصال شما: <strong id="client-ip" class="font-mono text-blue-500">در حال دریافت...</strong></span>
                 <div class="flex items-center gap-3">
-                    <button onclick="fetchDecodedRawContent()" class="pg-inner px-3 py-1.5 text-xs font-bold hover:border-blue-500 flex items-center gap-1.5">
+                    <button onclick="fetchDecodedRawContent()" class="nh-inner px-3 py-1.5 text-xs font-bold hover:border-blue-500 flex items-center gap-1.5">
                         <span data-i18n="parsedContent">دریافت متن خام کانفیگ‌ها</span>
                     </button>
                     <a href="https://t.me/+mx5EmkbHzm41Y2Q5" target="_blank" class="text-xs text-blue-500 font-bold hover:underline">پشتیبانی تلگرام</a>
@@ -322,18 +322,18 @@
 
     </main>
 
-    <!-- PasarGuard Official QR & Base64 Modal -->
+    <!-- Nahan Official QR & Base64 Modal -->
     <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="pg-card max-w-sm w-full p-6 text-center border-blue-500/30">
-            <h3 class="text-base font-extrabold mb-4" id="qr-title" style="color: var(--pg-text-main);">اسکن کد QR</h3>
-            <div class="bg-white p-3 rounded-pg inline-block mb-4 shadow-xl">
+        <div class="nh-card max-w-sm w-full p-6 text-center border-blue-500/30">
+            <h3 class="text-base font-extrabold mb-4" id="qr-title" style="color: var(--nh-text-main);">اسکن کد QR</h3>
+            <div class="bg-white p-3 rounded-nahan inline-block mb-4 shadow-xl">
                 <img id="qr-img" src="" alt="QR" class="w-48 h-48">
             </div>
-            <p id="qr-text" class="text-[10px] font-mono break-all pg-inner p-2.5 mb-4 max-h-20 overflow-y-auto" style="color: var(--pg-text-muted);"></p>
+            <p id="qr-text" class="text-[10px] font-mono break-all nh-inner p-2.5 mb-4 max-h-20 overflow-y-auto" style="color: var(--nh-text-muted);"></p>
             
             <div class="flex gap-2">
-                <button onclick="copyModalBase64()" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-pg shadow-md transition-all">کپی Base64</button>
-                <button onclick="closeQRModal()" class="flex-1 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-pg shadow-md transition-all" data-i18n="close">بستن</button>
+                <button onclick="copyModalBase64()" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-nahan shadow-md transition-all">کپی Base64</button>
+                <button onclick="closeQRModal()" class="flex-1 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-nahan shadow-md transition-all" data-i18n="close">بستن</button>
             </div>
         </div>
     </div>
@@ -343,7 +343,7 @@
         <span id="toast-msg">اعلان</span>
     </div>
 
-    <!-- PasarGuard Official Logic Engine -->
+    <!-- Nahan Logic Engine -->
     <script>
         const I18N = {
             fa: {
@@ -573,7 +573,7 @@
             }, 2500);
         }
 
-        // Fetch IP
+        // Fetch Client IP
         fetch('https://api.ipify.org?format=json')
             .then(r => r.json())
             .then(data => {
@@ -584,7 +584,7 @@
                 if(el) el.textContent = 'Active';
             });
 
-        // Initialize
+        // Initialize App
         (function init() {
             try {
                 const savedTheme = localStorage.getItem('sub-theme');
@@ -608,7 +608,7 @@
             document.getElementById('link-singbox-fmt').value = normalLink + sep + 'flag=singbox';
             document.getElementById('link-clash-fmt').value = normalLink + sep + 'flag=clash';
 
-            // PasarGuard One-Click Direct Apps
+            // One-Click Direct Apps
             document.getElementById('hiddify-link').href = 'hiddify://import/' + normalLink + '#' + userName;
             document.getElementById('v2rayng-link').href = 'v2rayng://install-sub?url=' + encodeURIComponent(normalLink + sep + 'flag=base64') + '&name=' + userName;
             document.getElementById('singbox-link').href = 'sing-box://import-remote?url=' + encodeURIComponent(normalLink + sep + 'flag=singbox') + '#' + userName;
