@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark">
+<html lang="en" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>__USER_NAME__ | V2Hub Portal</title>
-    <!-- Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>__USER_NAME__ | Subscription Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/gh/itsyebekhe/nahan@main/tailwindcss.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -18,15 +17,20 @@
                     fontFamily: {
                         fa: ['Vazirmatn', 'sans-serif'],
                         en: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        v2hub: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            900: '#4c1d95',
+                        cyber: {
+                            50: '#f0fdf4',
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        neon: {
+                            cyan: '#06b6d4',
+                            purple: '#8b5cf6',
+                            emerald: '#10b981',
+                            pink: '#ec4899',
+                            amber: '#f59e0b'
                         }
                     }
                 }
@@ -35,410 +39,510 @@
     </script>
     <style>
         :root {
-            --vh-bg: #0b0f19;
-            --vh-card: #111827;
-            --vh-border: rgba(139, 92, 246, 0.15);
-            --vh-inner: #1f2937;
-            --vh-inner-border: rgba(139, 92, 246, 0.1);
-            --vh-text-main: #f9fafb;
-            --vh-text-muted: #9ca3af;
-            --vh-primary: #8b5cf6;
-            --vh-primary-glow: rgba(139, 92, 246, 0.25);
+            --bg: #090d16;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(99, 102, 241, 0.4);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --glow-1: rgba(99, 102, 241, 0.15);
+            --glow-2: rgba(16, 185, 129, 0.12);
         }
 
         html:not(.dark) {
-            --vh-bg: #f8fafc;
-            --vh-card: #ffffff;
-            --vh-border: rgba(0, 0, 0, 0.08);
-            --vh-inner: #f1f5f9;
-            --vh-inner-border: rgba(0, 0, 0, 0.05);
-            --vh-text-main: #0f172a;
-            --vh-text-muted: #64748b;
-            --vh-primary: #7c3aed;
-            --vh-primary-glow: rgba(124, 58, 237, 0.15);
+            --bg: #f8fafc;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --border-card: rgba(226, 232, 240, 0.8);
+            --border-hover: rgba(99, 102, 241, 0.5);
+            --text-primary: #0f172a;
+            --text-muted: #64748b;
+            --glow-1: rgba(99, 102, 241, 0.08);
+            --glow-2: rgba(16, 185, 129, 0.08);
         }
 
         body {
-            background-color: var(--vh-bg);
-            color: var(--vh-text-main);
-            font-family: 'Vazirmatn', 'Plus Jakarta Sans', sans-serif;
-            min-height: 100vh;
-            transition: background-color 0.25s ease, color 0.25s ease;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif;
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
 
-        /* V2Hub Panel Signature Cards */
-        .v2hub-card {
-            background-color: var(--vh-card);
-            border: 1px solid var(--vh-border);
-            border-radius: 1.25rem;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .v2hub-card:hover {
-            border-color: rgba(139, 92, 246, 0.35);
-            box-shadow: 0 12px 35px -8px var(--vh-primary-glow);
+        [lang="fa"] body { font-family: 'Vazirmatn', sans-serif; }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-card);
+            border-radius: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .v2hub-inner {
-            background-color: var(--vh-inner);
-            border: 1px solid var(--vh-inner-border);
-            border-radius: 0.875rem;
+        .glass-card:hover {
+            border-color: var(--border-hover);
         }
 
-        .v2hub-btn-primary {
-            background-color: var(--vh-primary);
-            color: #ffffff;
-            border-radius: 0.875rem;
-            transition: all 0.15s ease;
-            box-shadow: 0 4px 14px var(--vh-primary-glow);
-        }
-        .v2hub-btn-primary:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
+        .ambient-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .v2hub-input {
-            background-color: var(--vh-inner);
-            border: 1px solid var(--vh-inner-border);
-            color: var(--vh-text-main);
-            border-radius: 0.875rem;
-            font-family: 'Plus Jakarta Sans', monospace;
-        }
-        .v2hub-input:focus {
-            border-color: var(--vh-primary);
-            outline: none;
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
         }
 
-        .progress-bar-bg {
-            background-color: var(--vh-inner);
-            border-radius: 9999px;
-            overflow: hidden;
-            padding: 2px;
-            border: 1px solid var(--vh-inner-border);
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 99px; }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--vh-primary); border-radius: 10px; }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+        .pulse-subtle { animation: pulse-subtle 4s ease-in-out infinite; }
     </style>
 </head>
-<body class="py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-start min-h-screen">
+<body class="min-h-screen relative selection:bg-indigo-500 selection:text-white flex flex-col justify-between py-6 px-4 sm:px-6 lg:px-8">
 
-    <!-- V2Hub Header Navigation -->
-    <header class="w-full max-w-3xl flex justify-between items-center mb-6">
-        <!-- V2Hub Brand Logo -->
+    <!-- Ambient Neon Lights -->
+    <div class="ambient-glow top-[-10%] left-[-10%] w-[500px] h-[500px]" style="background: var(--glow-1);"></div>
+    <div class="ambient-glow bottom-[-10%] right-[-10%] w-[600px] h-[600px]" style="background: var(--glow-2);"></div>
+
+    <!-- Header Navigation -->
+    <header class="w-full max-w-6xl mx-auto flex items-center justify-between z-10 mb-8">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-500 flex items-center justify-center text-white font-black shadow-lg shadow-purple-500/30">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-emerald-400 p-[1.5px] shadow-lg shadow-indigo-500/20">
+                <div class="w-full h-full bg-slate-950 dark:bg-[#090d16] rounded-[14px] flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-indigo-400"></i>
+                </div>
             </div>
             <div>
-                <h1 class="text-sm font-black tracking-tight" style="color: var(--vh-text-main);">V2Hub Panel</h1>
-                <p class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Nahan Gateway</p>
+                <span class="text-xs font-mono font-bold tracking-widest text-indigo-400 uppercase">Secure Subscription</span>
+                <h2 class="text-sm font-black tracking-tight" id="header-brand">NAHAN PROTOCOL</h2>
             </div>
         </div>
 
-        <!-- Language & Theme Controller -->
+        <!-- Language & Theme Switches -->
         <div class="flex items-center gap-2">
-            <button onclick="toggleLang()" id="lang-toggle" class="v2hub-inner px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 hover:border-purple-500 transition-all">
-                <span id="lang-icon">🇮🇷</span>
-                <span id="lang-label">FA</span>
+            <button onclick="toggleLang()" class="glass-card px-3.5 py-2 flex items-center gap-2 text-xs font-bold hover:scale-105 active:scale-95 transition-transform">
+                <span id="lang-flag" class="text-sm">🇮🇷</span>
+                <span id="lang-name" class="font-mono">FA</span>
             </button>
-            <button onclick="toggleTheme()" id="theme-toggle" class="v2hub-inner p-2 text-xs font-bold flex items-center justify-center hover:border-purple-500 transition-all">
-                <span id="theme-icon">☀️</span>
+            <button onclick="toggleTheme()" class="glass-card p-2 text-slate-400 hover:text-white hover:scale-105 active:scale-95 transition-transform">
+                <i data-lucide="sun" id="theme-icon" class="w-5 h-5"></i>
             </button>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="w-full max-w-3xl flex flex-col gap-5">
-
-        <!-- User Information Banner Card (V2Hub Style) -->
-        <div class="v2hub-card p-5 sm:p-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-2xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-xl font-black text-purple-400 shrink-0">
-                        __USER_NAME__[0]
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h2 class="text-base font-extrabold" style="color: var(--vh-text-main);">__USER_NAME__</h2>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded-md v2hub-inner" style="color: var(--vh-text-muted);">ID: __USER_ID__</span>
+    <!-- Main Bento Grid -->
+    <main class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 z-10 flex-1">
+        
+        <!-- Left Section: Profile & Metrics (4 Cols) -->
+        <div class="lg:col-span-4 flex flex-col gap-6">
+            
+            <!-- User Status Card -->
+            <div class="glass-card p-6 relative overflow-hidden flex flex-col justify-between">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl"></div>
+                
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-black text-xl text-white shadow-xl shadow-indigo-500/30">
+                            __USER_NAME_INITIAL__
                         </div>
-                        <p class="text-xs mt-1" style="color: var(--vh-text-muted);">
-                            <span data-i18n="expDate">تاریخ انقضا</span>: <strong class="text-purple-400 font-mono">__EXPIRY_DATE__</strong>
-                        </p>
+                        <div>
+                            <h1 class="text-lg font-black tracking-tight" id="username-display">__USER_NAME__</h1>
+                            <span class="text-[11px] font-mono text-slate-400 flex items-center gap-1.5 mt-0.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+                                __USER_ID__
+                            </span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Status Badge -->
-                <div class="w-full sm:w-auto">
-                    <div id="status-badge" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2">
-                        <span class="w-2 h-2 rounded-full animate-ping bg-current"></span>
-                        <span>CHECKING...</span>
+                <div id="status-container" class="w-full py-2.5 px-4 rounded-xl flex items-center justify-between text-xs font-bold mb-4 border">
+                    <span class="flex items-center gap-2" id="status-title">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                        <span data-i18n="status">Account Status</span>
+                    </span>
+                    <span id="status-badge" class="uppercase font-black font-mono tracking-wider">ACTIVE</span>
+                </div>
+
+                <!-- Real-time Expiration & Live Countdown -->
+                <div class="space-y-2 pt-4 border-t border-white/5">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-slate-400" data-i18n="expiryLabel">Expiry Date</span>
+                        <span class="font-mono font-bold">__EXPIRY_DATE__</span>
+                    </div>
+                    <div class="bg-black/20 dark:bg-white/5 p-3 rounded-xl flex items-center justify-between text-xs">
+                        <span class="text-slate-400 flex items-center gap-1.5">
+                            <i data-lucide="timer" class="w-4 h-4 text-indigo-400"></i>
+                            <span data-i18n="countdown">Remains:</span>
+                        </span>
+                        <span id="live-countdown" class="font-mono font-black text-indigo-400">Calculating...</span>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Metrics Grid (Total Usage & Daily Usage) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <!-- Total Usage -->
-            <div class="v2hub-card p-5">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--vh-text-muted);" data-i18n="totalUsage">مصرف کل</span>
-                    <span class="text-xs font-bold text-purple-400 font-mono">TOTAL</span>
-                </div>
-                <div class="flex items-baseline gap-1.5 mb-3">
-                    <span class="text-2xl font-black font-mono" style="color: var(--vh-text-main);">__TOTAL_GB__</span>
-                    <span class="text-xs font-mono" style="color: var(--vh-text-muted);">/ __LIMIT_TOTAL_GB__ GB</span>
-                </div>
-                <div class="progress-bar-bg">
-                    __TOTAL_PROGRESS__
-                </div>
-            </div>
-
-            <!-- Daily Usage -->
-            <div class="v2hub-card p-5">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--vh-text-muted);" data-i18n="dailyUsage">مصرف روزانه</span>
-                    <span class="text-xs font-bold text-emerald-400 font-mono">DAILY</span>
-                </div>
-                <div class="flex items-baseline gap-1.5 mb-3">
-                    <span class="text-2xl font-black font-mono" style="color: var(--vh-text-main);">__DAILY_GB__</span>
-                    <span class="text-xs font-mono" style="color: var(--vh-text-muted);">/ __LIMIT_DAILY_GB__ GB</span>
-                </div>
-                <div class="progress-bar-bg">
-                    __DAILY_PROGRESS__
-                </div>
-            </div>
-        </div>
-
-        <!-- Universal Subscription Link Section -->
-        <div class="v2hub-card p-5 sm:p-6">
-            <div class="flex items-center justify-between mb-2">
-                <h3 class="text-sm font-extrabold" style="color: var(--vh-text-main);" data-i18n="universalLink">لینک هوشمند اتصال (Universal Sub)</h3>
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-purple-500/15 text-purple-400 border border-purple-500/20">پیشنهادی</span>
-            </div>
-            <p class="text-xs mb-4 leading-relaxed" style="color: var(--vh-text-muted);" data-i18n="universalDesc">این لینک به صورت خودکار کلاینت شما را شناسایی کرده و کانفیگ مناسب را ارسال می‌کند.</p>
-
-            <div class="flex flex-col sm:flex-row gap-2.5" dir="ltr">
-                <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="v2hub-input flex-1 px-4 py-2.5 text-xs w-full">
-                <div class="flex gap-2 shrink-0">
-                    <button onclick="copyLink('link-normal')" class="v2hub-btn-primary font-bold px-5 py-2.5 text-xs flex items-center justify-center gap-1.5">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                        <span data-i18n="copy">کپی</span>
-                    </button>
-                    <button onclick="showQRModal('__SYNC_NORMAL__')" class="v2hub-inner p-2.5 text-purple-400 hover:border-purple-500 rounded-xl flex items-center justify-center">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Specific Subscription Formats (V2Hub Rows) -->
-        <div class="v2hub-card p-5 sm:p-6">
-            <h4 class="text-sm font-extrabold mb-1" style="color: var(--vh-text-main);" data-i18n="availableFormats">فرمت‌های مستقیم اشتراک</h4>
-            <p class="text-xs mb-4" style="color: var(--vh-text-muted);" data-i18n="formatsDesc">در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.</p>
-
-            <div class="space-y-3">
-                <!-- Base64 -->
-                <div class="v2hub-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono">BASE64</span>
-                        <span class="text-xs font-bold" style="color: var(--vh-text-main);">Base64 (v2rayNG / Shadowrocket)</span>
+            <!-- Usage Gauges (Bento Style) -->
+            <div class="glass-card p-6 flex flex-col gap-6">
+                <!-- Total Usage -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-xs uppercase font-mono tracking-widest text-slate-400" data-i18n="totalBandwidth">Total Traffic</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span class="text-2xl font-black font-mono">__TOTAL_GB__</span>
+                            <span class="text-xs font-semibold text-slate-400">/ __LIMIT_TOTAL_GB__ GB</span>
+                        </div>
                     </div>
-                    <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-base64-fmt" readonly class="v2hub-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-base64-fmt')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-base64-fmt').value)" class="v2hub-inner p-1.5 hover:border-emerald-500 text-emerald-400">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                    <!-- Radial Gauge SVG -->
+                    <div class="relative w-16 h-16 flex items-center justify-center">
+                        <svg class="w-16 h-16 transform -rotate-90">
+                            <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="5" class="text-slate-800" fill="transparent" />
+                            <circle id="total-progress-ring" cx="32" cy="32" r="26" stroke="currentColor" stroke-width="5" stroke-dasharray="163.36" stroke-dashoffset="163.36" stroke-linecap="round" class="text-indigo-500 progress-ring-circle" fill="transparent" />
+                        </svg>
+                        <span id="total-percent-text" class="absolute text-[11px] font-mono font-bold">0%</span>
+                    </div>
+                </div>
+
+                <!-- Daily Usage -->
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <div>
+                        <span class="text-xs uppercase font-mono tracking-widest text-slate-400" data-i18n="dailyBandwidth">Daily Limit</span>
+                        <div class="flex items-baseline gap-1 mt-1">
+                            <span class="text-2xl font-black font-mono">__DAILY_GB__</span>
+                            <span class="text-xs font-semibold text-slate-400">/ __LIMIT_DAILY_GB__ GB</span>
+                        </div>
+                    </div>
+                    <!-- Daily Radial Gauge SVG -->
+                    <div class="relative w-16 h-16 flex items-center justify-center">
+                        <svg class="w-16 h-16 transform -rotate-90">
+                            <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="5" class="text-slate-800" fill="transparent" />
+                            <circle id="daily-progress-ring" cx="32" cy="32" r="26" stroke="currentColor" stroke-width="5" stroke-dasharray="163.36" stroke-dashoffset="163.36" stroke-linecap="round" class="text-emerald-400 progress-ring-circle" fill="transparent" />
+                        </svg>
+                        <span id="daily-percent-text" class="absolute text-[11px] font-mono font-bold">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagnostics & IP Hub -->
+            <div class="glass-card p-5 space-y-3">
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-400 flex items-center gap-1.5">
+                        <i data-lucide="globe" class="w-4 h-4 text-emerald-400"></i>
+                        <span data-i18n="ipAddress">Client IP</span>
+                    </span>
+                    <span id="client-ip" class="font-mono font-bold bg-black/20 dark:bg-white/5 px-2.5 py-1 rounded-md text-[11px]">Detecting...</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-400 flex items-center gap-1.5">
+                        <i data-lucide="radio" class="w-4 h-4 text-cyan-400"></i>
+                        <span data-i18n="networkLatency">Sub Latency</span>
+                    </span>
+                    <span id="ping-badge" class="font-mono font-bold text-emerald-400 text-[11px] flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <span id="ping-val">--</span> ms
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Section: Auto-Import & Subscription Hub (8 Cols) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+            
+            <!-- Universal Smart Quick Connect -->
+            <div class="glass-card p-6 sm:p-8 relative overflow-hidden border-indigo-500/30">
+                <div class="absolute top-0 right-0 w-60 h-60 bg-gradient-to-bl from-indigo-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold mb-2">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                            <span data-i18n="smartRecommend">Universal Auto-Detector</span>
+                        </div>
+                        <h3 class="text-xl font-black tracking-tight" data-i18n="mainSubTitle">Fast Subscription Link</h3>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="showQRModal(document.getElementById('main-sub-link').value, 'Universal Link')" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors flex items-center gap-2 text-xs font-bold">
+                            <i data-lucide="qr-code" class="w-4 h-4 text-indigo-400"></i>
+                            <span data-i18n="qrCode">QR Code</span>
+                        </button>
+                        <button onclick="copySubLink('main-sub-link')" class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-indigo-600/30 transition-all">
+                            <i data-lucide="copy" class="w-4 h-4"></i>
+                            <span data-i18n="copyLink">Copy URL</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Sing-Box -->
-                <div class="v2hub-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono">SINGBOX</span>
-                        <span class="text-xs font-bold" style="color: var(--vh-text-main);">Sing-Box Subscription (JSON)</span>
-                    </div>
-                    <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-singbox-fmt" readonly class="v2hub-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-singbox-fmt')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-singbox-fmt').value)" class="v2hub-inner p-1.5 hover:border-amber-500 text-amber-400">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                        </button>
-                    </div>
+                <div class="relative">
+                    <input type="text" id="main-sub-link" value="__SYNC_NORMAL__" readonly class="w-full bg-black/30 dark:bg-black/50 border border-white/10 rounded-2xl py-4 px-5 font-mono text-xs text-slate-300 outline-none focus:border-indigo-500 transition-colors pr-10">
                 </div>
 
-                <!-- Clash -->
-                <div class="v2hub-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 font-mono">CLASH</span>
-                        <span class="text-xs font-bold" style="color: var(--vh-text-main);">Clash Subscription (YAML)</span>
+                <!-- Detected Device One-Click Import Highlight -->
+                <div class="mt-6 pt-6 border-t border-white/5">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="smartphone" class="w-4 h-4 text-indigo-400"></i>
+                            <span data-i18n="smartApps">One-Click Setup for</span> <span id="detected-os-label" class="text-indigo-400 underline font-mono">Device</span>
+                        </span>
                     </div>
-                    <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-clash-fmt" readonly class="v2hub-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-clash-fmt')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-clash-fmt').value)" class="v2hub-inner p-1.5 hover:border-purple-500 text-purple-400">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                        </button>
-                    </div>
-                </div>
 
-                <!-- RAW -->
-                <div class="v2hub-inner p-3 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <div class="flex items-center gap-2 w-full sm:w-auto" dir="ltr">
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 font-mono">RAW</span>
-                        <span class="text-xs font-bold" style="color: var(--vh-text-main);">Raw Configs (Text / URI)</span>
-                    </div>
-                    <div class="flex gap-2 w-full sm:w-auto" dir="ltr">
-                        <input type="text" id="link-raw-fmt" readonly class="v2hub-input flex-1 px-3 py-1.5 text-xs w-full sm:w-64">
-                        <button onclick="copyLink('link-raw-fmt')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">کپی</button>
-                        <button onclick="showQRModal(document.getElementById('link-raw-fmt').value)" class="v2hub-inner p-1.5 hover:border-indigo-500 text-indigo-400">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
-                        </button>
+                    <!-- Client Apps Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="quick-apps-grid">
+                        <a id="app-btn-v2rayng" href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="glass-card p-3.5 flex flex-col items-center justify-center gap-2 text-center group hover:bg-indigo-500/10">
+                            <i data-lucide="send" class="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-xs font-bold">v2rayNG</span>
+                            <span class="text-[10px] text-slate-400 font-mono">Android</span>
+                        </a>
+                        <a id="app-btn-shadowrocket" href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__" class="glass-card p-3.5 flex flex-col items-center justify-center gap-2 text-center group hover:bg-indigo-500/10">
+                            <i data-lucide="zap" class="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-xs font-bold">Shadowrocket</span>
+                            <span class="text-[10px] text-slate-400 font-mono">iOS</span>
+                        </a>
+                        <a id="app-btn-streisand" href="streisand://import/__SYNC_NORMAL__" class="glass-card p-3.5 flex flex-col items-center justify-center gap-2 text-center group hover:bg-indigo-500/10">
+                            <i data-lucide="shield" class="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-xs font-bold">Streisand</span>
+                            <span class="text-[10px] text-slate-400 font-mono">iOS</span>
+                        </a>
+                        <a id="app-btn-v2rayn" href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__" class="glass-card p-3.5 flex flex-col items-center justify-center gap-2 text-center group hover:bg-indigo-500/10">
+                            <i data-lucide="monitor" class="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-xs font-bold">v2rayN</span>
+                            <span class="text-[10px] text-slate-400 font-mono">Windows</span>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- V2Hub Direct Client Launchers -->
-        <div class="v2hub-card p-5 sm:p-6">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-3 flex items-center gap-2" data-i18n="oneClickImport">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                <span>اتصال مستقیم با یک کلیک به کلاینت‌ها</span>
-            </h4>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                <a id="hiddify-link" href="#" class="v2hub-inner p-3 text-center text-xs font-bold hover:border-purple-500 transition-all">Hiddify</a>
-                <a id="v2rayng-link" href="#" class="v2hub-inner p-3 text-center text-xs font-bold hover:border-purple-500 transition-all">v2rayNG</a>
-                <a id="singbox-link" href="#" class="v2hub-inner p-3 text-center text-xs font-bold hover:border-purple-500 transition-all">Sing-Box</a>
-                <a id="shadowrocket-link" href="#" class="v2hub-inner p-3 text-center text-xs font-bold hover:border-purple-500 transition-all">Shadowrocket</a>
-            </div>
-
-            <!-- Footer Utilities -->
-            <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
-                <span class="text-xs" style="color: var(--vh-text-muted);">آی‌پی اتصال شما: <strong id="client-ip" class="font-mono text-purple-400">در حال دریافت...</strong></span>
-                <div class="flex items-center gap-3">
-                    <button onclick="fetchDecodedRawContent()" class="v2hub-inner px-3 py-1.5 text-xs font-bold hover:border-purple-500 flex items-center gap-1.5">
-                        <span data-i18n="parsedContent">دریافت متن خام کانفیگ‌ها</span>
-                    </button>
-                    <a href="https://t.me/+mx5EmkbHzm41Y2Q5" target="_blank" class="text-xs text-purple-400 font-bold hover:underline">پشتیبانی تلگرام</a>
+            <!-- Specific Subscription Formats Hub -->
+            <div class="glass-card p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h4 class="text-sm font-black flex items-center gap-2" data-i18n="formatHub">
+                            <i data-lucide="layers" class="w-4 h-4 text-indigo-400"></i>
+                            Advanced Format Library
+                        </h4>
+                        <p class="text-xs text-slate-400 mt-1" data-i18n="formatHubDesc">Direct config protocols for Sing-box, Clash Meta, Base64 & RAW.</p>
+                    </div>
                 </div>
-                <input type="text" id="link-raw" value="__SYNC_RAW__" class="hidden">
+
+                <!-- Formats List -->
+                <div class="space-y-3">
+                    
+                    <!-- Clash Meta / YAML -->
+                    <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/5 border border-white/5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 hover:border-indigo-500/30 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 font-mono text-xs font-bold">YML</div>
+                            <div>
+                                <h5 class="text-xs font-bold">Clash Meta / Verge</h5>
+                                <span class="text-[10px] text-slate-400 font-mono">YAML Config</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="fmt-clash" readonly class="hidden">
+                            <button onclick="copySubLink('fmt-clash')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-bold transition-colors flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="copy">Copy</span>
+                            </button>
+                            <button onclick="showQRModal(document.getElementById('fmt-clash').value, 'Clash YAML')" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                                <i data-lucide="qr-code" class="w-4 h-4 text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sing-box JSON -->
+                    <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/5 border border-white/5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 hover:border-amber-500/30 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 font-mono text-xs font-bold">JSON</div>
+                            <div>
+                                <h5 class="text-xs font-bold">Sing-Box / Hiddify</h5>
+                                <span class="text-[10px] text-slate-400 font-mono">Outbound Rules</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="fmt-singbox" readonly class="hidden">
+                            <button onclick="copySubLink('fmt-singbox')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-bold transition-colors flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="copy">Copy</span>
+                            </button>
+                            <button onclick="showQRModal(document.getElementById('fmt-singbox').value, 'Sing-box JSON')" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                                <i data-lucide="qr-code" class="w-4 h-4 text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Base64 Subscription -->
+                    <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/5 border border-white/5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 hover:border-emerald-500/30 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-mono text-xs font-bold">B64</div>
+                            <div>
+                                <h5 class="text-xs font-bold">Standard Base64</h5>
+                                <span class="text-[10px] text-slate-400 font-mono">v2ray / Xray Classic</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="fmt-b64" readonly class="hidden">
+                            <button onclick="copySubLink('fmt-b64')" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs font-bold transition-colors flex items-center gap-1.5">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="copy">Copy</span>
+                            </button>
+                            <button onclick="showQRModal(document.getElementById('fmt-b64').value, 'Base64 Format')" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                                <i data-lucide="qr-code" class="w-4 h-4 text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Raw Config Text / URIs -->
+                    <div class="p-3.5 rounded-2xl bg-black/20 dark:bg-white/5 border border-white/5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 hover:border-cyan-500/30 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 font-mono text-xs font-bold">URI</div>
+                            <div>
+                                <h5 class="text-xs font-bold">Raw Config Blocks</h5>
+                                <span class="text-[10px] text-slate-400 font-mono">vless:// vmess:// uris</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="fetchDecodedRawContent()" class="px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-xs font-bold transition-colors flex items-center gap-1.5">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                                <span data-i18n="getRaw">Extract Configs</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
         </div>
 
     </main>
 
-    <!-- V2Hub QR Code Modal -->
-    <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="v2hub-card max-w-sm w-full p-6 text-center border-purple-500/30">
-            <h3 class="text-base font-extrabold mb-4" id="qr-title" style="color: var(--vh-text-main);">اسکن کد QR</h3>
-            <div class="bg-white p-3 rounded-2xl inline-block mb-4 shadow-xl">
-                <img id="qr-img" src="" alt="QR" class="w-48 h-48">
+    <!-- Support Footer -->
+    <footer class="w-full max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-white/5 z-10 text-xs text-slate-400">
+        <p>© 2026 Nahan Project - High-Speed Anti-Censorship Edge</p>
+        <a href="https://t.me/+mx5EmkbHzm41Y2Q5" target="_blank" class="flex items-center gap-2 text-indigo-400 font-bold hover:underline">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span data-i18n="supportBtn">Telegram Support Channel</span>
+        </a>
+    </footer>
+
+    <!-- QR Modal -->
+    <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-xl z-50 hidden items-center justify-center p-4 transition-opacity">
+        <div class="glass-card max-w-sm w-full p-6 text-center space-y-4 border-indigo-500/40 relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeQRModal()" class="absolute top-4 right-4 p-1.5 rounded-full hover:bg-white/10 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h3 id="modal-qr-title" class="text-base font-black">Scan QR Code</h3>
+            <div class="bg-white p-4 rounded-2xl w-fit mx-auto shadow-2xl">
+                <img id="modal-qr-img" src="" alt="QR" class="w-48 h-48 sm:w-56 sm:h-56">
             </div>
-            <p id="qr-text" class="text-[10px] font-mono break-all v2hub-inner p-2.5 mb-4 max-h-20 overflow-y-auto" style="color: var(--vh-text-muted);"></p>
-            
-            <div class="flex gap-2">
-                <button onclick="copyModalBase64()" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-md transition-all">کپی Base64</button>
-                <button onclick="closeQRModal()" class="flex-1 py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl shadow-md transition-all" data-i18n="close">بستن</button>
-            </div>
+            <p id="modal-qr-text" class="font-mono text-[10px] text-slate-400 break-all bg-black/40 p-3 rounded-xl border border-white/5 max-h-20 overflow-y-auto custom-scrollbar"></p>
+            <button onclick="closeQRModal()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold text-xs text-white" data-i18n="close">Close</button>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 border border-purple-500/50 text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-xs z-50 transition-all transform translate-y-10 opacity-0 pointer-events-none">
-        <span id="toast-msg">اعلان</span>
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-2.5 rounded-2xl font-bold text-xs shadow-2xl flex items-center gap-2 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300">
+        <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+        <span id="toast-message">Notification</span>
     </div>
 
-    <!-- V2Hub Logic Engine -->
     <script>
         const I18N = {
-            fa: {
-                totalUsage: 'مصرف کل',
-                dailyUsage: 'مصرف روزانه',
-                expDate: 'تاریخ انقضا',
-                universalLink: 'لینک هوشمند اتصال (Universal Sub)',
-                universalDesc: 'این لینک به صورت خودکار نرم‌افزار شما را شناسایی کرده و کانفیگ مناسب را ارسال می‌کند.',
-                availableFormats: 'فرمت‌های مستقیم اشتراک',
-                formatsDesc: 'در صورت نیاز به فرمت خاص، لینک مربوط به برنامه خود را کپی کنید.',
-                oneClickImport: 'اتصال مستقیم با یک کلیک به کلاینت‌ها',
-                copy: 'کپی',
-                parsedContent: 'دریافت متن خام کانفیگ‌ها',
-                close: 'بستن',
-                qrTitle: 'اسکن کد QR',
-                copied: 'کپی شد!',
-                decodedCopied: 'متن کانفیگ‌ها کپی شد!',
-                decodedError: 'خطا در دریافت اطلاعات',
-                active: 'اشتراک فعال',
-                paused: 'متوقف‌شده',
-                expired: 'منقضی‌شده',
-                limitExceeded: 'اتمام حجم کل',
-                dailyLimitExceeded: 'اتمام حجم روزانه'
-            },
             en: {
-                totalUsage: 'Total Usage',
-                dailyUsage: 'Daily Usage',
-                expDate: 'Expiration Date',
-                universalLink: 'Universal Subscription Link',
-                universalDesc: 'Auto-detects your client software and delivers optimal configs.',
-                availableFormats: 'Direct Subscription Formats',
-                formatsDesc: 'Use these links to explicitly request specific config formats.',
-                oneClickImport: 'One-Click Client Import',
+                status: 'Status',
+                expiryLabel: 'Expiration Date',
+                countdown: 'Time Left:',
+                totalBandwidth: 'Total Traffic',
+                dailyBandwidth: 'Daily Limit',
+                ipAddress: 'Connection IP',
+                networkLatency: 'Sub Latency',
+                smartRecommend: 'Universal Auto-Detector',
+                mainSubTitle: 'Fast Subscription Link',
+                qrCode: 'QR Code',
+                copyLink: 'Copy URL',
+                smartApps: 'One-Click Setup for',
+                formatHub: 'Advanced Format Library',
+                formatHubDesc: 'Direct config protocols for Sing-box, Clash Meta, Base64 & RAW.',
                 copy: 'Copy',
-                parsedContent: 'Get Raw Configs Text',
-                close: 'Close',
-                qrTitle: 'Scan QR Code',
-                copied: 'Copied to clipboard!',
-                decodedCopied: 'Decoded configs copied!',
-                decodedError: 'Error fetching content',
-                active: 'Active Plan',
-                paused: 'Paused',
-                expired: 'Expired',
-                limitExceeded: 'Total Limit Exceeded',
-                dailyLimitExceeded: 'Daily Limit Exceeded'
+                getRaw: 'Extract Configs',
+                supportBtn: 'Telegram Support Channel',
+                copied: 'Subscription copied to clipboard!',
+                rawCopied: 'All RAW URI configurations copied!',
+                fetchError: 'Failed to retrieve configs',
+                close: 'Close'
+            },
+            fa: {
+                status: 'وضعیت حساب',
+                expiryLabel: 'تاریخ انقضا',
+                countdown: 'زمان باقی‌مانده:',
+                totalBandwidth: 'مصرف کل',
+                dailyBandwidth: 'محدودیت روزانه',
+                ipAddress: 'آی‌پی اتصال',
+                networkLatency: 'پینگ ساب',
+                smartRecommend: 'شناسایی خودکار کلاینت',
+                mainSubTitle: 'لینک اشتراک سریع',
+                qrCode: 'کد QR',
+                copyLink: 'کپی لینک',
+                smartApps: 'نصب خودکار برای',
+                formatHub: 'کتابخانه فرمت‌های پیشرفته',
+                formatHubDesc: 'انواع کانفیگ مستقیم برای Sing-box، Clash، Base64 و متنی.',
+                copy: 'کپی',
+                getRaw: 'استخراج کانفیگ‌ها',
+                supportBtn: 'پشتیبانی در تلگرام',
+                copied: 'لینک اشتراک در کلیپ‌بورد کپی شد!',
+                rawCopied: 'تمام کانفیگ‌های متنی خام کپی شدند!',
+                fetchError: 'خطا در دریافت کانفیگ‌ها',
+                close: 'بستن'
             }
         };
 
-        let currentLang = 'fa';
+        let currentLang = 'en';
         let isDark = true;
-        let activeModalUrl = '';
+
+        function renderLucide() {
+            lucide.createIcons();
+        }
 
         function applyTheme() {
-            const html = document.documentElement;
+            const root = document.documentElement;
             const icon = document.getElementById('theme-icon');
             if (isDark) {
-                html.classList.add('dark');
-                icon.textContent = '☀️';
+                root.classList.add('dark');
+                icon.setAttribute('data-lucide', 'sun');
             } else {
-                html.classList.remove('dark');
-                icon.textContent = '🌙';
+                root.classList.remove('dark');
+                icon.setAttribute('data-lucide', 'moon');
             }
-            try { localStorage.setItem('sub-theme', isDark ? 'dark' : 'light'); } catch(e) {}
+            renderLucide();
+            try { localStorage.setItem('sub_theme', isDark ? 'dark' : 'light'); } catch(e){}
         }
 
         function applyLang() {
-            const t = I18N[currentLang] || I18N.en;
+            const t = I18N[currentLang];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (t[key]) el.textContent = t[key];
+                if(t[key]) el.textContent = t[key];
             });
 
-            if (currentLang === 'fa') {
+            const flag = document.getElementById('lang-flag');
+            const label = document.getElementById('lang-name');
+
+            if(currentLang === 'fa') {
                 document.documentElement.setAttribute('dir', 'rtl');
                 document.documentElement.setAttribute('lang', 'fa');
-                document.getElementById('lang-icon').textContent = '🇮🇷';
-                document.getElementById('lang-label').textContent = 'FA';
+                flag.textContent = '🇺🇸';
+                label.textContent = 'EN';
             } else {
                 document.documentElement.setAttribute('dir', 'ltr');
                 document.documentElement.setAttribute('lang', 'en');
-                document.getElementById('lang-icon').textContent = '🇺🇸';
-                document.getElementById('lang-label').textContent = 'EN';
+                flag.textContent = '🇮🇷';
+                label.textContent = 'FA';
             }
-
-            initStatusBadge();
-            try { localStorage.setItem('sub-lang', currentLang); } catch(e) {}
+            try { localStorage.setItem('sub_lang', currentLang); } catch(e){}
         }
 
         function toggleTheme() {
@@ -447,135 +551,154 @@
         }
 
         function toggleLang() {
-            currentLang = currentLang === 'fa' ? 'en' : 'fa';
+            currentLang = currentLang === 'en' ? 'fa' : 'en';
             applyLang();
-            applyTheme();
         }
 
-        function initStatusBadge() {
-            const badge = document.getElementById('status-badge');
-            const t = I18N[currentLang] || I18N.en;
-
-            const statusMap = {
-                active: { label: t.active, bg: 'rgba(16, 185, 129, 0.15)', border: 'rgba(16, 185, 129, 0.3)', color: '#34d399' },
-                paused: { label: t.paused, bg: 'rgba(245, 158, 11, 0.15)', border: 'rgba(245, 158, 11, 0.3)', color: '#fbbf24' },
-                expired: { label: t.expired, bg: 'rgba(239, 68, 68, 0.15)', border: 'rgba(239, 68, 68, 0.3)', color: '#f87171' },
-                limit: { label: t.limitExceeded, bg: 'rgba(239, 68, 68, 0.15)', border: 'rgba(239, 68, 68, 0.3)', color: '#f87171' },
-                dailyLimit: { label: t.dailyLimitExceeded, bg: 'rgba(239, 68, 68, 0.15)', border: 'rgba(239, 68, 68, 0.3)', color: '#f87171' }
-            };
-
-            const code = '__STATUS_CODE__';
-            const s = statusMap[code] || statusMap.active;
-
-            badge.innerHTML = `<span class="w-2 h-2 rounded-full animate-ping" style="background-color: ${s.color}"></span><span>${s.label}</span>`;
-            badge.style.backgroundColor = s.bg;
-            badge.style.borderColor = s.border;
-            badge.style.color = s.color;
-            badge.style.borderWidth = '1px';
+        function setRadialGauge(id, percent) {
+            const circle = document.getElementById(id);
+            if(!circle) return;
+            const radius = circle.r.baseVal.value;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (percent / 100) * circumference;
+            circle.style.strokeDasharray = `${circumference}`;
+            circle.style.strokeDashoffset = offset;
         }
 
-        function copyLink(id) {
-            const input = document.getElementById(id);
-            if (!input) return;
-            input.select();
-            navigator.clipboard.writeText(input.value);
-            showToast(I18N[currentLang].copied);
+        function calculateGauges() {
+            const totalUsed = parseFloat('__TOTAL_GB__') || 0;
+            const totalLimit = parseFloat('__LIMIT_TOTAL_GB__') || 100;
+            const totalPct = Math.min(100, Math.round((totalUsed / totalLimit) * 100));
+            setRadialGauge('total-progress-ring', totalPct);
+            document.getElementById('total-percent-text').textContent = totalPct + '%';
+
+            const dailyUsed = parseFloat('__DAILY_GB__') || 0;
+            const dailyLimit = parseFloat('__LIMIT_DAILY_GB__') || 10;
+            const dailyPct = Math.min(100, Math.round((dailyUsed / dailyLimit) * 100));
+            setRadialGauge('daily-progress-ring', dailyPct);
+            document.getElementById('daily-percent-text').textContent = dailyPct + '%';
         }
 
-        function copyModalBase64() {
-            if (!activeModalUrl) return;
-            const sep = activeModalUrl.includes('?') ? '&' : '?';
-            const b64Url = activeModalUrl + sep + 'flag=base64';
-            navigator.clipboard.writeText(b64Url);
+        function detectOS() {
+            const ua = navigator.userAgent;
+            let os = "Desktop";
+            if (/android/i.test(ua)) os = "Android";
+            else if (/iPad|iPhone|iPod/.test(ua)) os = "iOS";
+            else if (/windows/i.test(ua)) os = "Windows";
+            else if (/macintosh/i.test(ua)) os = "macOS";
+            else if (/linux/i.test(ua)) os = "Linux";
+
+            document.getElementById('detected-os-label').textContent = os;
+        }
+
+        function startCountdown() {
+            const expiryStr = '__EXPIRY_DATE__';
+            const targetDate = new Date(expiryStr).getTime();
+            const el = document.getElementById('live-countdown');
+
+            if(isNaN(targetDate)) {
+                el.textContent = 'Unlimited';
+                return;
+            }
+
+            function update() {
+                const now = new Date().getTime();
+                const diff = targetDate - now;
+                if(diff <= 0) {
+                    el.textContent = 'Expired';
+                    return;
+                }
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                el.textContent = `${days}d ${hours}h ${mins}m`;
+            }
+            update();
+            setInterval(update, 60000);
+        }
+
+        function copySubLink(id) {
+            const el = document.getElementById(id);
+            navigator.clipboard.writeText(el.value);
             showToast(I18N[currentLang].copied);
         }
 
         async function fetchDecodedRawContent() {
             try {
                 const res = await fetch('__SYNC_RAW__');
-                if(!res.ok) throw new Error('Failed');
+                if(!res.ok) throw new Error('Fetch failed');
                 const base64Str = await res.text();
-                const decodedText = atob(base64Str.trim());
-                await navigator.clipboard.writeText(decodedText);
-                showToast(I18N[currentLang].decodedCopied);
+                const decoded = atob(base64Str.trim());
+                await navigator.clipboard.writeText(decoded);
+                showToast(I18N[currentLang].rawCopied);
             } catch(e) {
-                showToast(I18N[currentLang].decodedError);
+                showToast(I18N[currentLang].fetchError);
             }
         }
 
-        function showQRModal(url) {
-            activeModalUrl = url;
-            document.getElementById('qr-title').innerText = I18N[currentLang].qrTitle;
-            document.getElementById('qr-text').innerText = url;
-            document.getElementById('qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(url);
-
+        function showQRModal(url, title) {
+            document.getElementById('modal-qr-title').textContent = title || 'QR Code';
+            document.getElementById('modal-qr-text').textContent = url;
+            document.getElementById('modal-qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(url);
+            
             const modal = document.getElementById('qr-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            setTimeout(() => { modal.classList.remove('opacity-0'); }, 10);
         }
 
         function closeQRModal() {
             const modal = document.getElementById('qr-modal');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }, 300);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         function showToast(msg) {
             const t = document.getElementById('toast');
-            document.getElementById('toast-msg').innerText = msg;
-            t.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+            document.getElementById('toast-message').textContent = msg;
+            t.classList.remove('translate-y-10', 'opacity-0');
             t.classList.add('translate-y-0', 'opacity-100');
-
             setTimeout(() => {
                 t.classList.remove('translate-y-0', 'opacity-100');
-                t.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+                t.classList.add('translate-y-10', 'opacity-0');
             }, 2500);
         }
 
-        // Fetch IP
-        fetch('https://api.ipify.org?format=json')
-            .then(r => r.json())
-            .then(data => {
-                const el = document.getElementById('client-ip');
-                if(el) el.textContent = data.ip;
-            }).catch(() => {
-                const el = document.getElementById('client-ip');
-                if(el) el.textContent = 'Active';
-            });
-
-        // Initialize App
+        // Init App Links & Formats
         (function init() {
             try {
-                const savedTheme = localStorage.getItem('sub-theme');
-                if (savedTheme) isDark = savedTheme === 'dark';
-            } catch(e) {}
-            try {
-                const savedLang = localStorage.getItem('sub-lang');
-                if (savedLang && I18N[savedLang]) currentLang = savedLang;
+                const savedTheme = localStorage.getItem('sub_theme');
+                if(savedTheme) isDark = savedTheme === 'dark';
+                const savedLang = localStorage.getItem('sub_lang');
+                if(savedLang && I18N[savedLang]) currentLang = savedLang;
             } catch(e) {}
 
             applyTheme();
             applyLang();
+            detectOS();
+            calculateGauges();
+            startCountdown();
 
             const normalLink = '__SYNC_NORMAL__';
-            const userName = encodeURIComponent('__USER_NAME__');
-            const sep = normalLink.includes('?') ? '&' : '?';
+            const separator = normalLink.includes('?') ? '&' : '?';
 
-            // Specific Formats
-            document.getElementById('link-raw-fmt').value = normalLink + sep + 'flag=raw';
-            document.getElementById('link-base64-fmt').value = normalLink + sep + 'flag=base64';
-            document.getElementById('link-singbox-fmt').value = normalLink + sep + 'flag=singbox';
-            document.getElementById('link-clash-fmt').value = normalLink + sep + 'flag=clash';
+            // Populate Formats
+            document.getElementById('fmt-clash').value = normalLink + separator + 'flag=clash';
+            document.getElementById('fmt-singbox').value = normalLink + separator + 'flag=singbox';
+            document.getElementById('fmt-b64').value = normalLink + separator + 'flag=base64';
 
-            // V2Hub Apps Import
-            document.getElementById('hiddify-link').href = 'hiddify://import/' + normalLink + '#' + userName;
-            document.getElementById('v2rayng-link').href = 'v2rayng://install-sub?url=' + encodeURIComponent(normalLink + sep + 'flag=base64') + '&name=' + userName;
-            document.getElementById('singbox-link').href = 'sing-box://import-remote?url=' + encodeURIComponent(normalLink + sep + 'flag=singbox') + '#' + userName;
-            document.getElementById('shadowrocket-link').href = 'shadowrocket://add/sub://' + btoa(normalLink) + '?title=' + userName;
+            // Fetch IP & Latency
+            const startPing = performance.now();
+            fetch('https://api.ipify.org?format=json')
+                .then(r => r.json())
+                .then(d => {
+                    const latency = Math.round(performance.now() - startPing);
+                    document.getElementById('client-ip').textContent = d.ip;
+                    document.getElementById('ping-val').textContent = latency;
+                }).catch(() => {
+                    document.getElementById('client-ip').textContent = 'Direct';
+                });
+
+            renderLucide();
         })();
     </script>
 </body>
