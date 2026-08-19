@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>__USER_NAME__ | Subscription Portal</title>
-    <!-- Fonts -->
+    <title>__USER_NAME__ | Terminal Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Vazirmatn:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/itsyebekhe/nahan@main/tailwindcss.js"></script>
     <script>
         tailwind.config = {
@@ -18,17 +16,7 @@
                     fontFamily: {
                         fa: ['Vazirmatn', 'sans-serif'],
                         en: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#eep2ff',
-                            100: '#e0e7ff',
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            900: '#312e81',
-                        }
+                        mono: ['Fira Code', 'monospace']
                     }
                 }
             }
@@ -36,250 +24,229 @@
     </script>
     <style>
         :root {
-            --bg-base: #0f172a;
-            --bg-mesh-1: rgba(99, 102, 241, 0.15);
-            --bg-mesh-2: rgba(168, 85, 247, 0.15);
-            --card-bg: rgba(30, 41, 59, 0.65);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --inner-bg: rgba(15, 23, 42, 0.5);
-            --inner-border: rgba(255, 255, 255, 0.05);
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent: #6366f1;
-            --accent-glow: rgba(99, 102, 241, 0.35);
+            --bg-deep: #030712;
+            --panel-bg: rgba(17, 24, 39, 0.7);
+            --panel-border: rgba(99, 102, 241, 0.2);
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --neon-indigo: #6366f1;
+            --neon-cyan: #06b6d4;
+            --neon-emerald: #10b981;
+            --glow-indigo: rgba(99, 102, 241, 0.25);
         }
 
         html:not(.dark) {
-            --bg-base: #f8fafc;
-            --bg-mesh-1: rgba(99, 102, 241, 0.08);
-            --bg-mesh-2: rgba(236, 72, 153, 0.08);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(0, 0, 0, 0.06);
-            --inner-bg: rgba(241, 245, 249, 0.8);
-            --inner-border: rgba(0, 0, 0, 0.04);
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-            --accent: #4f46e5;
-            --accent-glow: rgba(79, 70, 229, 0.2);
+            --bg-deep: #f8fafc;
+            --panel-bg: rgba(255, 255, 255, 0.85);
+            --panel-border: rgba(99, 102, 241, 0.15);
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --neon-indigo: #4f46e5;
+            --neon-cyan: #0284c7;
+            --neon-emerald: #059669;
+            --glow-indigo: rgba(79, 70, 229, 0.15);
         }
 
         body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
             font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            transition: background-color 0.4s ease, color 0.4s ease;
             min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
         }
 
-        [lang="fa"] body {
-            font-family: 'Vazirmatn', 'Plus Jakarta Sans', sans-serif;
+        [lang="fa"] body { font-family: 'Vazirmatn', 'Plus Jakarta Sans', sans-serif; }
+
+        /* Cyber HUD Grid Pattern Background */
+        .cyber-grid {
+            background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
         }
 
-        /* Glassmorphism Card Style */
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
-            border-radius: 1.75rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Cyber Panel Glassmorphism */
+        .cyber-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--panel-border);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
 
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 25px 50px -12px var(--accent-glow);
-        }
-
-        .glass-inner {
-            background: var(--inner-bg);
-            border: 1px solid var(--inner-border);
-            border-radius: 1.25rem;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.2); border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-        /* Animated Mesh Gradients */
-        .ambient-mesh {
-            position: fixed;
+        .cyber-panel::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-indigo), transparent);
+            opacity: 0.5;
         }
 
-        .mesh-ball {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.6;
-            animation: float 18s ease-in-out infinite alternate;
+        .cyber-panel:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 15px 40px -10px var(--glow-indigo);
         }
 
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(120px, 80px) scale(1.2); }
-            100% { transform: translate(-80px, 150px) scale(0.9); }
+        /* Neon Glow Effects */
+        .neon-border {
+            box-shadow: 0 0 15px var(--glow-indigo);
+        }
+
+        /* Tab Buttons */
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background: var(--neon-indigo);
+            color: #ffffff;
+            border-color: var(--neon-indigo);
+            box-shadow: 0 0 15px var(--glow-indigo);
         }
 
         /* Input Styling */
-        .stylish-input {
-            background: var(--inner-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            transition: all 0.2s ease;
-        }
-        .stylish-input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-glow);
-            outline: none;
+        .cyber-input {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--panel-border);
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
         }
 
-        /* Progress Bar override */
         .progress-bar-bg {
-            background: var(--inner-bg);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 9999px;
             overflow: hidden;
-            padding: 2px;
-            border: 1px solid var(--inner-border);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Button Hover Effects */
-        .btn-hover-glow {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Scanline Anim Effect */
+        .scanline {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            opacity: 0.3;
+            animation: scan 8s linear infinite;
+            pointer-events: none;
+            z-index: 50;
         }
-        .btn-hover-glow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px -4px var(--accent-glow);
-        }
-        .btn-hover-glow:active {
-            transform: translateY(0);
-        }
+        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--neon-indigo); border-radius: 10px; }
     </style>
 </head>
-<body class="py-6 px-4 sm:px-8 flex flex-col items-center justify-start relative overflow-x-hidden">
+<body class="cyber-grid py-6 px-4 sm:px-8 flex flex-col items-center justify-start relative min-h-screen">
 
-    <!-- Background Ambient Mesh -->
-    <div class="ambient-mesh">
-        <div class="mesh-ball w-[400px] h-[400px] -top-20 -left-20" style="background: var(--bg-mesh-1);"></div>
-        <div class="mesh-ball w-[450px] h-[450px] top-1/2 -right-20" style="background: var(--bg-mesh-2); animation-delay: -5s;"></div>
-        <div class="mesh-ball w-[350px] h-[350px] -bottom-20 left-1/3" style="background: var(--bg-mesh-1); animation-delay: -10s;"></div>
-    </div>
+    <div class="scanline"></div>
 
-    <!-- Top Navigation / Controls -->
-    <header class="w-full max-w-6xl flex justify-between items-center mb-8 z-20">
-        <!-- Brand / Logo -->
+    <!-- Header Navigation -->
+    <header class="w-full max-w-5xl flex justify-between items-center mb-8 z-20">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 text-white font-black text-xl">
-                ⚡
+            <div class="relative flex items-center justify-center">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/50 flex items-center justify-center text-indigo-400 font-mono font-black text-lg neon-border">
+                    N
+                </div>
             </div>
             <div>
-                <h2 class="text-base font-extrabold tracking-tight leading-none" style="color: var(--text-main);">NAHAN</h2>
-                <span class="text-[10px] font-semibold tracking-widest text-indigo-400 uppercase">Subscriber Portal</span>
+                <h1 class="text-base font-black tracking-wider uppercase font-mono" style="color: var(--text-primary);">NAHAN // SYSTEM</h1>
+                <p class="text-[10px] font-mono tracking-widest text-indigo-400 uppercase">ACCESS TERMINAL</p>
             </div>
         </div>
 
-        <!-- Language & Theme Switchers -->
-        <div class="flex items-center gap-2">
-            <button onclick="toggleLang()" id="lang-toggle" class="glass-inner px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 hover:border-indigo-500/50 shadow-sm">
+        <div class="flex items-center gap-3">
+            <button onclick="toggleLang()" id="lang-toggle" class="cyber-panel px-3.5 py-2 rounded-xl text-xs font-mono font-bold flex items-center gap-2 hover:border-indigo-500 transition-all">
                 <span id="lang-icon">🇺🇸</span>
                 <span id="lang-label">EN</span>
             </button>
-            <button onclick="toggleTheme()" id="theme-toggle" class="glass-inner p-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center hover:border-indigo-500/50 shadow-sm">
-                <span id="theme-icon" class="text-base">☀️</span>
+            <button onclick="toggleTheme()" id="theme-toggle" class="cyber-panel p-2.5 rounded-xl text-xs font-bold flex items-center justify-center hover:border-indigo-500 transition-all">
+                <span id="theme-icon">☀️</span>
             </button>
         </div>
     </header>
 
-    <!-- Main Bento Grid -->
-    <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-6 z-10">
-        
-        <!-- Sidebar Column (Col 4) -->
+    <!-- Main Container -->
+    <main class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-6 z-10">
+
+        <!-- User Identity Card (Col 4) -->
         <div class="lg:col-span-4 flex flex-col gap-6">
             
-            <!-- User Profile Card -->
-            <div class="glass-card p-6 flex flex-col items-center text-center relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-                
-                <!-- Avatar with Animated Halo -->
-                <div class="relative mb-4 mt-2">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-70 group-hover:opacity-100 transition duration-500 group-hover:duration-200 animate-pulse"></div>
-                    <div class="relative w-20 h-20 rounded-2xl bg-slate-900 border border-white/20 flex items-center justify-center shadow-2xl text-3xl font-black text-indigo-400">
-                        __USER_NAME__[0]
+            <div class="cyber-panel p-6 flex flex-col items-center text-center">
+                <div class="relative my-3">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-500 p-0.5 shadow-2xl">
+                        <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-2xl font-extrabold text-indigo-400 font-mono">
+                            __USER_NAME__[0]
+                        </div>
                     </div>
                 </div>
 
-                <h1 class="text-xl font-extrabold tracking-tight mb-0.5" style="color: var(--text-main);">__USER_NAME__</h1>
-                <p class="text-xs font-mono mb-5 opacity-70" style="color: var(--text-sub);">ID: __USER_ID__</p>
-                
-                <!-- Dynamic Status Badge -->
+                <h2 class="text-lg font-black tracking-tight mt-2" style="color: var(--text-primary);">__USER_NAME__</h2>
+                <p class="text-xs font-mono mb-5 text-indigo-400/80">ID: __USER_ID__</p>
+
                 <div class="w-full">
-                    <div id="status-badge" class="px-4 py-2.5 rounded-xl text-xs font-extrabold shadow-sm w-full text-center uppercase tracking-wider flex items-center justify-center gap-2">
+                    <div id="status-badge" class="px-4 py-2.5 rounded-xl text-xs font-bold w-full text-center uppercase tracking-widest flex items-center justify-center gap-2 font-mono">
                         <span class="w-2 h-2 rounded-full animate-ping bg-current"></span>
                         <span>CHECKING...</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Expiration Date & IP Details -->
-            <div class="glass-card p-6 flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-2 mb-3 text-xs font-bold uppercase tracking-wider" style="color: var(--text-sub);">
-                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span data-i18n="expDate">Expiration Date</span>
-                    </div>
-                    <div class="text-2xl font-black tracking-tight" style="color: var(--text-main);">__EXPIRY_DATE__</div>
-                    <p class="text-[11px] mt-1 font-medium" style="color: var(--text-sub);" data-i18n="calendarLocal">Calendar Local Time</p>
+            <!-- Expiration & System Stats -->
+            <div class="cyber-panel p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-xs font-mono uppercase tracking-wider text-secondary" data-i18n="expDate">EXPIRATION</span>
+                    <span class="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </span>
                 </div>
+                <div class="text-xl font-black font-mono tracking-tight" style="color: var(--text-primary);">__EXPIRY_DATE__</div>
+                <p class="text-[10px] font-mono mt-1 text-secondary" data-i18n="calendarLocal">Local Calendar Time</p>
 
-                <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
-                    <span class="text-xs font-semibold" style="color: var(--text-sub);">Connection IP</span>
-                    <span id="client-ip" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg glass-inner">Locating...</span>
+                <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between font-mono text-xs">
+                    <span class="text-secondary">IP ADDRESS</span>
+                    <span id="client-ip" class="text-indigo-400 font-bold">CONNECTING...</span>
                 </div>
             </div>
 
-            <!-- Support Box -->
-            <div class="glass-card p-6 bg-gradient-to-br from-indigo-600/10 via-purple-600/5 to-transparent border-indigo-500/20">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <!-- Telegram Support -->
+            <div class="cyber-panel p-5 bg-gradient-to-r from-indigo-900/20 to-transparent">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     </div>
                     <div>
-                        <h4 class="text-sm font-bold" style="color: var(--text-main);">Need Assistance?</h4>
-                        <p class="text-[11px]" style="color: var(--text-sub);">Join our support channel</p>
+                        <h4 class="text-xs font-bold" style="color: var(--text-primary);">NEED HELP?</h4>
+                        <p class="text-[10px] text-secondary">Contact support desk</p>
                     </div>
                 </div>
-                <a href="https://t.me/+mx5EmkbHzm41Y2Q5" target="_blank" class="mt-4 w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30 btn-hover-glow">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.98 1.26-5.59 3.7-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.49-.42-1.44-.88.03-.24.36-.48.98-.74 3.84-1.67 6.4-2.78 7.68-3.32 3.64-1.52 4.4-1.79 4.9-1.8.11 0 .36.03.49.14.11.09.14.22.15.34-.01.07-.01.16-.02.26z"/></svg>
-                    <span>Telegram Community</span>
+                <a href="https://t.me/+mx5EmkbHzm41Y2Q5" target="_blank" class="mt-3 w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all">
+                    <span>TELEGRAM SUPPORT</span>
                 </a>
             </div>
 
         </div>
 
-        <!-- Right Main Panel (Col 8) -->
+        <!-- Metrics & Interactive Subscription Hub (Col 8) -->
         <div class="lg:col-span-8 flex flex-col gap-6">
-            
-            <!-- Traffic Metrics Grid -->
+
+            <!-- Metrics Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <!-- Total Usage -->
-                <div class="glass-card p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-sub);" data-i18n="totalUsage">Total Usage</span>
-                        <div class="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
-                        </div>
+                <div class="cyber-panel p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-mono uppercase tracking-wider text-secondary" data-i18n="totalUsage">TOTAL TRAFFIC</span>
+                        <span class="text-indigo-400 font-mono text-xs font-bold">TOTAL</span>
                     </div>
-                    <div class="flex items-baseline gap-1.5 mb-4">
-                        <span class="text-3xl font-black" style="color: var(--text-main);">__TOTAL_GB__</span>
-                        <span class="text-xs font-semibold" style="color: var(--text-sub);">/ __LIMIT_TOTAL_GB__ GB</span>
+                    <div class="flex items-baseline gap-1.5 mb-3">
+                        <span class="text-3xl font-black font-mono" style="color: var(--text-primary);">__TOTAL_GB__</span>
+                        <span class="text-xs font-mono text-secondary">/ __LIMIT_TOTAL_GB__ GB</span>
                     </div>
                     <div class="progress-bar-bg">
                         __TOTAL_PROGRESS__
@@ -287,16 +254,14 @@
                 </div>
 
                 <!-- Daily Usage -->
-                <div class="glass-card p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-sub);" data-i18n="dailyUsage">Daily Usage</span>
-                        <div class="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
+                <div class="cyber-panel p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-mono uppercase tracking-wider text-secondary" data-i18n="dailyUsage">DAILY TRAFFIC</span>
+                        <span class="text-cyan-400 font-mono text-xs font-bold">DAILY</span>
                     </div>
-                    <div class="flex items-baseline gap-1.5 mb-4">
-                        <span class="text-3xl font-black" style="color: var(--text-main);">__DAILY_GB__</span>
-                        <span class="text-xs font-semibold" style="color: var(--text-sub);">/ __LIMIT_DAILY_GB__ GB</span>
+                    <div class="flex items-baseline gap-1.5 mb-3">
+                        <span class="text-3xl font-black font-mono" style="color: var(--text-primary);">__DAILY_GB__</span>
+                        <span class="text-xs font-mono text-secondary">/ __LIMIT_DAILY_GB__ GB</span>
                     </div>
                     <div class="progress-bar-bg">
                         __DAILY_PROGRESS__
@@ -304,121 +269,85 @@
                 </div>
             </div>
 
-            <!-- Primary Auto-Detect Link -->
-            <div class="glass-card p-6 sm:p-7">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="p-2.5 rounded-xl bg-indigo-600 text-white shadow-md shadow-indigo-600/30">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                    </div>
+            <!-- Smart Universal Subscription Link -->
+            <div class="cyber-panel p-6">
+                <div class="flex items-center justify-between mb-4">
                     <div>
-                        <div class="flex items-center gap-2">
-                            <h3 class="text-base font-extrabold" style="color: var(--text-main);" data-i18n="universalLink">Universal Smart Link</h3>
-                            <span class="px-2 py-0.5 rounded-full text-[9px] font-black uppercase bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">Recommended</span>
-                        </div>
-                        <p class="text-xs mt-0.5" style="color: var(--text-sub);" data-i18n="universalDesc">Auto-detects client type and delivers best configs.</p>
+                        <h3 class="text-base font-extrabold flex items-center gap-2" style="color: var(--text-primary);">
+                            <span data-i18n="universalLink">Smart Universal Link</span>
+                            <span class="px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">Auto Detect</span>
+                        </h3>
+                        <p class="text-xs mt-1 text-secondary" data-i18n="universalDesc">Delivers optimal configs based on client headers.</p>
                     </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-2.5 w-full mt-5" dir="ltr">
-                    <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="stylish-input flex-1 px-4 py-3 rounded-xl text-xs font-mono w-full shadow-inner">
+                <div class="flex flex-col sm:flex-row gap-2.5 w-full" dir="ltr">
+                    <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="cyber-input flex-1 px-4 py-3 rounded-xl text-xs w-full">
                     <div class="flex gap-2">
-                        <button onclick="copyLink('link-normal')" class="btn-hover-glow bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-5 py-3 rounded-xl text-xs flex items-center justify-center gap-2 shrink-0 shadow-lg shadow-indigo-600/20">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
-                            <span data-i18n="copy">Copy Link</span>
+                        <button onclick="copyLink('link-normal')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-5 py-3 rounded-xl text-xs flex items-center justify-center gap-2 shrink-0 transition-all">
+                            <span data-i18n="copy">Copy</span>
                         </button>
-                        <button onclick="showQRModal('__SYNC_NORMAL__')" class="glass-inner hover:bg-white/10 p-3 rounded-xl text-xs font-bold transition-colors shrink-0 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                        <button onclick="showQRModal('__SYNC_NORMAL__')" class="cyber-panel p-3 rounded-xl hover:border-indigo-500 text-indigo-400 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Specific Formats Accordion Grid -->
-            <div class="glass-card p-6 sm:p-7">
-                <h4 class="text-sm font-extrabold mb-1" style="color: var(--text-main);" data-i18n="availableFormats">Specific Subscription Formats</h4>
-                <p class="text-xs mb-5" style="color: var(--text-sub);" data-i18n="formatsDesc">Explicitly request subscription URLs tailored for specific apps.</p>
+            <!-- Tabbed Specific Formats Selector -->
+            <div class="cyber-panel p-6">
+                <h4 class="text-sm font-extrabold mb-1" style="color: var(--text-primary);" data-i18n="availableFormats">Specific Subscription Formats</h4>
+                <p class="text-xs mb-4 text-secondary" data-i18n="formatsDesc">Select format tab to retrieve direct URL.</p>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Base64 -->
-                    <div class="glass-inner p-3.5 flex flex-col justify-between">
-                        <div class="flex justify-between items-center mb-2" dir="ltr">
-                            <span class="text-xs font-bold">Base64 (v2ray / Shadowrocket)</span>
-                            <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400">BASE64</span>
-                        </div>
-                        <div class="flex gap-2" dir="ltr">
-                            <input type="text" id="link-base64-fmt" readonly class="stylish-input flex-1 px-3 py-1.5 rounded-lg text-xs font-mono w-full">
-                            <button onclick="copyLink('link-base64-fmt')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Copy</button>
-                        </div>
+                <!-- Format Tabs -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <button onclick="switchTab('base64')" id="tab-base64" class="tab-btn active px-4 py-2 rounded-xl text-xs font-mono font-bold">Base64</button>
+                    <button onclick="switchTab('singbox')" id="tab-singbox" class="tab-btn px-4 py-2 rounded-xl text-xs font-mono font-bold">Sing-Box</button>
+                    <button onclick="switchTab('clash')" id="tab-clash" class="tab-btn px-4 py-2 rounded-xl text-xs font-mono font-bold">Clash</button>
+                    <button onclick="switchTab('raw')" id="tab-raw" class="tab-btn px-4 py-2 rounded-xl text-xs font-mono font-bold">Raw (URI)</button>
+                </div>
+
+                <!-- Tab Panels -->
+                <div class="bg-black/20 p-4 rounded-xl border border-white/5">
+                    <!-- Base64 Panel -->
+                    <div id="panel-base64" class="tab-panel flex flex-col sm:flex-row gap-2" dir="ltr">
+                        <input type="text" id="link-base64-fmt" readonly class="cyber-input flex-1 px-3 py-2.5 rounded-lg text-xs w-full">
+                        <button onclick="copyLink('link-base64-fmt')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shrink-0">Copy Base64</button>
                     </div>
-
-                    <!-- Sing-Box -->
-                    <div class="glass-inner p-3.5 flex flex-col justify-between">
-                        <div class="flex justify-between items-center mb-2" dir="ltr">
-                            <span class="text-xs font-bold">Sing-Box (JSON Format)</span>
-                            <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400">SINGBOX</span>
-                        </div>
-                        <div class="flex gap-2" dir="ltr">
-                            <input type="text" id="link-singbox-fmt" readonly class="stylish-input flex-1 px-3 py-1.5 rounded-lg text-xs font-mono w-full">
-                            <button onclick="copyLink('link-singbox-fmt')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Copy</button>
-                        </div>
+                    <!-- Singbox Panel -->
+                    <div id="panel-singbox" class="tab-panel hidden flex flex-col sm:flex-row gap-2" dir="ltr">
+                        <input type="text" id="link-singbox-fmt" readonly class="cyber-input flex-1 px-3 py-2.5 rounded-lg text-xs w-full">
+                        <button onclick="copyLink('link-singbox-fmt')" class="bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shrink-0">Copy Sing-Box</button>
                     </div>
-
-                    <!-- Clash -->
-                    <div class="glass-inner p-3.5 flex flex-col justify-between">
-                        <div class="flex justify-between items-center mb-2" dir="ltr">
-                            <span class="text-xs font-bold">Clash Config (YAML)</span>
-                            <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400">CLASH</span>
-                        </div>
-                        <div class="flex gap-2" dir="ltr">
-                            <input type="text" id="link-clash-fmt" readonly class="stylish-input flex-1 px-3 py-1.5 rounded-lg text-xs font-mono w-full">
-                            <button onclick="copyLink('link-clash-fmt')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Copy</button>
-                        </div>
+                    <!-- Clash Panel -->
+                    <div id="panel-clash" class="tab-panel hidden flex flex-col sm:flex-row gap-2" dir="ltr">
+                        <input type="text" id="link-clash-fmt" readonly class="cyber-input flex-1 px-3 py-2.5 rounded-lg text-xs w-full">
+                        <button onclick="copyLink('link-clash-fmt')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shrink-0">Copy Clash</button>
                     </div>
-
-                    <!-- Raw Configs -->
-                    <div class="glass-inner p-3.5 flex flex-col justify-between">
-                        <div class="flex justify-between items-center mb-2" dir="ltr">
-                            <span class="text-xs font-bold">Raw Configs (Text/URI)</span>
-                            <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400">RAW</span>
-                        </div>
-                        <div class="flex gap-2" dir="ltr">
-                            <input type="text" id="link-raw-fmt" readonly class="stylish-input flex-1 px-3 py-1.5 rounded-lg text-xs font-mono w-full">
-                            <button onclick="copyLink('link-raw-fmt')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">Copy</button>
-                        </div>
+                    <!-- Raw Panel -->
+                    <div id="panel-raw" class="tab-panel hidden flex flex-col sm:flex-row gap-2" dir="ltr">
+                        <input type="text" id="link-raw-fmt" readonly class="cyber-input flex-1 px-3 py-2.5 rounded-lg text-xs w-full">
+                        <button onclick="copyLink('link-raw-fmt')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shrink-0">Copy Raw</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Direct 1-Click Import Apps -->
-            <div class="glass-card p-6 sm:p-7">
-                <h4 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-4 flex items-center gap-2" data-i18n="oneClickImport">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <span>One-Click Import</span>
+            <!-- Direct One-Click Import -->
+            <div class="cyber-panel p-6">
+                <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-400 mb-4 flex items-center gap-2" data-i18n="oneClickImport">
+                    <span>// ONE-CLICK CLIENT IMPORT</span>
                 </h4>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <a id="hiddify-link" href="#" class="glass-inner p-3 rounded-xl flex items-center justify-between font-bold text-xs hover:border-indigo-500 transition-all btn-hover-glow">
-                        <span>Hiddify</span>
-                        <span class="text-indigo-400">⚡</span>
-                    </a>
-                    <a id="v2rayng-link" href="#" class="glass-inner p-3 rounded-xl flex items-center justify-between font-bold text-xs hover:border-indigo-500 transition-all btn-hover-glow">
-                        <span>v2rayNG</span>
-                        <span class="text-indigo-400">🚀</span>
-                    </a>
-                    <a id="singbox-link" href="#" class="glass-inner p-3 rounded-xl flex items-center justify-between font-bold text-xs hover:border-indigo-500 transition-all btn-hover-glow">
-                        <span>Sing-Box</span>
-                        <span class="text-indigo-400">📦</span>
-                    </a>
-                    <a id="shadowrocket-link" href="#" class="glass-inner p-3 rounded-xl flex items-center justify-between font-bold text-xs hover:border-indigo-500 transition-all btn-hover-glow">
-                        <span>Shadowrocket</span>
-                        <span class="text-indigo-400">🚀</span>
-                    </a>
+                    <a id="hiddify-link" href="#" class="cyber-panel p-3 text-center text-xs font-bold hover:border-indigo-500 transition-all">Hiddify</a>
+                    <a id="v2rayng-link" href="#" class="cyber-panel p-3 text-center text-xs font-bold hover:border-indigo-500 transition-all">v2rayNG</a>
+                    <a id="singbox-link" href="#" class="cyber-panel p-3 text-center text-xs font-bold hover:border-indigo-500 transition-all">Sing-Box</a>
+                    <a id="shadowrocket-link" href="#" class="cyber-panel p-3 text-center text-xs font-bold hover:border-indigo-500 transition-all">Shadowrocket</a>
                 </div>
 
                 <div class="mt-6 pt-4 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
-                    <span class="text-xs opacity-75" style="color: var(--text-sub);">Advanced: Fetch raw text content directly to clipboard</span>
-                    <button onclick="fetchDecodedRawContent()" class="glass-inner px-4 py-2 rounded-xl text-xs font-bold hover:border-indigo-500/50 flex items-center gap-2 transition-all">
-                        <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    <span class="text-xs text-secondary">Advanced user options</span>
+                    <button onclick="fetchDecodedRawContent()" class="cyber-panel px-4 py-2 rounded-xl text-xs font-bold hover:border-indigo-500 flex items-center gap-2">
                         <span data-i18n="parsedContent">Retrieve Raw Content</span>
                     </button>
                     <input type="text" id="link-raw" value="__SYNC_RAW__" class="hidden">
@@ -428,77 +357,69 @@
         </div>
     </main>
 
-    <!-- QR Code Modal -->
-    <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center p-4 transition-all duration-300 opacity-0">
-        <div class="glass-card max-w-sm w-full p-6 text-center transform scale-95 transition-transform duration-300 relative border-indigo-500/30">
-            <button onclick="closeQRModal()" class="absolute top-4 right-4 p-2 rounded-xl glass-inner hover:bg-white/10 transition-colors">
-                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <h3 class="text-lg font-extrabold mb-4" id="qr-title" style="color: var(--text-main);">Scan QR Code</h3>
-            
-            <div class="bg-white p-4 rounded-2xl shadow-2xl inline-block mb-4">
-                <img id="qr-img" src="" alt="QR Code" class="w-52 h-52">
+    <!-- QR Modal -->
+    <div id="qr-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="cyber-panel max-w-sm w-full p-6 text-center border-indigo-500/50">
+            <h3 class="text-base font-mono font-extrabold mb-4" id="qr-title">SCAN QR CODE</h3>
+            <div class="bg-white p-3 rounded-xl inline-block mb-4">
+                <img id="qr-img" src="" alt="QR" class="w-48 h-48">
             </div>
-
-            <p id="qr-text" class="text-[10px] font-mono break-all glass-inner p-2.5 rounded-xl mb-5 max-h-20 overflow-y-auto" style="color: var(--text-sub);"></p>
-
-            <button onclick="closeQRModal()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30" data-i18n="close">Close</button>
+            <p id="qr-text" class="text-[10px] font-mono break-all bg-black/40 p-2 rounded-lg mb-4 text-secondary max-h-20 overflow-y-auto"></p>
+            <button onclick="closeQRModal()" class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl" data-i18n="close">Close</button>
         </div>
     </div>
 
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 border border-indigo-500/40 text-white px-5 py-3 rounded-2xl shadow-2xl font-bold text-xs z-50 transition-all transform translate-y-10 opacity-0 pointer-events-none flex items-center gap-2.5">
-        <span class="p-1 rounded-full bg-emerald-500/20 text-emerald-400">✓</span>
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 border border-indigo-500/50 text-white px-5 py-3 rounded-xl shadow-2xl font-mono text-xs z-50 transition-all transform translate-y-10 opacity-0 pointer-events-none">
         <span id="toast-msg">Notification</span>
     </div>
 
-    <!-- JavaScript Application Logic -->
+    <!-- Core Script Logic -->
     <script>
         const I18N = {
             en: {
-                totalUsage: 'Total Usage',
-                dailyUsage: 'Daily Usage',
-                expDate: 'Expiration Date',
-                calendarLocal: 'Calendar Local Time',
-                universalLink: 'Universal Smart Link',
-                universalDesc: 'Auto-detects client type and delivers best configs.',
+                totalUsage: 'TOTAL TRAFFIC',
+                dailyUsage: 'DAILY TRAFFIC',
+                expDate: 'EXPIRATION',
+                calendarLocal: 'Local Calendar Time',
+                universalLink: 'Smart Universal Link',
+                universalDesc: 'Delivers optimal configs based on client headers.',
                 availableFormats: 'Specific Subscription Formats',
-                formatsDesc: 'Explicitly request subscription URLs tailored for specific apps.',
-                oneClickImport: 'One-Click Import',
+                formatsDesc: 'Select format tab to retrieve direct URL.',
+                oneClickImport: 'ONE-CLICK CLIENT IMPORT',
                 copy: 'Copy',
                 parsedContent: 'Retrieve Raw Content',
                 close: 'Close',
-                qrTitle: 'Scan QR Code',
+                qrTitle: 'SCAN QR CODE',
                 copied: 'Copied to clipboard!',
-                decodedCopied: 'Decoded configs copied to clipboard!',
+                decodedCopied: 'Decoded configs copied!',
                 decodedError: 'Error fetching content',
-                active: 'Active',
-                paused: 'Paused',
-                expired: 'Expired',
-                limitExceeded: 'Limit Exceeded',
-                dailyLimitExceeded: 'Daily Limit Exceeded'
+                active: 'ACTIVE',
+                paused: 'PAUSED',
+                expired: 'EXPIRED',
+                limitExceeded: 'LIMIT EXCEEDED',
+                dailyLimitExceeded: 'DAILY LIMIT EXCEEDED'
             },
             fa: {
-                totalUsage: 'مصرف کل',
-                dailyUsage: 'مصرف روزانه',
+                totalUsage: 'حجم کل مصرفی',
+                dailyUsage: 'حجم روزانه',
                 expDate: 'تاریخ انقضا',
-                calendarLocal: 'زمان محلی دستگاه شما',
-                universalLink: 'لینک هوشمند و خودکار',
-                universalDesc: 'شناسایی خودکار نرم‌افزار و ارائه بهترین فرمت کانفیگ.',
-                availableFormats: 'فرمت‌های اختصاصی اشتراک',
-                formatsDesc: 'دریافت مستقیم لینک مخصوص نرم‌افزارهای مختلف.',
-                oneClickImport: 'اتصال سریع با یک کلیک',
+                calendarLocal: 'زمان محلی سیستم',
+                universalLink: 'لینک هوشمند خودکار',
+                universalDesc: 'ارائه بهترین کانفیگ بر اساس نرم‌افزار متصل شده.',
+                availableFormats: 'فرمت‌های اشتراک مجزا',
+                formatsDesc: 'برای دریافت لینک مستقیم، تب فرمت دلخواه را انتخاب کنید.',
+                oneClickImport: 'اتصال مستقیم با یک کلیک',
                 copy: 'کپی',
                 parsedContent: 'دریافت متن کامل کانفیگ‌ها',
                 close: 'بستن',
                 qrTitle: 'اسکن کد QR',
                 copied: 'کپی شد!',
                 decodedCopied: 'متن کانفیگ‌ها کپی شد!',
-                decodedError: 'خطا در دریافت اطلاعات',
+                decodedError: 'خطا در دریافت',
                 active: 'فعال',
-                paused: 'متوقف‌شده',
-                expired: 'منقضی‌شده',
+                paused: 'متوقف',
+                expired: 'منقضی',
                 limitExceeded: 'اتمام حجم کل',
                 dailyLimitExceeded: 'اتمام حجم روزانه'
             }
@@ -553,10 +474,21 @@
             applyTheme();
         }
 
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
+
+            const selectedBtn = document.getElementById('tab-' + tab);
+            const selectedPanel = document.getElementById('panel-' + tab);
+
+            if (selectedBtn) selectedBtn.classList.add('active');
+            if (selectedPanel) selectedPanel.classList.remove('hidden');
+        }
+
         function initStatusBadge() {
             const badge = document.getElementById('status-badge');
             const t = I18N[currentLang];
-            
+
             const statusMap = {
                 active: { label: t.active, bg: 'rgba(16, 185, 129, 0.15)', border: 'rgba(16, 185, 129, 0.3)', color: '#34d399' },
                 paused: { label: t.paused, bg: 'rgba(245, 158, 11, 0.15)', border: 'rgba(245, 158, 11, 0.3)', color: '#fbbf24' },
@@ -567,7 +499,7 @@
 
             const code = '__STATUS_CODE__';
             const s = statusMap[code] || statusMap.active;
-            
+
             badge.innerHTML = `<span class="w-2 h-2 rounded-full animate-ping" style="background-color: ${s.color}"></span><span>${s.label}</span>`;
             badge.style.backgroundColor = s.bg;
             badge.style.borderColor = s.border;
@@ -600,24 +532,17 @@
             document.getElementById('qr-title').innerText = I18N[currentLang].qrTitle;
             document.getElementById('qr-text').innerText = url;
             document.getElementById('qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(url);
-            
+
             const modal = document.getElementById('qr-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.querySelector('.glass-card').classList.remove('scale-95');
-                modal.querySelector('.glass-card').classList.add('scale-100');
-            }, 10);
+
+            setTimeout(() => { modal.classList.remove('opacity-0'); }, 10);
         }
 
         function closeQRModal() {
             const modal = document.getElementById('qr-modal');
             modal.classList.add('opacity-0');
-            modal.querySelector('.glass-card').classList.remove('scale-100');
-            modal.querySelector('.glass-card').classList.add('scale-95');
-            
             setTimeout(() => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
@@ -629,14 +554,14 @@
             document.getElementById('toast-msg').innerText = msg;
             t.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
             t.classList.add('translate-y-0', 'opacity-100');
-            
-            setTimeout(() => { 
+
+            setTimeout(() => {
                 t.classList.remove('translate-y-0', 'opacity-100');
                 t.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
             }, 2500);
         }
 
-        // Fetch Client IP
+        // Fetch IP
         fetch('https://api.ipify.org?format=json')
             .then(r => r.json())
             .then(data => {
@@ -647,7 +572,7 @@
                 if(el) el.textContent = 'Active';
             });
 
-        // Initialize App
+        // Initialize
         (function init() {
             try {
                 const savedTheme = localStorage.getItem('sub-theme');
@@ -660,11 +585,10 @@
 
             applyTheme();
             applyLang();
-            
+
             const normalLink = '__SYNC_NORMAL__';
             const userName = encodeURIComponent('__USER_NAME__');
 
-            // Set up format input fields
             const rawInput = document.getElementById('link-raw-fmt');
             const base64Input = document.getElementById('link-base64-fmt');
             const singboxInput = document.getElementById('link-singbox-fmt');
@@ -676,9 +600,8 @@
             if (singboxInput) singboxInput.value = normalLink + sep + 'flag=singbox';
             if (clashInput) clashInput.value = normalLink + sep + 'flag=clash';
 
-            // Set up One-Click App Import URLs
             const hiddifyEl = document.getElementById('hiddify-link');
-            if (hiddifyEl) hiddifyEl.href = 'hiddify://import/' + normalLink + '#__USER_NAME__';
+            if (hiddifyEl) hiddifyEl.href = 'hiddify://import/' + normalLink + '#' + userName;
 
             const v2rayngEl = document.getElementById('v2rayng-link');
             if (v2rayngEl) v2rayngEl.href = 'v2rayng://install-sub?url=' + encodeURIComponent(normalLink + sep + 'flag=base64') + '&name=' + userName;
