@@ -43,246 +43,271 @@
         }
     }
 }
-<style>
-/* ==========================================================================
-   NAHAN GATEWAY — ULTRA MODERN UI STYLE (HIGH CONTRAST & GLASSMORPHISM)
-   ========================================================================== */
-
+</script>
+      
+  <style>
 :root {
     --color-text: #0f172a;
     --color-text-muted: #475569;
-    --color-primary: #6366f1; 
-    --color-primary-hover: #4f46e5;
-    --color-bg: #f8fafc;
+    --color-primary: #6366f1; --color-primary-hover: #4f46e5;
+    --color-bg: var(--slate-50);
     --color-surface: #ffffff;
-    --color-bg-alt: #f1f5f9;
-    --color-border: #e2e8f0;
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
 
-    /* High Contrast Slate Mappings (Light Mode) */
+    /* Light Mode slate mappings */
     --slate-50: #f8fafc;
     --slate-100: #f1f5f9;
     --slate-200: #e2e8f0;
     --slate-300: #cbd5e1;
-    --slate-400: #64748b;
-    --slate-500: #475569;
-    --slate-600: #334155;
-    --slate-700: #1e293b;
-    --slate-800: #0f172a;
-    --slate-900: #020617;
-    
-    --card-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.02);
-    --glow-primary: rgba(99, 102, 241, 0.12);
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
 }
-
 html.dark {
-    --color-text: #f8fafc;
-    --color-text-muted: #94a3b8;
-    --color-primary: #818cf8; 
-    --color-primary-hover: #6366f1;
-    --color-bg: #070913;
-    --color-surface: #0d1322;
-    --color-bg-alt: #151c2e;
-    --color-border: rgba(255, 255, 255, 0.08);
+    --color-text: #f1f5f9;
+    --color-text-muted: #cbd5e1;
+    --color-primary: #818cf8; --color-primary-hover: #6366f1;
+    --color-bg: var(--slate-900);
+    --color-surface: var(--slate-800);
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
 
-    /* Deep OLED Slate Mappings (Dark Mode) */
-    --slate-50: #070913;
-    --slate-100: #0d1322;
-    --slate-200: #151c2e;
+    /* Dark Mode slate mappings */
+    --slate-50: #090d16;
+    --slate-100: #151b26;
+    --slate-200: #222b3c;
     --slate-300: #cbd5e1;
     --slate-400: #94a3b8;
     --slate-500: #64748b;
     --slate-600: #475569;
     --slate-700: #cbd5e1;
-    --slate-800: #0d1322;
-    --slate-900: #070913;
-
-    --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    --glow-primary: rgba(99, 102, 241, 0.2);
+    --slate-800: #0f172a;
+    --slate-900: #090d16;
 }
-
 /* Ocean Theme */
 html[data-theme="ocean"] {
-    --color-primary: #0284c7; --color-primary-hover: #0369a1;
-    --color-bg: #f0f9ff; --color-surface: #ffffff;
-    --color-bg-alt: #e0f2fe; --color-border: #bae6fd;
-    --color-text: #082f49; --color-text-muted: #0369a1;
-    --slate-50: #f0f9ff; --slate-100: #e0f2fe; --slate-200: #bae6fd;
+    --color-primary: #0ea5e9;
+    --color-bg: var(--slate-50);
+    --color-surface: #ffffff;
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
+    --color-text: #082f49;
+    --color-text-muted: #0369a1;
+
+    --slate-50: #f0f9ff;
+    --slate-100: #e0f2fe;
+    --slate-200: #bae6fd;
+    --slate-300: #7dd3fc;
+    --slate-400: #38bdf8;
+    --slate-500: #0ea5e9;
+    --slate-600: #0284c7;
+    --slate-700: #0369a1;
+    --slate-800: #075985;
+    --slate-900: #0c4a6e;
 }
 html[data-theme="ocean"].dark {
-    --color-primary: #38bdf8; --color-primary-hover: #0ea5e9;
-    --color-bg: #03131e; --color-surface: #072235;
-    --color-bg-alt: #0a2d45; --color-border: rgba(56, 189, 248, 0.15);
-    --color-text: #f0f9ff; --color-text-muted: #7dd3fc;
-    --slate-50: #03131e; --slate-100: #072235; --slate-200: #0a2d45;
-}
+    --color-primary: #38bdf8;
+    --color-bg: var(--slate-900);
+    --color-surface: var(--slate-800);
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
+    --color-text: #e0f2fe;
+    --color-text-muted: #7dd3fc;
 
+    --slate-50: #031e30;
+    --slate-100: #072f49;
+    --slate-200: #0c4a6e;
+    --slate-300: #bae6fd;
+    --slate-400: #7dd3fc;
+    --slate-500: #38bdf8;
+    --slate-600: #0ea5e9;
+    --slate-700: #bae6fd;
+    --slate-800: #072f49;
+    --slate-900: #031e30;
+}
 /* Forest Theme */
 html[data-theme="forest"] {
-    --color-primary: #059669; --color-primary-hover: #047857;
-    --color-bg: #f0fdf4; --color-surface: #ffffff;
-    --color-bg-alt: #dcfce7; --color-border: #bbf7d0;
-    --color-text: #022c22; --color-text-muted: #15803d;
-    --slate-50: #f0fdf4; --slate-100: #dcfce7; --slate-200: #bbf7d0;
+    --color-primary: #10b981;
+    --color-bg: var(--slate-50);
+    --color-surface: #ffffff;
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
+    --color-text: #022c22;
+    --color-text-muted: #15803d;
+
+    --slate-50: #f0fdf4;
+    --slate-100: #dcfce7;
+    --slate-200: #bbf7d0;
+    --slate-300: #86efac;
+    --slate-400: #4ade80;
+    --slate-500: #22c55e;
+    --slate-600: #16a34a;
+    --slate-700: #15803d;
+    --slate-800: #166534;
+    --slate-900: #14532d;
 }
 html[data-theme="forest"].dark {
-    --color-primary: #34d399; --color-primary-hover: #10b981;
-    --color-bg: #02140d; --color-surface: #052618;
-    --color-bg-alt: #083824; --color-border: rgba(52, 211, 153, 0.15);
-    --color-text: #f0fdf4; --color-text-muted: #86efac;
-    --slate-50: #02140d; --slate-100: #052618; --slate-200: #083824;
-}
+    --color-primary: #34d399;
+    --color-bg: var(--slate-900);
+    --color-surface: var(--slate-800);
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
+    --color-text: #dcfce7;
+    --color-text-muted: #86efac;
 
+    --slate-50: #021a11;
+    --slate-100: #042f1d;
+    --slate-200: #064e3b;
+    --slate-300: #bbf7d0;
+    --slate-400: #86efac;
+    --slate-500: #4ade80;
+    --slate-600: #22c55e;
+    --slate-700: #bbf7d0;
+    --slate-800: #042f1d;
+    --slate-900: #021a11;
+}
 /* Sunset Theme */
 html[data-theme="sunset"] {
-    --color-primary: #e11d48; --color-primary-hover: #be123c;
-    --color-bg: #fff5f5; --color-surface: #ffffff;
-    --color-bg-alt: #ffe3e3; --color-border: #ffc9c9;
-    --color-text: #4c0519; --color-text-muted: #e03131;
-    --slate-50: #fff5f5; --slate-100: #ffe3e3; --slate-200: #ffc9c9;
+    --color-primary: #f43f5e;
+    --color-bg: var(--slate-50);
+    --color-surface: #ffffff;
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
+    --color-text: #4c0519;
+    --color-text-muted: #e03131;
+
+    --slate-50: #fff5f5;
+    --slate-100: #ffe3e3;
+    --slate-200: #ffc9c9;
+    --slate-300: #ffa8a8;
+    --slate-400: #ff8787;
+    --slate-500: #ff6b6b;
+    --slate-600: #fa5252;
+    --slate-700: #e03131;
+    --slate-800: #c92a2a;
+    --slate-900: #4c0519;
 }
 html[data-theme="sunset"].dark {
-    --color-primary: #fb7185; --color-primary-hover: #f43f5e;
-    --color-bg: #190308; --color-surface: #2d0610;
-    --color-bg-alt: #3f0917; --color-border: rgba(251, 113, 133, 0.15);
-    --color-text: #ffe4e6; --color-text-muted: #ffa8a8;
-    --slate-50: #190308; --slate-100: #2d0610; --slate-200: #3f0917;
-}
+    --color-primary: #fb7185;
+    --color-bg: var(--slate-900);
+    --color-surface: var(--slate-800);
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
+    --color-text: #ffe4e6;
+    --color-text-muted: #ffa8a8;
 
+    --slate-50: #1f030a;
+    --slate-100: #3b0713;
+    --slate-200: #5c091f;
+    --slate-300: #ffc9c9;
+    --slate-400: #ffa8a8;
+    --slate-500: #ff8787;
+    --slate-600: #ff6b6b;
+    --slate-700: #ffc9c9;
+    --slate-800: #3b0713;
+    --slate-900: #1f030a;
+}
 /* Dracula Theme */
 html[data-theme="dracula"] {
-    --color-primary: #bd93f9; --color-primary-hover: #ff79c6;
-    --color-bg: #1e1f29; --color-surface: #282a36;
-    --color-bg-alt: #383a59; --color-border: #44475a;
-    --color-text: #f8f8f2; --color-text-muted: #6272a4;
-    --slate-50: #1e1f29; --slate-100: #282a36; --slate-200: #383a59;
-}
+    --color-primary: #bd93f9;
+    --color-bg: var(--slate-900);
+    --color-surface: var(--slate-800);
+    --color-bg-alt: var(--slate-100);
+    --color-border: var(--slate-200);
+    --color-text: #f8f8f2;
+    --color-text-muted: #6272a4;
 
-/* Global Typography & Reset */
-body {
-    background: var(--color-bg) !important;
-    color: var(--color-text) !important;
-    font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif !important;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    -webkit-font-smoothing: antialiased;
+    --slate-50: #1e1f29;
+    --slate-100: #282a36;
+    --slate-200: #44475a;
+    --slate-300: #f8f8f2;
+    --slate-400: #6272a4;
+    --slate-500: #bd93f9;
+    --slate-600: #ff79c6;
+    --slate-700: #f8f8f2;
+    --slate-800: #282a36;
+    --slate-900: #1e1f29;
 }
 
 html[lang="fa"] body, html[lang="fa"] body *:not(.font-mono) {
     font-family: 'Vazirmatn', sans-serif !important;
 }
 
-/* Cards & Surface Polish */
-.bg-\[var\(--color-surface\)\] {
-    background-color: var(--color-surface) !important;
-    border-color: var(--color-border) !important;
-    box-shadow: var(--card-shadow) !important;
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-html.dark .bg-\[var\(--color-surface\)\] {
-    border-color: var(--color-border) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+/* Perfect form styling with excellent contrast for every theme */
+input[type="text"]:not(.login-input), input[type="password"]:not(.login-input), select, textarea {
+    background-color: var(--slate-100) !important;
+    color: var(--slate-900) !important;
+    border-color: var(--slate-200) !important;
+    transition: all 0.2s;
+    border-radius: 0.75rem !important;
 }
-
-/* Forms & Inputs Contrast */
-input[type="text"]:not(.login-input), 
-input[type="password"]:not(.login-input), 
-input[type="number"]:not(.login-input), 
-select, 
-textarea {
-    background-color: var(--color-bg-alt) !important;
-    color: var(--color-text) !important;
-    border: 1px solid var(--color-border) !important;
-    border-radius: 0.85rem !important;
-    transition: all 0.2s ease !important;
-    font-weight: 500;
-}
-
-input:focus, select:focus, textarea:focus {
+input[type="text"]:not(.login-input):focus, input[type="password"]:not(.login-input):focus, select:focus, textarea:focus {
     border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent) !important;
-    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
 }
-
-/* Desktop Sidebar Nav */
+html.dark input[type="text"]:not(.login-input), html.dark input[type="password"]:not(.login-input), html.dark select, html.dark textarea {
+    background-color: var(--slate-100) !important;
+    color: var(--slate-300) !important;
+    border-color: var(--slate-200) !important;
+}
+select option {
+    background-color: var(--slate-50) !important;
+    color: var(--slate-900) !important;
+}
+html.dark select option {
+    background-color: var(--slate-100) !important;
+    color: var(--slate-300) !important;
+}
+/* hover-start */
+/* hover windows */
 .nav-item {
-    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-    border-radius: 0.85rem !important;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease !important;
+}
+.nav-item:hover {
+    transform: translateX(-6px) !important;
 }
 
-.nav-item.active {
-    background: color-mix(in srgb, var(--color-primary) 12%, transparent) !important;
-    color: var(--color-primary) !important;
-    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent) !important;
-    font-weight: 800 !important;
+/* mobile hover */
+.mobile-nav-item {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease !important;
 }
-
-.nav-item:hover:not(.active) {
-    background: var(--color-bg-alt) !important;
-    color: var(--color-text) !important;
-    transform: translateX(4px);
-}
-html[dir="rtl"] .nav-item:hover:not(.active) {
-    transform: translateX(-4px);
-}
-
-/* Mobile Bottom Nav */
-.mobile-bottom-nav {
-    background: var(--color-surface) !important;
-    border-top: 1px solid var(--color-border) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-}
+.mobile-nav-item:hover,
+.mobile-nav-item:active,
 .mobile-nav-item.active {
-    color: var(--color-primary) !important;
+    transform: translateY(-4px) !important;
 }
-.mobile-nav-item.active svg {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-primary) 50%, transparent));
-}
-
-/* Micro-Interactions (Press Feedback) */
-.native-press {
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-}
-.native-press:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--color-primary) 40%, transparent) !important;
-}
-.native-press:active {
-    transform: scale(0.98);
-}
-
-/* Login Screen Styles */
+/* hover end */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+[data-accordion-content] { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
 .login-input {
     background-color: var(--color-bg-alt) !important;
-    border: 1px solid var(--color-border) !important;
+    border-color: var(--color-border) !important;
     color: var(--color-text) !important;
-    border-radius: 1rem !important;
 }
 .login-input:focus {
     border-color: var(--color-primary) !important;
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 25%, transparent) !important;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent) !important;
 }
-
-@keyframes lockPulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 25px color-mix(in srgb, var(--color-primary) 25%, transparent); }
-    50% { transform: scale(1.04); box-shadow: 0 0 45px color-mix(in srgb, var(--color-primary) 45%, transparent); }
-}
-.lock-pulse {
-    animation: lockPulse 3.5s ease-in-out infinite;
-}
-
-/* Scrollbars */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--color-primary) 35%, transparent); border-radius: 99px; }
-
-/* Transitions & Animations */
+/* Phase 3 Animations */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 800px; } }
-.fade-in { animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.animate-slide-down { animation: slideDown 0.35s ease-out; overflow: hidden; }
-[data-accordion-content] { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+@keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 500px; } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+.animate-slide-down { animation: slideDown 0.3s ease-out; overflow: hidden; }
+.animate-scale-in { animation: scaleIn 0.2s ease-out; }
 </style></head>
   <body class="text-[var(--color-text)] h-[100dvh] flex flex-col md:flex-row overflow-hidden selection:bg-primary selection:text-white transition-colors duration-300 bg-[var(--color-bg)]">
 
